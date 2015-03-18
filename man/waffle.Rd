@@ -18,7 +18,7 @@ waffle(parts, rows = 10, xlab = NULL, title = NULL, colors = NA,
 
 \item{title}{chart title}
 
-\item{colors}{exactly the number of colors as values in \code{parts}. If omitted, Color Brewer "Set3" colors are used.}
+\item{colors}{exactly the number of colors as values in \code{parts}. If omitted, Color Brewer "Set2" colors are used.}
 
 \item{size}{width of the separator between blocks (defaults to \code{2})}
 

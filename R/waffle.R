@@ -17,7 +17,7 @@
 #' @param rows number of rows of blocks
 #' @param xlab text for below the chart. Highly suggested this be used to give the "1 sq == xyz" relationship if it's not obvious
 #' @param title chart title
-#' @param colors exactly the number of colors as values in \code{parts}. If omitted, Color Brewer "Set3" colors are used.
+#' @param colors exactly the number of colors as values in \code{parts}. If omitted, Color Brewer "Set2" colors are used.
 #' @param size width of the separator between blocks (defaults to \code{2})
 #' @param flip flips x & y axes
 #' @param reverse reverses the order of the data
@@ -47,14 +47,20 @@
 #' @export
 waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA, size=2, flip=FALSE, reverse=FALSE) {
 
+  # fill in any missing names
+
   part_names <- names(parts)
   if (length(part_names) < length(parts)) {
     part_names <- c(part_names, LETTERS[1:length(parts)-length(part_names)])
   }
 
+  # use Set2 if no colors are specified
+
   if (all(is.na(colors))) {
     colors <- brewer.pal(length(parts), "Set2")
   }
+
+  # make one big vector of all the bits
 
   parts_vec <- unlist(sapply(1:length(parts), function(i) {
     rep(LETTERS[i+1], parts[i])
@@ -62,7 +68,11 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA, size=2, fli
 
   if (reverse) { parts_vec <- rev(parts_vec) }
 
+  # setup the data frame for geom_rect
+
   dat <- expand.grid(y=1:rows, x=seq_len(ceiling(sum(parts) / rows)))
+
+  # add NAs if needed to fill in the "rectangle"
 
   dat$value <- c(parts_vec, rep(NA, nrow(dat)-length(parts_vec)))
 
@@ -71,6 +81,8 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA, size=2, fli
   } else {
     gg <- ggplot(dat, aes(x=x, y=y, fill=value))
   }
+
+  # make the plot
 
   gg <- gg + geom_tile(color="white", size=size)
   gg <- gg + coord_equal()
