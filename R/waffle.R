@@ -1,8 +1,51 @@
+#' Make waffle (square pie) charts
+#'
+#' Given a named vector, this function will return a ggplot object that represents a
+#' "waffle chart" of the values. The individual values will be summed up and each
+#' that will be the total number of squares in the "grid". You can perform appropriate
+#' value transformation ahead of time to get the desired "waffle" layout/effect.
+#'
+#' If the vector is not named or only partially named, \code{LETTERS} will be used instead.
+#' It is highly suggested that you limit the number of elements to plot, just like you should
+#' if you ever got wasted and decided that a regular pie chart was a good thing to create and
+#' then decide to be totally evil and make one to pollute this beautiful world of ours.
+#'
+#' Chart title and x-axis labels are optional, especially if you'll just be exporting to another
+#' program for use/display.
+#'
+#' @param parts [named] vector of values to use for the chart
+#' @param rows number of rows of blocks
+#' @param xlab text for below the chart. Highly suggested this be used to give the "1 sq == xyz" relationship if it's not obvious
+#' @param title chart title
+#' @param colors exactly the number of colors as values in \code{parts}. If omitted, Color Brewer "Set3" colors are used.
+#' @param size width of the separator between blocks (defaults to \code{2})
+#' @param flip flips x & y axes
+#' @param reverse reverses the order of the data
+#' @examples \dontrun{
+#' parts <- c(80, 30, 20, 10)
+#' waffle(parts, rows=8)
+#'
+#' parts <- c(`Un-breached US Population`=(318-11-79), `Premera`=11, `Anthem`=79)
+#'
+#' waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"),
+#'        title="Health records breaches as fraction of US Population",
+#'        xlab="One square == 1m ppl")
+#'
+#' waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"),
+#'        title="Health records breaches as fraction of US Population",
+#'        xlab="One square == 10m ppl")
+#'
+#' # http://graphics8.nytimes.com/images/2008/07/20/business/20debtgraphic.jpg
+#' # http://www.nytimes.com/2008/07/20/business/20debt.html
+#' savings <- c(`Mortgage ($84,911)`=84911, `Auto and tuition loans ($14,414)`=14414, `Home equity loans ($10,062)`=10062, `Credit Cards ($8,565)`=8565)
+#' waffle(savings/392, rows=7, size=0.5, colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf"), title="Average Household Savings Each Year", xlab="1 square == $392")
+#'
+#' # https://eagereyes.org/techniques/square-pie-charts
+#' professional <- c(`Male`=44, `Female (56%)`=56)
+#' waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"), title="Professional Workforce Makeup")
+#' }
 #' @export
 waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA, size=2, flip=FALSE, reverse=FALSE) {
-
-  require(ggplot2)
-  require(RColorBrewer)
 
   part_names <- names(parts)
   if (length(part_names) < length(parts)) {
