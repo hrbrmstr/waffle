@@ -13,11 +13,13 @@ It uses ggplot2 and returns a ggplot2 object.
 
 The following functions are implemented:
 
-- `waffle`
+- `waffle` : make a waffle chart ggplot2 object
+- `as_rcdimple` : turn a waffle chart into a dimple.js htmlwidget
 
 ### News
 
 - Version `0.1` released
+- Version `0.2` released - added `as_rcdimple` thx to Kent Russell
 
 ### Installation
 
@@ -52,7 +54,7 @@ waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"),
 
 waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"), 
        title="Health records breaches as fraction of US Population", 
-       xlab="One square == 10m ppl")
+       xlab="One square == 10m ppl") 
 
 # replicating an old favourite
 

@@ -105,3 +105,43 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA, size=2, fli
   gg
 
 }
+
+#' Turn a ggplot waffle chart object into an htmlwidget
+#'
+#' Takes the output from \code{waffle} and turns it into an \code{rcdimple}
+#' \code{htmlwidget}.
+#'
+#' @param wf waffle chart ggplot2 object
+#' @param height height of the resultant \code{htmlwidget}
+#' @param width width of the resultant \code{htmlwidget}
+#' @export
+as_rcdimple <- function( wf, height = NULL, width = NULL ){
+  ggplot_build(wf) %>>%
+    (.$data[[1]]) %>>%
+    ( data.frame(
+      group = wf$scales$scales[[3]]$labels[
+        match(wf$data$value,unique(wf$data$value))
+        ]
+      , .
+      , stringAsFactors = F
+    ) ) %>>%
+    na.omit %>>%
+    (dat~
+       dimple( dat, y~x, type = "bar", groups = "group", width = width, height = height   ) %>>%
+       xAxis( type = "addCategoryAxis", title  = "" ) %>>%
+       yAxis( type = "addCategoryAxis", title = "" ) %>>%
+       default_colors( unique( dat$fill ) ) %>>%
+       add_title(wf$labels$title)
+    ) %>>%
+  tack( options = list(tasks = list(
+    htmlwidgets::JS(
+      'function(){
+          this.widgetDimple[0].axes.forEach(function(ax){
+            ax.shapes.remove()
+          })
+      }'
+    )
+  )))
+}
+
+

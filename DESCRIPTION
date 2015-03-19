@@ -1,18 +1,35 @@
 Package: waffle
 Type: Package
 Title: Create waffle charts (square pie charts)
-Version: 0.1
+Version: 0.2
 Date: 2015-03-18
 Author: Bob Rudis (@hrbrmstr)
+Authors@R: c(
+    person("John", "Kiernander", role = c("aut", "cph"), comment = "dimple.js
+      library in htmlwidgets/lib, https://github.com/PMSI-AlignAlytics/dimple"),
+    person("Mike", "Bostock", role = c("aut", "cph"), comment = "d3.js
+      library in htmlwidgets/lib, http://d3js.org"),
+    person("Jeremy", "Stucki", role = c("aut", "cph"), comment = "d3-grid
+      library in htmlwidgets/lib, http://github.com/cpettitt/dagre-d3"),
+    person("Bob", "Rudis", role = c("aut", "cre"), comment = "R
+      interface", email = "bob@rudis.net"),
+    person("Kenton", "Russell", role = c("aut", "cre"), comment = "rcdimple",
+      email = "kent.russell@timelyportfolio.com"),
+    person("Ramnath", "Vaidyanathan", role = c("aut","ctb"), comment = "rCharts
+      common interace functions", email = "ramnath.vaidya@gmail.com")
+  )
 Maintainer: Bob Rudis <bob@rudis.net>
 Description: Create waffle charts (square pie charts)
 URL: http://github.com/hrbrmstr/waffle
 BugReports: https://github.com/hrbrmstr/waffle/issues
-License: MIT + file LICENSE
 Suggests:
     testthat
 Depends:
     R (>= 3.0.0),
     ggplot2
+License: MIT + file LICENSE
 Imports:
-    RColorBrewer
+    RColorBrewer,
+    pipeR,
+    htmlwidgets,
+    rcdimple
