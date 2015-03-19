@@ -1,11 +1,13 @@
 ---
 title: "README"
 author: "Bob Rudis"
-date: March 18, 2015
+date: March 19, 2015
 output:
   md_document:
     variant: markdown_github
 ---
+
+[![Build Status](https://travis-ci.org/hrbrmstr/waffle.svg)](https://travis-ci.org/hrbrmstr/waffle)
 
 waffle is a packae to make waffle charts (square pie charts)
 
@@ -20,6 +22,7 @@ The following functions are implemented:
 
 - Version `0.1` released
 - Version `0.2` released - added `as_rcdimple` thx to Kent Russell
+- Version `0.2.1` released - added Travis tests to ensure independent package build confirmation
 
 ### Installation
 

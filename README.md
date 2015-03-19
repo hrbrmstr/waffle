@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/hrbrmstr/waffle.svg)](https://travis-ci.org/hrbrmstr/waffle)
+
 waffle is a packae to make waffle charts (square pie charts)
 
 It uses ggplot2 and returns a ggplot2 object.
@@ -11,6 +13,7 @@ The following functions are implemented:
 
 -   Version `0.1` released
 -   Version `0.2` released - added `as_rcdimple` thx to Kent Russell
+-   Version `0.2.1` released - added Travis tests to ensure independent package build confirmation
 
 ### Installation
 
@@ -31,7 +34,7 @@ library(waffle)
 packageVersion("waffle")
 ```
 
-    ## [1] '0.2'
+    ## [1] '0.2.1'
 
 ``` r
 # basic example
@@ -92,10 +95,10 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Wed Mar 18 20:08:50 2015"
+    ## [1] "Thu Mar 19 06:37:41 2015"
 
 ``` r
 test_dir("tests/")
 ```
 
-    ## basic functionality :
+    ## basic functionality : .
