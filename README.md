@@ -116,7 +116,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Thu Mar 19 11:33:52 2015"
+    ## [1] "Thu Mar 19 11:34:47 2015"
 
 ``` r
 test_dir("tests/")
