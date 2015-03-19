@@ -12,12 +12,12 @@ Suggests:
     testthat
 Depends:
     R (>= 3.0.0),
-    ggplot2
+    ggplot2,
+    gtable
 License: MIT + file LICENSE
 Imports:
     RColorBrewer,
     pipeR,
     htmlwidgets,
     grid,
-    gridExtra,
-    gtable
+    gridExtra

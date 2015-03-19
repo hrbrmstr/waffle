@@ -15,6 +15,7 @@ The following functions are implemented:
 -   Version `0.2` released - added `as_rcdimple` thx to Kent Russell
 -   Version `0.2.1` released - added Travis tests to ensure independent package build confirmation
 -   Version `0.2.3` released - nulled many margins and made the use of `coord_equal` optional via the `equal` parameter
+-   Version `0.3` released - added a `pad` parameter to `waffle` to make it easier to align plots; added `iron` to make it easier to do the alignment
 
 ### Installation
 
@@ -30,13 +31,15 @@ library(waffle)
 ```
 
     ## Loading required package: ggplot2
+    ## Loading required package: gtable
+    ## Loading required package: grid
 
 ``` r
 # current verison
 packageVersion("waffle")
 ```
 
-    ## [1] '0.2.3'
+    ## [1] '0.3'
 
 ``` r
 # basic example
@@ -103,6 +106,31 @@ waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"))
 
 ![](README_files/figure-markdown_github/f5-1.png)
 
+``` r
+pain.adult.1997 <- c( `YOY (406)`=406, `Adult (24)`=24)
+A <- waffle(pain.adult.1997/2, rows=7, size=0.5, 
+       colors=c("#c7d4b6", "#a3aabd"), 
+       title="Paine Run Brook Trout Abundance (1997)", 
+       xlab="1 square = 2 fish", pad=3)
+
+pine.adult.1997 <- c( `YOY (221)`=221, `Adult (143)`=143)
+B <- waffle(pine.adult.1997/2, rows=7, size=0.5, 
+                             colors=c("#c7d4b6", "#a3aabd"), 
+                             title="Piney River Brook Trout Abundance (1997)", 
+                             xlab="1 square = 2 fish", pad=8)
+
+stan.adult.1997 <- c( `YOY (270)`=270, `Adult (197)`=197)
+C <- waffle(stan.adult.1997/2, rows=7, size=0.5, 
+                             colors=c("#c7d4b6", "#a3aabd"), 
+                             title="Staunton River Trout Abundance (1997)", 
+                             xlab="1 square = 2 fish")
+
+
+iron(A, B, C)
+```
+
+![](README_files/figure-markdown_github/f8-1.png)
+
 ### Test Results
 
 ``` r
@@ -112,7 +140,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Thu Mar 19 11:44:29 2015"
+    ## [1] "Thu Mar 19 19:37:11 2015"
 
 ``` r
 test_dir("tests/")
