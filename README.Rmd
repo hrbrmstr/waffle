@@ -27,6 +27,7 @@ The following functions are implemented:
 ### Installation
 
 ```{r eval=FALSE}
+devtools::install_github("timelyportfolio/rcdimple") # for htmlwidget functionality
 devtools::install_github("hrbrmstr/waffle")
 ```
 

@@ -7,6 +7,7 @@ before_install:
 
 install:
   - ./travis-tool.sh r_binary_install RColorBrewer
+  - ./travis-tool.sh install_github timelyportfolio/rcdimple
   - ./travis-tool.sh install_deps
 
 script: ./travis-tool.sh run_tests

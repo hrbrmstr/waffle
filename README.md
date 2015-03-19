@@ -18,6 +18,7 @@ The following functions are implemented:
 ### Installation
 
 ``` r
+devtools::install_github("timelyportfolio/rcdimple") # for htmlwidget functionality
 devtools::install_github("hrbrmstr/waffle")
 ```
 
@@ -95,7 +96,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Thu Mar 19 06:37:41 2015"
+    ## [1] "Thu Mar 19 06:48:48 2015"
 
 ``` r
 test_dir("tests/")
