@@ -109,39 +109,57 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA, size=2, fli
 #' Turn a ggplot waffle chart object into an htmlwidget
 #'
 #' Takes the output from \code{waffle} and turns it into an \code{rcdimple}
-#' \code{htmlwidget}.
+#' \code{htmlwidget}.  For this to work, you will need to install
+#' \code{rcdimple} with \code{devtools::install_github("timelyportfolio/rcdimple")}.
 #'
 #' @param wf waffle chart ggplot2 object
 #' @param height height of the resultant \code{htmlwidget}
 #' @param width width of the resultant \code{htmlwidget}
+#'
+#' @examples \dontrun{
+#'   # requires install of rcdimple
+#'   # devtools::install_github("timelyportfolio/rcdimple")
+#'   parts <- c( 80, 30, 20, 10 )
+#'   as_rcdimple( waffle( parts, rows=8) )
+#' }
 #' @export
 as_rcdimple <- function( wf, height = NULL, width = NULL ){
-  ggplot_build(wf) %>>%
-    (.$data[[1]]) %>>%
-    ( data.frame(
-      group = wf$scales$scales[[3]]$labels[
-        match(wf$data$value,unique(wf$data$value))
+  # not import since optional dependency
+  #  check here to see if rcdimple is available
+  if(!require(rcdimple)) stop("please devtools::install_github('timelyportfolio/rcdimple')", call. = F)
+
+  # let ggplot2 do the work and build the chart
+  gb <- ggplot_build(wf)
+  dimp <- dimple(
+    na.omit(
+      data.frame(
+        group = wf$scales$scales[[3]]$labels[
+          match(wf$data$value,unique(wf$data$value))
         ]
-      , .
-      , stringAsFactors = F
-    ) ) %>>%
-    na.omit %>>%
-    (dat~
-       dimple( dat, y~x, type = "bar", groups = "group", width = width, height = height   ) %>>%
-       xAxis( type = "addCategoryAxis", title  = "" ) %>>%
-       yAxis( type = "addCategoryAxis", title = "" ) %>>%
-       default_colors( unique( dat$fill ) ) %>>%
-       add_title(wf$labels$title)
-    ) %>>%
-  tack( options = list(tasks = list(
-    htmlwidgets::JS(
-      'function(){
-          this.widgetDimple[0].axes.forEach(function(ax){
-            ax.shapes.remove()
-          })
-      }'
+        ,gb$data[[1]]
+        ,stringsAsFactors = F
+      )
     )
-  )))
+    , y~x
+    , type = "bar"
+    , groups = "group"
+    , width = width
+    , height = height
+    , xAxis = list( type = "addCategoryAxis", title  = "" )
+    , yAxis = list( type = "addCategoryAxis", title = "" )
+    , defaultColors = unique( na.omit(gb$data[[1]])$fill )
+    , title = list( text = wf$labels$title )
+    , tasks = list(
+        htmlwidgets::JS(
+          'function(){
+            this.widgetDimple[0].axes.forEach(function(ax){
+              ax.shapes.remove()
+            })
+          }'
+        )
+    )
+  )
+  return(dimp)
 }
 
 
