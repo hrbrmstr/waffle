@@ -7,6 +7,7 @@ It uses ggplot2 and returns a ggplot2 object.
 The following functions are implemented:
 
 -   `waffle` : make a waffle chart ggplot2 object
+-   `iron` : vertically stitch together multiple waffle plots, left-aligning edges (best if used with the `waffle` `pad` parameter)
 -   `as_rcdimple` : turn a waffle chart into a dimple.js htmlwidget
 
 ### News
@@ -106,6 +107,8 @@ waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"))
 
 ![](README_files/figure-markdown_github/f5-1.png)
 
+Iron example (left-align & padding for multiple plots)
+
 ``` r
 pain.adult.1997 <- c( `YOY (406)`=406, `Adult (24)`=24)
 A <- waffle(pain.adult.1997/2, rows=7, size=0.5, 
@@ -140,7 +143,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Thu Mar 19 19:37:11 2015"
+    ## [1] "Thu Mar 19 19:40:07 2015"
 
 ``` r
 test_dir("tests/")
