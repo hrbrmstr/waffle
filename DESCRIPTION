@@ -9,6 +9,7 @@ Description: Create waffle charts (square pie charts)
 URL: http://github.com/hrbrmstr/waffle
 BugReports: https://github.com/hrbrmstr/waffle/issues
 Suggests:
+    htmltools,
     rcdimple,
     testthat
 Depends:
