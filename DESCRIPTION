@@ -4,10 +4,6 @@ Title: Create waffle charts (square pie charts)
 Version: 0.2
 Date: 2015-03-18
 Author: Bob Rudis (@hrbrmstr)
-Authors@R: c(
-    person("Bob", "Rudis", role = c("aut", "cre"), comment = "R
-      interface", email = "bob@rudis.net"),
-  )
 Maintainer: Bob Rudis <bob@rudis.net>
 Description: Create waffle charts (square pie charts)
 URL: http://github.com/hrbrmstr/waffle
