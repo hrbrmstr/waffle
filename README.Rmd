@@ -27,53 +27,59 @@ The following functions are implemented:
 
 ### Installation
 
-```{r eval=FALSE}
+```{r s1, eval=FALSE}
 devtools::install_github("timelyportfolio/rcdimple") # only for htmlwidget functionality
 devtools::install_github("hrbrmstr/waffle")
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
+```{r s2, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
 options(width=120)
 ```
 
 ### Usage
 
-```{r}
+```{r s3}
 library(waffle)
 
 # current verison
 packageVersion("waffle")
 
 # basic example
-
 parts <- c(80, 30, 20, 10)
 ```
 
-```{r fig.width=6, fig.height=2.5}
+```{r fig1, fig.width=6, fig.height=2.5}
 waffle(parts, rows=8)
 ```
 
-```{r}
+```{r s4}
 # slightly more complex example
-
 parts <- c(`Un-breached\nUS Population`=(318-11-79), `Premera`=11, `Anthem`=79)
 ```
 
+```{r t1, eval=FALSE}
+waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"))
+```
+
 **Health records breaches as fraction of US Population**
-```{r fig.width=6, fig.height=2.5}
+```{r fig2, echo= FALSE, fig.width=6, fig.height=1.75}
 waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"))
 ```
 
 <smaller>One square == 1m ppl</smaller>
 
-**Health records breaches as a fraction os US popualation**
-```{r fig.width=6, fig.height=2.5}
+```{r t2, eval=FALSE}
+waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda")) 
+```
+
+**Health records breaches as fraction of US Population**
+```{r fig3, echo=FALSE, fig.width=6, fig.height=2}
 waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda")) 
 ```
 
 <smaller>(One square == 10m ppl)</smaller>
 
-```{r}
+```{r s5}
 # replicating an old favourite
 
 # http://graphics8.nytimes.com/images/2008/07/20/business/20debtgraphic.jpg
@@ -82,21 +88,36 @@ savings <- c(`Mortgage ($84,911)`=84911, `Auto and\ntuition loans ($14,414)`=144
               `Home equity loans ($10,062)`=10062, `Credit Cards ($8,565)`=8565)
 ```
 
+```{r fig4, eval=FALSE}
+waffle(savings/392, rows=7, size=0.5, 
+       colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf"))
+```
+
+
 *Average Household Savings Each Year**
-```{r fig.width=8, fig.height=3}
+```{r fig4a, echo=FALSE, fig.width=8, fig.height=2}
 waffle(savings/392, rows=7, size=0.5, 
        colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf"))
 ```
 
 <smaller> (1 square == $392)</smaller>
 
-```{r fig.height=3, fig.width=3}
+```{r s6}
 # similar to but not exact
 
 # https://eagereyes.org/techniques/square-pie-charts
 professional <- c(`Male`=44, `Female (56%)`=56)
-waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"),
-       title="Professional Workforce Makeup")
+```
+
+```{r t5, eval=FALSE}
+waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"))
+```
+
+
+**Professional Workforce Makeup**
+
+```{r f5, echo=FALSE, fig.height=3, fig.width=4}
+waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"))
 ```
 
 ### Test Results

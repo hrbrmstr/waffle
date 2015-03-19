@@ -40,7 +40,6 @@ packageVersion("waffle")
 
 ``` r
 # basic example
-
 parts <- c(80, 30, 20, 10)
 ```
 
@@ -48,31 +47,26 @@ parts <- c(80, 30, 20, 10)
 waffle(parts, rows=8)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
+![](README_files/figure-markdown_github/fig1-1.png)
 
 ``` r
 # slightly more complex example
-
 parts <- c(`Un-breached\nUS Population`=(318-11-79), `Premera`=11, `Anthem`=79)
 ```
-
-**Health records breaches as fraction of US Population**
 
 ``` r
 waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"))
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-6-1.png)
+**Health records breaches as fraction of US Population** ![](README_files/figure-markdown_github/fig2-1.png)
 
 <smaller>One square == 1m ppl</smaller>
-
-**Health records breaches as a fraction os US popualation**
 
 ``` r
 waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda")) 
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-7-1.png)
+**Health records breaches as fraction of US Population** ![](README_files/figure-markdown_github/fig3-1.png)
 
 <smaller>(One square == 10m ppl)</smaller>
 
@@ -85,14 +79,12 @@ savings <- c(`Mortgage ($84,911)`=84911, `Auto and\ntuition loans ($14,414)`=144
               `Home equity loans ($10,062)`=10062, `Credit Cards ($8,565)`=8565)
 ```
 
-\*Average Household Savings Each Year\*\*
-
 ``` r
 waffle(savings/392, rows=7, size=0.5, 
        colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf"))
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-9-1.png)
+\*Average Household Savings Each Year\*\* ![](README_files/figure-markdown_github/fig4a-1.png)
 
 <smaller> (1 square == $392)</smaller>
 
@@ -101,11 +93,15 @@ waffle(savings/392, rows=7, size=0.5,
 
 # https://eagereyes.org/techniques/square-pie-charts
 professional <- c(`Male`=44, `Female (56%)`=56)
-waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"),
-       title="Professional Workforce Makeup")
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-10-1.png)
+``` r
+waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"))
+```
+
+**Professional Workforce Makeup**
+
+![](README_files/figure-markdown_github/f5-1.png)
 
 ### Test Results
 
@@ -116,7 +112,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Thu Mar 19 11:34:47 2015"
+    ## [1] "Thu Mar 19 11:44:29 2015"
 
 ``` r
 test_dir("tests/")
