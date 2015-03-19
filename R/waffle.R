@@ -25,6 +25,9 @@ y <- x <- value <- NULL
 #' @param size width of the separator between blocks (defaults to \code{2})
 #' @param flip flips x & y axes
 #' @param reverse reverses the order of the data
+#' @param equal by default, waffle uses \code{coord_equal}; this can cause layout problems,
+#'     so you an use this to disable it if you are using ggsave or knitr to control
+#'     output sizes (or manually sizing the chart)
 #'
 #' @examples \dontrun{
 #' parts <- c(80, 30, 20, 10)
@@ -56,7 +59,7 @@ y <- x <- value <- NULL
 #'
 #' @export
 waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
-                   size=2, flip=FALSE, reverse=FALSE) {
+                   size=2, flip=FALSE, reverse=FALSE, equal=TRUE) {
 
   # fill in any missing names
 
@@ -96,22 +99,36 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
   # make the plot
 
   gg <- gg + geom_tile(color="white", size=size)
-  gg <- gg + coord_equal()
   gg <- gg + labs(x=xlab, y=NULL, title=title)
   gg <- gg + scale_x_continuous(expand=c(0, 0))
   gg <- gg + scale_y_continuous(expand=c(0, 0))
   gg <- gg + scale_fill_manual(name="",
                                values=colors,
                                labels=part_names)
+
   gg <- gg + guides(fill=guide_legend(override.aes=list(colour=NULL)))
-  gg <- gg + coord_equal()
-  gg <- gg + theme_bw()
+
+  if (equal) { gg <- gg + coord_equal() }
+
+    gg <- gg + theme_bw()
+
   gg <- gg + theme(panel.grid=element_blank())
   gg <- gg + theme(panel.border=element_blank())
+  gg <- gg + theme(panel.background=element_blank())
+  gg <- gg + theme(panel.margin=unit(0, "null"))
+
   gg <- gg + theme(axis.text=element_blank())
   gg <- gg + theme(axis.title.x=element_text(size=10))
   gg <- gg + theme(axis.ticks=element_blank())
+  gg <- gg + theme(axis.line=element_blank())
+  gg <- gg + theme(axis.ticks.length=unit(0, "null"))
+  gg <- gg + theme(axis.ticks.margin=unit(0, "null"))
+
   gg <- gg + theme(plot.title=element_text(size=18))
+
+  gg <- gg + theme(plot.background=element_blank())
+  gg <- gg + theme(plot.margin=unit(c(0, 0, 0, 0), "null"))
+  gg <- gg + theme(plot.margin=rep(unit(0, "null"), 4))
 
   gg
 

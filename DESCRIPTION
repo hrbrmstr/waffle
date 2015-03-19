@@ -1,7 +1,7 @@
 Package: waffle
 Type: Package
 Title: Create waffle charts (square pie charts)
-Version: 0.2.1
+Version: 0.2.3
 Date: 2015-03-18
 Author: Bob Rudis (@hrbrmstr)
 Maintainer: Bob Rudis <bob@rudis.net>
@@ -17,4 +17,5 @@ License: MIT + file LICENSE
 Imports:
     RColorBrewer,
     pipeR,
-    htmlwidgets
+    htmlwidgets,
+    grid

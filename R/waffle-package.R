@@ -2,7 +2,7 @@
 #' @name waffle
 #' @docType package
 #' @author Bob Rudis (@@hrbrmstr)
-#' @import ggplot2 RColorBrewer
+#' @import ggplot2 RColorBrewer grid
 #' @importFrom htmlwidgets JS
 #' @importFrom pipeR %>>%
 NULL

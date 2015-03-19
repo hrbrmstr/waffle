@@ -14,6 +14,7 @@ The following functions are implemented:
 -   Version `0.1` released
 -   Version `0.2` released - added `as_rcdimple` thx to Kent Russell
 -   Version `0.2.1` released - added Travis tests to ensure independent package build confirmation
+-   Version `0.2.3` released - nulled many margins and made the use of `coord_equal` optional via the `equal` parameter
 
 ### Installation
 
@@ -35,7 +36,7 @@ library(waffle)
 packageVersion("waffle")
 ```
 
-    ## [1] '0.2.1'
+    ## [1] '0.2.3'
 
 ``` r
 # basic example
@@ -58,13 +59,15 @@ waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"),
 
 ![](README_files/figure-markdown_github/unnamed-chunk-3-2.png)
 
+**Health records breaches as a fraction os US popualation**
+
 ``` r
-waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"), 
-       title="Health records breaches as fraction of US Population", 
-       xlab="One square == 10m ppl") 
+waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda")) 
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-3.png)
+![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
+
+<smaller>(One square == 10m ppl)</smaller>
 
 ``` r
 # replicating an old favourite
@@ -73,12 +76,18 @@ waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"),
 # http://www.nytimes.com/2008/07/20/business/20debt.html
 savings <- c(`Mortgage ($84,911)`=84911, `Auto and\ntuition loans ($14,414)`=14414, 
               `Home equity loans ($10,062)`=10062, `Credit Cards ($8,565)`=8565)
-waffle(savings/392, rows=7, size=0.5, 
-       colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf"), 
-       title="Average Household Savings Each Year", xlab="1 square == $392")
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-4.png)
+\*Average Household Savings Each Year\*\*
+
+``` r
+waffle(savings/392, rows=7, size=0.5, 
+       colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf"))
+```
+
+![](README_files/figure-markdown_github/unnamed-chunk-6-1.png)
+
+<smaller> (1 square == $392)</smaller>
 
 ``` r
 # similar to but not exact
@@ -89,7 +98,7 @@ waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"),
        title="Professional Workforce Makeup")
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-5.png)
+![](README_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
 ### Test Results
 
@@ -100,7 +109,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Thu Mar 19 07:27:54 2015"
+    ## [1] "Thu Mar 19 11:29:53 2015"
 
 ``` r
 test_dir("tests/")

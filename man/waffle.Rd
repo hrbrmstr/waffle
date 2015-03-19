@@ -7,7 +7,7 @@
 \title{A package to make waffle charts (square pie charts)}
 \usage{
 waffle(parts, rows = 10, xlab = NULL, title = NULL, colors = NA,
-  size = 2, flip = FALSE, reverse = FALSE)
+  size = 2, flip = FALSE, reverse = FALSE, equal = TRUE)
 }
 \arguments{
 \item{parts}{[named] vector of values to use for the chart}
@@ -27,6 +27,10 @@ Color Brewer "Set2" colors are used.}
 \item{flip}{flips x & y axes}
 
 \item{reverse}{reverses the order of the data}
+
+\item{equal}{by default, waffle uses \code{coord_equal}; this can cause layout problems,
+    so you an use this to disable it if you are using ggsave or knitr to control
+    output sizes (or manually sizing the chart)}
 }
 \description{
 A package to make waffle charts (square pie charts)
