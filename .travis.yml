@@ -6,7 +6,7 @@ before_install:
   - ./travis-tool.sh bootstrap
 
 install:
-  - ./travis-tool.sh install_github plyr
+  - ./travis-tool.sh r_binary_install colorspace RColorBrewer pipeR htmlwidgets
   - ./travis-tool.sh install_deps
 
 script: ./travis-tool.sh run_tests
