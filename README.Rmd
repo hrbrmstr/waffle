@@ -47,20 +47,27 @@ packageVersion("waffle")
 # basic example
 
 parts <- c(80, 30, 20, 10)
-waffle(parts, rows=8)
+```
 
+```{r fig.width=6, fig.height=2.5}
+waffle(parts, rows=8)
+```
+
+```{r}
 # slightly more complex example
 
 parts <- c(`Un-breached\nUS Population`=(318-11-79), `Premera`=11, `Anthem`=79)
-
-waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"), 
-       title="Health records breaches as fraction of US Population", 
-       xlab="One square == 1m ppl")
 ```
 
-**Health records breaches as a fraction os US popualation**
+**Health records breaches as fraction of US Population**
+```{r fig.width=6, fig.height=2.5}
+waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"))
+```
 
-```{r}
+<smaller>One square == 1m ppl</smaller>
+
+**Health records breaches as a fraction os US popualation**
+```{r fig.width=6, fig.height=2.5}
 waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda")) 
 ```
 
@@ -76,8 +83,7 @@ savings <- c(`Mortgage ($84,911)`=84911, `Auto and\ntuition loans ($14,414)`=144
 ```
 
 *Average Household Savings Each Year**
-
-```{r}
+```{r fig.width=8, fig.height=3}
 waffle(savings/392, rows=7, size=0.5, 
        colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf"))
 ```

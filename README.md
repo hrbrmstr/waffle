@@ -42,22 +42,29 @@ packageVersion("waffle")
 # basic example
 
 parts <- c(80, 30, 20, 10)
+```
+
+``` r
 waffle(parts, rows=8)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
 ``` r
 # slightly more complex example
 
 parts <- c(`Un-breached\nUS Population`=(318-11-79), `Premera`=11, `Anthem`=79)
-
-waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"), 
-       title="Health records breaches as fraction of US Population", 
-       xlab="One square == 1m ppl")
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-2.png)
+**Health records breaches as fraction of US Population**
+
+``` r
+waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"))
+```
+
+![](README_files/figure-markdown_github/unnamed-chunk-6-1.png)
+
+<smaller>One square == 1m ppl</smaller>
 
 **Health records breaches as a fraction os US popualation**
 
@@ -65,7 +72,7 @@ waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"),
 waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda")) 
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
 <smaller>(One square == 10m ppl)</smaller>
 
@@ -85,7 +92,7 @@ waffle(savings/392, rows=7, size=0.5,
        colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf"))
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-9-1.png)
 
 <smaller> (1 square == $392)</smaller>
 
@@ -98,7 +105,7 @@ waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"),
        title="Professional Workforce Makeup")
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-7-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-10-1.png)
 
 ### Test Results
 
@@ -109,7 +116,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Thu Mar 19 11:29:53 2015"
+    ## [1] "Thu Mar 19 11:33:52 2015"
 
 ``` r
 test_dir("tests/")
