@@ -4,11 +4,13 @@ It uses ggplot2 and returns a ggplot2 object.
 
 The following functions are implemented:
 
--   `waffle`
+-   `waffle` : make a waffle chart ggplot2 object
+-   `as_rcdimple` : turn a waffle chart into a dimple.js htmlwidget
 
 ### News
 
 -   Version `0.1` released
+-   Version `0.2` released - added `as_rcdimple` thx to Kent Russell
 
 ### Installation
 
@@ -29,7 +31,7 @@ library(waffle)
 packageVersion("waffle")
 ```
 
-    ## [1] '1.0'
+    ## [1] '0.2'
 
 ``` r
 # basic example
@@ -37,8 +39,6 @@ packageVersion("waffle")
 parts <- c(80, 30, 20, 10)
 waffle(parts, rows=8)
 ```
-
-    ## Loading required package: RColorBrewer
 
 ![](README_files/figure-markdown_github/unnamed-chunk-3-1.png)
 
@@ -57,7 +57,7 @@ waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"),
 ``` r
 waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"), 
        title="Health records breaches as fraction of US Population", 
-       xlab="One square == 10m ppl")
+       xlab="One square == 10m ppl") 
 ```
 
 ![](README_files/figure-markdown_github/unnamed-chunk-3-3.png)
@@ -92,7 +92,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Wed Mar 18 15:46:55 2015"
+    ## [1] "Wed Mar 18 20:08:50 2015"
 
 ``` r
 test_dir("tests/")
