@@ -10,6 +10,7 @@ URL: http://github.com/hrbrmstr/waffle
 BugReports: https://github.com/hrbrmstr/waffle/issues
 Suggests:
     htmltools,
+    htmlwidgets,
     rcdimple,
     testthat
 Depends:
@@ -18,5 +19,4 @@ Depends:
 License: MIT + file LICENSE
 Imports:
     RColorBrewer,
-    pipeR,
-    htmlwidgets
+    pipeR
