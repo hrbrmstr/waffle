@@ -14,11 +14,13 @@ waffle(parts, rows = 10, xlab = NULL, title = NULL, colors = NA,
 
 \item{rows}{number of rows of blocks}
 
-\item{xlab}{text for below the chart. Highly suggested this be used to give the "1 sq == xyz" relationship if it's not obvious}
+\item{xlab}{text for below the chart. Highly suggested this be used to give the
+"1 sq == xyz" relationship if it's not obvious}
 
 \item{title}{chart title}
 
-\item{colors}{exactly the number of colors as values in \code{parts}. If omitted, Color Brewer "Set2" colors are used.}
+\item{colors}{exactly the number of colors as values in \code{parts}. If omitted,
+Color Brewer "Set2" colors are used.}
 
 \item{size}{width of the separator between blocks (defaults to \code{2})}
 
@@ -60,12 +62,16 @@ waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"),
 
 # http://graphics8.nytimes.com/images/2008/07/20/business/20debtgraphic.jpg
 # http://www.nytimes.com/2008/07/20/business/20debt.html
-savings <- c(`Mortgage ($84,911)`=84911, `Auto and tuition loans ($14,414)`=14414, `Home equity loans ($10,062)`=10062, `Credit Cards ($8,565)`=8565)
-waffle(savings/392, rows=7, size=0.5, colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf"), title="Average Household Savings Each Year", xlab="1 square == $392")
+savings <- c(`Mortgage ($84,911)`=84911, `Auto and tuition loans ($14,414)`=14414,
+             `Home equity loans ($10,062)`=10062, `Credit Cards ($8,565)`=8565)
+waffle(savings/392, rows=7, size=0.5,
+       colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf"),
+       title="Average Household Savings Each Year", xlab="1 square == $392")
 
 # https://eagereyes.org/techniques/square-pie-charts
 professional <- c(`Male`=44, `Female (56\%)`=56)
-waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"), title="Professional Workforce Makeup")
+waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"),
+       title="Professional Workforce Makeup")
 }
 }
 \author{

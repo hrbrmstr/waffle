@@ -1,3 +1,5 @@
+y <- x <- value <- NULL
+
 #' Make waffle (square pie) charts
 #'
 #' Given a named vector, this function will return a ggplot object that represents a
@@ -15,12 +17,15 @@
 #'
 #' @param parts [named] vector of values to use for the chart
 #' @param rows number of rows of blocks
-#' @param xlab text for below the chart. Highly suggested this be used to give the "1 sq == xyz" relationship if it's not obvious
+#' @param xlab text for below the chart. Highly suggested this be used to give the
+#'     "1 sq == xyz" relationship if it's not obvious
 #' @param title chart title
-#' @param colors exactly the number of colors as values in \code{parts}. If omitted, Color Brewer "Set2" colors are used.
+#' @param colors exactly the number of colors as values in \code{parts}. If omitted,
+#'     Color Brewer "Set2" colors are used.
 #' @param size width of the separator between blocks (defaults to \code{2})
 #' @param flip flips x & y axes
 #' @param reverse reverses the order of the data
+#'
 #' @examples \dontrun{
 #' parts <- c(80, 30, 20, 10)
 #' waffle(parts, rows=8)
@@ -37,15 +42,21 @@
 #'
 #' # http://graphics8.nytimes.com/images/2008/07/20/business/20debtgraphic.jpg
 #' # http://www.nytimes.com/2008/07/20/business/20debt.html
-#' savings <- c(`Mortgage ($84,911)`=84911, `Auto and tuition loans ($14,414)`=14414, `Home equity loans ($10,062)`=10062, `Credit Cards ($8,565)`=8565)
-#' waffle(savings/392, rows=7, size=0.5, colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf"), title="Average Household Savings Each Year", xlab="1 square == $392")
+#' savings <- c(`Mortgage ($84,911)`=84911, `Auto and tuition loans ($14,414)`=14414,
+#'              `Home equity loans ($10,062)`=10062, `Credit Cards ($8,565)`=8565)
+#' waffle(savings/392, rows=7, size=0.5,
+#'        colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf"),
+#'        title="Average Household Savings Each Year", xlab="1 square == $392")
 #'
 #' # https://eagereyes.org/techniques/square-pie-charts
 #' professional <- c(`Male`=44, `Female (56%)`=56)
-#' waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"), title="Professional Workforce Makeup")
+#' waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"),
+#'        title="Professional Workforce Makeup")
 #' }
+#'
 #' @export
-waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA, size=2, flip=FALSE, reverse=FALSE) {
+waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
+                   size=2, flip=FALSE, reverse=FALSE) {
 
   # fill in any missing names
 
@@ -122,15 +133,17 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA, size=2, fli
 #'   parts <- c( 80, 30, 20, 10 )
 #'   as_rcdimple( waffle( parts, rows=8) )
 #' }
+#'
 #' @export
 as_rcdimple <- function( wf, height = NULL, width = NULL ) {
+
   # not import since optional dependency
   #  check here to see if rcdimple is available
-  if(!require(rcdimple)) stop("please devtools::install_github('timelyportfolio/rcdimple')", call. = FALSE)
+  if(!requireNamespace("rcdimple", quietly=TRUE)) stop("please devtools::install_github('timelyportfolio/rcdimple')", call. = FALSE)
 
   # let ggplot2 do the work and build the chart
   gb <- ggplot_build(wf)
-  dimp <- dimple(
+  dimp <- rcdimple::dimple(
     na.omit(
       data.frame(
         group = wf$scales$scales[[3]]$labels[
@@ -150,7 +163,7 @@ as_rcdimple <- function( wf, height = NULL, width = NULL ) {
     , defaultColors = unique( na.omit(gb$data[[1]])$fill )
     , title = list( text = wf$labels$title )
     , tasks = list(
-        htmlwidgets::JS(
+        JS(
           'function(){
             this.widgetDimple[0].axes.forEach(function(ax){
               ax.shapes.remove()
@@ -161,5 +174,3 @@ as_rcdimple <- function( wf, height = NULL, width = NULL ) {
   )
   return(dimp)
 }
-
-

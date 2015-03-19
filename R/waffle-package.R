@@ -3,5 +3,6 @@
 #' @docType package
 #' @author Bob Rudis (@@hrbrmstr)
 #' @import ggplot2 RColorBrewer
+#' @importFrom htmlwidgets JS
 #' @importFrom pipeR %>>%
 NULL

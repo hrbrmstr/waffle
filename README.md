@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/hrbrmstr/waffle.svg)](https://travis-ci.org/hrbrmstr/waffle)
 
-waffle is a packae to make waffle charts (square pie charts)
+waffle is a package to make waffle charts (square pie charts)
 
 It uses ggplot2 and returns a ggplot2 object.
 
@@ -18,7 +18,7 @@ The following functions are implemented:
 ### Installation
 
 ``` r
-devtools::install_github("timelyportfolio/rcdimple") # for htmlwidget functionality
+devtools::install_github("timelyportfolio/rcdimple") # only for htmlwidget functionality
 devtools::install_github("hrbrmstr/waffle")
 ```
 
@@ -71,8 +71,11 @@ waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"),
 
 # http://graphics8.nytimes.com/images/2008/07/20/business/20debtgraphic.jpg
 # http://www.nytimes.com/2008/07/20/business/20debt.html
-savings <- c(`Mortgage ($84,911)`=84911, `Auto and\ntuition loans ($14,414)`=14414, `Home equity loans ($10,062)`=10062, `Credit Cards ($8,565)`=8565)
-waffle(savings/392, rows=7, size=0.5, colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf"), title="Average Household Savings Each Year", xlab="1 square == $392")
+savings <- c(`Mortgage ($84,911)`=84911, `Auto and\ntuition loans ($14,414)`=14414, 
+              `Home equity loans ($10,062)`=10062, `Credit Cards ($8,565)`=8565)
+waffle(savings/392, rows=7, size=0.5, 
+       colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf"), 
+       title="Average Household Savings Each Year", xlab="1 square == $392")
 ```
 
 ![](README_files/figure-markdown_github/unnamed-chunk-3-4.png)
@@ -82,7 +85,8 @@ waffle(savings/392, rows=7, size=0.5, colors=c("#c7d4b6", "#a3aabd", "#a0d0de", 
 
 # https://eagereyes.org/techniques/square-pie-charts
 professional <- c(`Male`=44, `Female (56%)`=56)
-waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"), title="Professional Workforce Makeup")
+waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"),
+       title="Professional Workforce Makeup")
 ```
 
 ![](README_files/figure-markdown_github/unnamed-chunk-3-5.png)
@@ -96,7 +100,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Thu Mar 19 06:48:48 2015"
+    ## [1] "Thu Mar 19 07:27:54 2015"
 
 ``` r
 test_dir("tests/")

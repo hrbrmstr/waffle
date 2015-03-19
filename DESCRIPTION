@@ -16,4 +16,5 @@ Depends:
 License: MIT + file LICENSE
 Imports:
     RColorBrewer,
-    pipeR
+    pipeR,
+    htmlwidgets
