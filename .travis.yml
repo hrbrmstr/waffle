@@ -7,7 +7,7 @@ before_install:
 
 install:
   - ./travis-tool.sh r_binary_install RColorBrewer
-  - Rscript -e "devtools::install_deps(dep = TRUE)"
+  - ./travis-tool.sh install_deps
 
 script: ./travis-tool.sh run_tests
 
