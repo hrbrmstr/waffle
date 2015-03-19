@@ -123,10 +123,10 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA, size=2, fli
 #'   as_rcdimple( waffle( parts, rows=8) )
 #' }
 #' @export
-as_rcdimple <- function( wf, height = NULL, width = NULL ){
+as_rcdimple <- function( wf, height = NULL, width = NULL ) {
   # not import since optional dependency
   #  check here to see if rcdimple is available
-  if(!require(rcdimple)) stop("please devtools::install_github('timelyportfolio/rcdimple')", call. = F)
+  if(!require(rcdimple)) stop("please devtools::install_github('timelyportfolio/rcdimple')", call. = FALSE)
 
   # let ggplot2 do the work and build the chart
   gb <- ggplot_build(wf)
