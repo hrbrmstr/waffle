@@ -23,6 +23,7 @@ Description: Create waffle charts (square pie charts)
 URL: http://github.com/hrbrmstr/waffle
 BugReports: https://github.com/hrbrmstr/waffle/issues
 Suggests:
+    rcdimple,
     testthat
 Depends:
     R (>= 3.0.0),
@@ -31,5 +32,4 @@ License: MIT + file LICENSE
 Imports:
     RColorBrewer,
     pipeR,
-    htmlwidgets,
-    rcdimple
+    htmlwidgets
