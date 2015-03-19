@@ -24,6 +24,7 @@ The following functions are implemented:
 - Version `0.2` released - added `as_rcdimple` thx to Kent Russell
 - Version `0.2.1` released - added Travis tests to ensure independent package build confirmation
 - Version `0.2.3` released - nulled many margins and made the use of `coord_equal` optional via the `equal` parameter
+- Version `0.3` released - added a `pad` parameter to `waffle` to make it easier to align plots; added `iron` to make it easier to do the alignment
 
 ### Installation
 

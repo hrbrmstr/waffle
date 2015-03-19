@@ -28,6 +28,7 @@ y <- x <- value <- NULL
 #' @param equal by default, waffle uses \code{coord_equal}; this can cause layout problems,
 #'     so you an use this to disable it if you are using ggsave or knitr to control
 #'     output sizes (or manually sizing the chart)
+#' @param pad how many blocks to right-pad the grid with
 #'
 #' @examples \dontrun{
 #' parts <- c(80, 30, 20, 10)
@@ -59,7 +60,7 @@ y <- x <- value <- NULL
 #'
 #' @export
 waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
-                   size=2, flip=FALSE, reverse=FALSE, equal=TRUE) {
+                   size=2, flip=FALSE, reverse=FALSE, equal=TRUE, pad=0) {
 
   # fill in any missing names
 
@@ -84,7 +85,7 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
 
   # setup the data frame for geom_rect
 
-  dat <- expand.grid(y=1:rows, x=seq_len(ceiling(sum(parts) / rows)))
+  dat <- expand.grid(y=1:rows, x=seq_len(pad + (ceiling(sum(parts) / rows))))
 
   # add NAs if needed to fill in the "rectangle"
 
