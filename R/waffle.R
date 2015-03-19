@@ -115,6 +115,13 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA, size=2, fli
 #' @param wf waffle chart ggplot2 object
 #' @param height height of the resultant \code{htmlwidget}
 #' @param width width of the resultant \code{htmlwidget}
+#'
+#' @examples \dontrun{
+#'   # requires install of rcdimple
+#'   # devtools::install_github("timelyportfolio/rcdimple")
+#'   parts <- c( 80, 30, 20, 10 )
+#'   as_rcdimple( waffle( parts, rows=8) )
+#' }
 #' @export
 as_rcdimple <- function( wf, height = NULL, width = NULL ){
   # not import since optional dependency

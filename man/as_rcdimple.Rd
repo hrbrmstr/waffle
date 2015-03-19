@@ -18,4 +18,12 @@ Takes the output from \code{waffle} and turns it into an \code{rcdimple}
 \code{htmlwidget}.  For this to work, you will need to install
 \code{rcdimple} with \code{devtools::install_github("timelyportfolio/rcdimple")}.
 }
+\examples{
+\dontrun{
+  # requires install of rcdimple
+  # devtools::install_github("timelyportfolio/rcdimple")
+  parts <- c( 80, 30, 20, 10 )
+  as_rcdimple( waffle( parts, rows=8) )
+}
+}
 
