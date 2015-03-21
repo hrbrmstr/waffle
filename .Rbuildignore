@@ -3,3 +3,5 @@
 ^\.travis\.yml$
 ^.*md$
 ^README_files
+^README.html
+^\.git

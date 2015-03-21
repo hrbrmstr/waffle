@@ -1,0 +1,268 @@
+* using log directory ‘/Users/bob/Development/waffle/..Rcheck’
+* using R version 3.1.3 (2015-03-09)
+* using platform: x86_64-apple-darwin13.4.0 (64-bit)
+* using session charset: UTF-8
+* using option ‘--as-cran’
+* checking for file ‘./DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘waffle’ version ‘0.3’
+* checking CRAN incoming feasibility ... NOTE
+Maintainer: ‘Bob Rudis <bob@rudis.net>’
+New submission
+Components with restrictions and base license permitting such:
+  MIT + file LICENSE
+File 'LICENSE':
+  YEAR: 2015
+  COPYRIGHT HOLDER: Bob Rudis
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... WARNING
+Found the following executable files:
+  .git/objects/00/a1a7ff3c991ff0d628969ef5affeaaada152c1
+  .git/objects/02/8f05640cb5d8a65e6357eda635ccd50d3a0877
+  .git/objects/03/11f786992b315a7793c926bfb4412da5f26e7f
+  .git/objects/05/b640e28bf03ae11b6ad0828e01f151be1ac576
+  .git/objects/07/32309b1a26769217a5a205ca0f94d1df260ef5
+  .git/objects/07/9ce299ed08704b793d6868b1d95713f253950e
+  .git/objects/0a/bef0f0254e38f035be63c52dcd70f31999fb7d
+  .git/objects/0c/464a3a6a67aafbe553463e2511d6295b803206
+  .git/objects/0e/058d8c452c2469590445c55824b343231b745f
+  .git/objects/0f/2743b14c9e3e700fc095112a5946d6a7643033
+  .git/objects/10/1021105d6aa0e71f42bbaa3c2152ed1d0f9be2
+  .git/objects/13/2020a7fdbd9db8f13a1ec1c519b78959b6a276
+  .git/objects/13/3b5e02848d8987738167131eb0414676624b48
+  .git/objects/15/b0f986a2c9c6bc0f3f5ee28853146a85d23559
+  .git/objects/15/c1dc2d5000e60fd2ec82f98543850c1bd8b351
+  .git/objects/16/92124ff60333a6862d21e82aef63619490322c
+  .git/objects/18/523f8052309e2e0628ea07e06c6e28eaee63b3
+  .git/objects/18/a0c5fb85b0a6908bcd8f6d8a5423b2cbde4183
+  .git/objects/1b/30c7efa460bc9ca395894a4aff070376b48500
+  .git/objects/1c/eef66e1cde2ec2dcf7cfced187189b16621e19
+  .git/objects/1e/c5af1ba353dcee608a12c7cbf19946c5f17646
+  .git/objects/1e/ec6a8da890e59208cda29517856a6d7e8bf199
+  .git/objects/22/b95a11f575476b8ba75b57ed5ec7c1ca6ec272
+  .git/objects/23/a363391f175f67b1acc053a70a3b0b5913a399
+  .git/objects/23/ad6a8f9b169e2933c504db9ac928a85106d68a
+  .git/objects/24/f21a523251c89bc1089c657d608ff22dfb46d4
+  .git/objects/26/5e5d67d20132fef71fb744136d676efb1db08f
+  .git/objects/27/d0e8677b0af90190317c54d33257a2b7c4b412
+  .git/objects/28/71584dc189e81563c2af549b96bfcd1f456daa
+  .git/objects/29/0091878f60c421b876c6cfda76b0d9e816df91
+  .git/objects/2a/07fecc0e53a66681053373c65525ea1a3d4e77
+  .git/objects/2a/2bf67e5ab5322c0e8991acc2c99710ca31f714
+  .git/objects/2d/b3d42fab8a6cecebfc20622b29d1f1ca1ec91d
+  .git/objects/30/bac0eecb402a7b5760d3e9666d75f4fcac86f7
+  .git/objects/30/eb498f8b4f023748559cc46907c1ee99753947
+  .git/objects/33/48b1e4b3aa95d289284073656ee58d7f9bc58d
+  .git/objects/35/7ab1225b03ab3593a7da962ccb50097b8fff5f
+  .git/objects/36/01eb9ecee6b99875be8c18d5a2f4b5a11c0f8b
+  .git/objects/37/79ee6f27b81e56665da7c98c2075c648f3e741
+  .git/objects/38/1253748dfe13c93b8f287d14fd593b31bc7158
+  .git/objects/3b/533fa10a36bf4f58d907221a412cb072be8b7a
+  .git/objects/3b/a08b076743b0c5f6e8fe9db740648eb39ec402
+  .git/objects/3f/efb95a382de018e1f0837eb766075bb3aec656
+  .git/objects/40/052f1483e7b4324fae88cc82a8ee08041f7e3f
+  .git/objects/42/4917eeccec26ac7be885439605401ac794236f
+  .git/objects/43/94a933ddde137892a41184e6bdc7172bd5853c
+  .git/objects/43/b0519a035ba0e2108c9d7526954c80b83727fb
+  .git/objects/44/6d9e1c57e9285c228285ecec87f4eaf08cf2b5
+  .git/objects/46/97dee48cd563059af96b3fb9f3fc86bb59f7ec
+  .git/objects/47/0b32ef880dc32a2cc7a007766125b407ba8e85
+  .git/objects/47/dd86ed9c131c285c2371cf3b1fd31186d471fa
+  .git/objects/49/3059ab8dd63ac6ac9e71fe4cc767ff4d12a650
+  .git/objects/4d/d9f6729a05403c3423a5992d7a009a6683c73f
+  .git/objects/4f/09e9309b0d14142e05cdb5835f9b884d99de1b
+  .git/objects/4f/e90aed79218d099e13ed6a9183c5c9b1137958
+  .git/objects/51/8e5c853835e60ebd85d7bf4772dde6225f7062
+  .git/objects/53/bac62f5b1eeacb6674d6a664ff98ccbed56960
+  .git/objects/54/488415d55887e144d7c6540841ec109d91a911
+  .git/objects/54/a3ceebea89039331619e04f3ef2041610d8863
+  .git/objects/55/5debc08b7d8e17f81ab9b6c6730250bc10f501
+  .git/objects/55/d56a0449133339f8d8c55f74ae5164e98b956f
+  .git/objects/58/238a2d55f6064cfd2fc939a59ebb9cc4a490f3
+  .git/objects/59/d18601be9dd6aa43a3d74d6ab7678c6c48bea2
+  .git/objects/5a/803ab06dbf7b53aea06d4113beaf17daac8248
+  .git/objects/5d/3a12069ef7fe752cad620a672b156b217e509c
+  .git/objects/5e/8caafd96b40eb0fdd7211185a717542bd52064
+  .git/objects/60/332deeadefe21abd47f88270d89c097a7b27e1
+  .git/objects/60/c59bc6adb2e8c101279bdb9a2c1880ed7171f7
+  .git/objects/62/4018ce2e62734459e011842de9dd3ca3bba2cf
+  .git/objects/62/9e8ba2b8c3c36bf55b76dac5fcdd5fa2f17467
+  .git/objects/62/cd7ddc9fd46de45311ee0d4b5b4cbad307b442
+  .git/objects/64/39929c60b2301106c4d021255633164859cbf1
+  .git/objects/64/b5872239ad9a1ac7b0cc720999b18c4435e3c6
+  .git/objects/64/c9eed23c3a3337d2b75582ba823cb2903c053d
+  .git/objects/67/0d2aa4e653703b976191f43f274f9acc00f3e1
+  .git/objects/68/2cbcd403db323b264867fb66a63e8adba2e7b4
+  .git/objects/6a/09bd5453aee3445fb9e363ad6ea0049fff01ea
+  .git/objects/6b/0cf6b6ed49d67ada1c3eea4a90735d59d2f723
+  .git/objects/6b/a1e47ba0e32bdbc206a38d53eab092243f6ec9
+  .git/objects/6b/c6a07a78fb8dd07c9460d3935b07d584a169b4
+  .git/objects/6b/c74c635d40714beb84665fe0e98914ca4cf8a4
+  .git/objects/6e/62f19de1d1382e18341bc68fbc2d620a0f83b6
+  .git/objects/6f/069ebaab76fda53ef00a64ea4ad17bd149fcfd
+  .git/objects/6f/29fce4e50e7aed5930d5757f05ea629bcc24dc
+  .git/objects/70/79b8a95351e5a3d528408ab0de6ad532e3a2b8
+  .git/objects/72/055aa016cd615c71a5bd135b58823902b756b2
+  .git/objects/72/3360dfa8368300ad4caf5f413b53847b642f75
+  .git/objects/74/bd1865b33b67fe8488af6b0d64f42aa29c2ac8
+  .git/objects/74/d54292441fc6a8f789c7334e00ac6de91875e2
+  .git/objects/75/ecede47db2c35cb07fcd25f5f82b6bc65d5504
+  .git/objects/76/0918db62768e1b5621ecb619bfc7cc822be90e
+  .git/objects/77/83cded15b0ff459bdcb31c13cfce29d63dcfd0
+  .git/objects/77/d5939f1c475e34a1787f4be7a90fd45cf51f20
+  .git/objects/7a/866a9108e0c71418fefc8e4626326fe82605bd
+  .git/objects/7c/137f03729ac346962a1723df8bb3aba8ca53de
+  .git/objects/7c/8ff9f65454094f3245157c0eda805750ed26a7
+  .git/objects/7e/503d15d231a47e3cb03614159791f7ebb03959
+  .git/objects/7f/61f7e401f6b7364260cc93c06dee8f5e027f2d
+  .git/objects/81/de8f05f046b2f37ef0635832e1ac4964217e13
+  .git/objects/84/a3ff8a62d8904b4da190c1c955b7530a6f6b25
+  .git/objects/85/0d924b17c1c5d0ce5dc296c9cc48fa0815bee6
+  .git/objects/86/613ce5f0d299eb39aa1d7959b7a660b402bb8b
+  .git/objects/89/dad9fbd134ef5caa0c98a9a1178a0e04e89e37
+  .git/objects/89/e886b91bee5625449ae79b8c6191f6e33318da
+  .git/objects/8a/173742e7dd893d80fc960961c3c782a01fd219
+  .git/objects/8d/dc950b191ed421e54f44179a1457f2c0367750
+  .git/objects/90/7e5083b4d11d4a971ed0d3249bc4f6d7d620ac
+  .git/objects/91/4ab17eb02bafc26bd3f9834f44231bca663211
+  .git/objects/91/ed5d3bb203f7010d3a84490f36d3d1f5a483f5
+  .git/objects/92/39dff8b88ed6c03ae3d0a49cc099389fd7bf3b
+  .git/objects/92/e0c1c1c9560c8e04461f9c7c2ae89667d3afa9
+  .git/objects/93/6ea8597245b4f8ddc540dbf81c953bfa59c8eb
+  .git/objects/94/203e75882ff8def24fdb93dd54e5ca92108cd2
+  .git/objects/94/5fcaa790247c4d00cb457a513b16885f1c455c
+  .git/objects/94/7235829b099acf84d80faf974abd17e9b94d7d
+  .git/objects/94/c9d3cc2347d1e484f7ca75192b1ca525e20da5
+  .git/objects/95/047cd512f79dc96d87539321f315a6fb9ae584
+  .git/objects/97/2c1b6ccac0c07fdfb53838d185caf2c309c7be
+  .git/objects/97/92fff72e5069d03d37c465c33971b1f16c1535
+  .git/objects/97/f67cd169a5d03ffff95615a547d2675e3b7ac9
+  .git/objects/98/8fb280318c0c0bd97fa9222a7d6e48979b9fa1
+  .git/objects/9a/34f401770715a28473202b4def98ad1a17386c
+  .git/objects/9a/736e625d759084b282f763475059048853c945
+  .git/objects/9a/b07b2a19c061af0ae176177f3a697305011464
+  .git/objects/9a/ef5feba744969041a181fb56796bf5fa13c213
+  .git/objects/9b/8b398cc719f2aea7986152134550298624f422
+  .git/objects/9c/eabddfc226172b654e87ea1a947763aacddc4d
+  .git/objects/9d/ce7a3ac835d71ed7b4e70d5a2ccbbfd7b869ba
+  .git/objects/9f/a5fe8808a3475f479ba5996a0b07b790584d0e
+  .git/objects/9f/e9ca02e51590ce158a6bc309e9e6e0ce63b8f6
+  .git/objects/a0/db7fc33a5ea974fc6963bf3bb7cbdb98845b4a
+  .git/objects/a1/e3092471ab11e74bc228ff1d84b5297a92a5fd
+  .git/objects/a3/9f4ee053cb5ee84cd0dc80c54e0fa33c158546
+  .git/objects/a8/c8ca604a2aa3ddd70da5231fc01c360b779f06
+  .git/objects/a9/3117ce24e6a915e71be914287099f03c78285f
+  .git/objects/a9/60f788f8ab06243736db801e01516f6d0ab795
+  .git/objects/a9/6d741604ddcc8c41d36634603e6467099a77b3
+  .git/objects/a9/b6627e067bf0cd556ed223d7680b2ec173a314
+  .git/objects/a9/d1266c94a2a3caf3b676c6e9b1e4b220c8369f
+  .git/objects/ab/6f62f8cce025d3ddc20629b427821f24258638
+  .git/objects/ae/57c807182f10e0c93a5748921205795b334129
+  .git/objects/ae/81cb31fe3e2330024ce21d393784648c64b2b0
+  .git/objects/af/a37371eb9565c684c9b9f51147b3fc2fa57ceb
+  .git/objects/af/babeba9440d40215e72fda5d001ce3a49e5023
+  .git/objects/af/dd12678d9df49f78e040932f4da8621b0321e8
+  .git/objects/b3/0c596603b73cfb407d2df0222e771316f5762f
+  .git/objects/b3/e41d0c3f90251252f612b52eaed6494a7b551e
+  .git/objects/b5/b55395aba120d5e137bd03cee551e500e83e53
+  .git/objects/b5/b9b3de01b5617390fba53a26a7e56e51eadd61
+  .git/objects/b6/613bc7cb7e56e473a78c8b4fc2d8740019aebe
+  .git/objects/b7/fcc2fa1a7ed9a449d7a68d7dbfbf2d4dec8d23
+  .git/objects/ba/d544b0c8c54c9262b3f56181e80507fb73f661
+  .git/objects/bc/b84f82332d6790abce13d1b1e3a8684c78b09d
+  .git/objects/bd/5e5ebff0991264037af2f8363b73444c340232
+  .git/objects/bf/84384423d4eeeee5ebfc77a30dd6555583b0ab
+  .git/objects/bf/c62e52046f0b959045b84e6dec4c919d552006
+  .git/objects/c2/a9403c3303c1caf61f7ab27114c8e119d1d61c
+  .git/objects/c3/8aeafc82e9febf30d1d7278ff1b1cf46678797
+  .git/objects/c4/20a8718ee2a276def6ee7a3b4b6db421ffbf20
+  .git/objects/c4/346011595817b8b2fa5bc10e6e6b2f860ae38b
+  .git/objects/c4/e260d7b7f523ae141fba92ac3e478ec2bb8705
+  .git/objects/c5/786baa46c454fe8c14ac3a3c801aaffcccf56c
+  .git/objects/c6/f7b300923939d7a631b990ece6179de47f5343
+  .git/objects/c7/1615d65ab608d71639e25abfc49ad98ea866b0
+  .git/objects/c7/8894c6efddc11133a960ad30cf2997a53a0e95
+  .git/objects/c7/e3b821a84865ebf3d9711edb7eb413669e8090
+  .git/objects/c9/b08d5897a0c94d2c0c4c2050bdffc50a362539
+  .git/objects/ca/fab596484c02653fd2d2e0949ebf3a89e6362f
+  .git/objects/cb/c4d8f3db7569c126967a99514542de8e11df2c
+  .git/objects/ce/eb6410ac82f7a0eaec7b7d43fa043815d03578
+  .git/objects/cf/8c99aff71dfc5069d64f2a0a97f6244a55e5b0
+  .git/objects/d2/d21ad140b888c8ce9e369a52cf7f41e0800513
+  .git/objects/d6/90734d7ab50b69ddce77bf81d01d6cde557705
+  .git/objects/d6/a5ddc6f31631d804d97fa3c3d1cfeff538881b
+  .git/objects/d7/53c3e104b7d32180c7d0111838ce08a75463c5
+  .git/objects/d8/28ce2308093bd6d0f8644fcb48c70ab1338a5c
+  .git/objects/d8/a3ad777ade1c850b5841c544d0812ff8c863dc
+  .git/objects/df/7a3dad4db0de3591093904fdbf0701b3f09961
+  .git/objects/df/c0aa71b5a4c0693b6640668ed723ace4aac1d0
+  .git/objects/df/d9d18709505842d8314aca5d1eed800d11c74a
+  .git/objects/e0/94edccd486a14b13c75b2459e11a34bdc76944
+  .git/objects/e1/88f87f09735c464f8c65e12442f1828eba92d5
+  .git/objects/e6/111e73c1d592e757ed83335e8325a23ebbacd7
+  .git/objects/e6/2a79de779ebb0923c5c5b0615a219ce72a6621
+  .git/objects/e7/3f906edfd8d77f053ddf39886ff18084e806f1
+  .git/objects/e9/fefe20ded35bc1ba5432191d53fb10d73e99aa
+  .git/objects/eb/e3468b91284a216324daf453f0840786f9a1e2
+  .git/objects/ed/a70e4b49529314c382289ad27c1089897a5bde
+  .git/objects/ee/911416c7c07cb55a55485e436438b0ae045fcf
+  .git/objects/ee/d2b8c390da72f7844263ab86eda8cf055bdb0c
+  .git/objects/f0/b832e7f62bd6fb3907041a78219bb90a8fbcc7
+  .git/objects/f1/22227b5f8ee6cb9b93d2550bd1fd85fa4404bf
+  .git/objects/f2/d057fdea4a51023421bd1b3df1c54133c5833a
+  .git/objects/f3/d4f0a370d03c408626bf99aa0a5fe2f896b319
+  .git/objects/f5/534e9264035c916e312084bb407c9af4505127
+  .git/objects/f6/39f81bb375c0450a58a690250e7a443d84441e
+  .git/objects/f6/f86c8b33be7a84b8a19de31a8f9389abf8797a
+  .git/objects/fa/1c002fe8594b5181931a360d76afbd3bd3f06f
+  .git/objects/fd/a54d80651b9350cfa4bca17b86244c22b32f10
+Source packages should not contain undeclared executable files.
+See section ‘Package structure’ in the ‘Writing R Extensions’ manual.
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .DS_Store
+  .RData
+  .Rhistory
+  .gitignore
+  .travis.yml
+  ..Rcheck
+  .Rproj.user
+  .git
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+
+CRAN-pack does not know about
+  .DS_Store
+  .RData
+  .travis.yml
+  ..Rcheck
+  .git
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘waffle’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... NOTE
+Non-standard files/directories found at top level:
+  ‘README.Rmd’ ‘README_files’ ‘waffle.Rproj’
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... WARNING
+Found the following directory with the name of a check directory:
+  ./..Rcheck
+Most likely, these were included erroneously.
+Found the following directory with the name of a version control directory:
+  ./.git
+These should not be in a package tarball.
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... WARNING
+
+Execution halted

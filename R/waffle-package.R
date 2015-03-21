@@ -1,8 +1,5 @@
-#' A package to make waffle charts (square pie charts)
+#' A package to make waffle charts (square pie charts) in R.
 #' @name waffle
 #' @docType package
-#' @author Bob Rudis (@@hrbrmstr)
-#' @import ggplot2 RColorBrewer grid
-#' @importFrom htmlwidgets JS
-#' @importFrom pipeR %>>%
+#' @import ggplot2 RColorBrewer grid gtable gridExtra
 NULL

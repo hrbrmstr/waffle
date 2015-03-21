@@ -1,23 +1,27 @@
 Package: waffle
 Type: Package
-Title: Create waffle charts (square pie charts)
+Title: Create Waffle Chart Visualizations in R
 Version: 0.3
-Date: 2015-03-18
-Author: Bob Rudis (@hrbrmstr)
+Date: 2015-03-20
+Author: Bob Rudis <bob@rudis.net>
 Maintainer: Bob Rudis <bob@rudis.net>
-Description: Create waffle charts (square pie charts)
+Description: Square pie charts (a.k.a. waffle charts) can be used
+    to communicate parts of a whole for categorical quantities. To emulate the
+    percentage view of a pie chart, a 10x10 grid should be used with each square
+    representing 1% of the total. Modern uses of waffle charts do not
+    necessarily adhere to this rule and can be created with a grid of any
+    rectangular shape. Best practices suggest keeping the number of categories
+    small, just as should be done when creating pie charts.
 URL: http://github.com/hrbrmstr/waffle
 BugReports: https://github.com/hrbrmstr/waffle/issues
 Suggests:
     testthat
 Depends:
     R (>= 3.0.0),
-    ggplot2,
-    gtable
-License: MIT + file LICENSE
+    ggplot2
+License: GPL (>= 2)
 Imports:
     RColorBrewer,
-    pipeR,
-    htmlwidgets,
     grid,
-    gridExtra
+    gridExtra,
+    gtable
