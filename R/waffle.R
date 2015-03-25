@@ -109,8 +109,8 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
   } else {
 
     if (choose_font("FontAwesome", quiet=TRUE) == "") {
-      message("FontAwesome not found. Install via: https://github.com/FortAwesome/Font-Awesome/tree/master/fonts")
-      stop()
+      stop("FontAwesome not found. Install via: https://github.com/FortAwesome/Font-Awesome/tree/master/fonts",
+           call.=FALSE)
     }
 
     suppressWarnings(
