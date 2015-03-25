@@ -1,7 +1,7 @@
 ---
 title: "README"
 author: "Bob Rudis"
-date: March 21, 2015
+date: March 25, 2015
 output:
   md_document:
     variant: markdown_github
@@ -26,6 +26,7 @@ The following functions are implemented:
 - Version `0.2.1` released - added Travis tests to ensure independent package build confirmation
 - Version `0.2.3` released - nulled many margins and made the use of `coord_equal` optional via the `equal` parameter
 - Version `0.3` released - added a `pad` parameter to `waffle` to make it easier to align plots; added `iron` to make it easier to do the alignment
+- Version `0.4` released - added `use_glphy` and `glpyh_size` to `waffle` so you can now make isotype pictograms
 
 ### Installation
 
@@ -80,6 +81,18 @@ waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"))
 ```
 
 <smaller>(One square == 10m ppl)</smaller>
+
+```{r ww1, eval=FALSE}
+library(extrafont)
+waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"),
+       use_glpyh="medkit")
+```
+
+```{r ww2, echo=FALSE, fig.width=6, fig.height=2}
+library(extrafont)
+waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"),
+       use_glyph="medkit", glyph_size=8)
+```
 
 ```{r s5}
 # replicating an old favourite

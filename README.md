@@ -17,6 +17,7 @@ The following functions are implemented:
 -   Version `0.2.1` released - added Travis tests to ensure independent package build confirmation
 -   Version `0.2.3` released - nulled many margins and made the use of `coord_equal` optional via the `equal` parameter
 -   Version `0.3` released - added a `pad` parameter to `waffle` to make it easier to align plots; added `iron` to make it easier to do the alignment
+-   Version `0.4` released - added `use_glphy` and `glpyh_size` to `waffle` so you can now make isotype pictograms
 
 ### Installation
 
@@ -32,15 +33,13 @@ library(waffle)
 ```
 
     ## Loading required package: ggplot2
-    ## Loading required package: gtable
-    ## Loading required package: grid
 
 ``` r
 # current verison
 packageVersion("waffle")
 ```
 
-    ## [1] '0.3'
+    ## [1] '0.4'
 
 ``` r
 # basic example
@@ -73,6 +72,16 @@ waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"))
 **Health records breaches as fraction of US Population** ![](README_files/figure-markdown_github/fig3-1.png)
 
 <smaller>(One square == 10m ppl)</smaller>
+
+``` r
+library(extrafont)
+waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"),
+       use_glpyh="medkit")
+```
+
+    ## Registering fonts with R
+
+![](README_files/figure-markdown_github/ww2-1.png)
 
 ``` r
 # replicating an old favourite
@@ -143,7 +152,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Thu Mar 19 19:40:07 2015"
+    ## [1] "Wed Mar 25 15:09:59 2015"
 
 ``` r
 test_dir("tests/")

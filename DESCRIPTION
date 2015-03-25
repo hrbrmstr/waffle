@@ -1,8 +1,8 @@
 Package: waffle
 Type: Package
 Title: Create Waffle Chart Visualizations in R
-Version: 0.3.1
-Date: 2015-03-20
+Version: 0.4
+Date: 2015-03-25
 Author: Bob Rudis <bob@rudis.net>
 Maintainer: Bob Rudis <bob@rudis.net>
 Description: Square pie charts (a.k.a. waffle charts) can be used
@@ -24,4 +24,5 @@ Imports:
     RColorBrewer,
     grid,
     gridExtra,
-    gtable
+    gtable,
+    extrafont

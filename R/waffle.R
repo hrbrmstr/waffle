@@ -17,6 +17,16 @@ x <- y <- value <- NULL
 #' Chart title and x-axis labels are optional, especially if you'll just be
 #' exporting to another program for use/display.
 #'
+#' If you specify a string (vs \code{FALSE}) to \code{use_glyph} the function
+#' will map the input to a FontAwesome glyph name and use that glyph for the
+#' tile instead of a block (making it more like an isotype pictogram than a
+#' waffle chart). You'll need to actually install FontAwesome and use
+#' the \code{extrafont} package (\code{https://github.com/wch/extrafont}) to
+#' be able to use the FontAwesome glyphs. Sizing is also up to the user since
+#' fonts don't automatically scale with graphic resize.
+#'
+#' Glyph idea inspired by Ruben C. Arslan (@@_r_c_a)
+#'
 #' @param parts named vector of values to use for the chart
 #' @param rows number of rows of blocks
 #' @param xlab text for below the chart. Highly suggested this be used to
@@ -31,17 +41,23 @@ x <- y <- value <- NULL
 #'     layout problems, so you an use this to disable it if you are using
 #'     ggsave or knitr to control output sizes (or manually sizing the chart)
 #' @param pad how many blocks to right-pad the grid with
+#' @param use_glyph use specified FontAwesome glyph
+#' @param glyph_size size of the FontAwesome font
 #' @export
 #' @examples
 #' parts <- c(80, 30, 20, 10)
 #' chart <- waffle(parts, rows=8)
 #' # print(chart)
 #'
+#' # library(extrafont)
+#' # waffle(parts, rows=8, use_glyph="shield")
+#'
 #' parts <- c(One=80, Two=30, Three=20, Four=10)
 #' chart <- waffle(parts, rows=8)
 #' # print(chart)
 waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
-                   size=2, flip=FALSE, reverse=FALSE, equal=TRUE, pad=0) {
+                   size=2, flip=FALSE, reverse=FALSE, equal=TRUE, pad=0,
+                   use_glyph=FALSE, glyph_size=12) {
 
   # fill in any missing names
 
@@ -73,26 +89,59 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
   dat$value <- c(parts_vec, rep(NA, nrow(dat)-length(parts_vec)))
 
   if (flip) {
-    gg <- ggplot(dat, aes(x=y, y=x, fill=value))
+    gg <- ggplot(dat, aes(x=y, y=x))
   } else {
-    gg <- ggplot(dat, aes(x=x, y=y, fill=value))
+    gg <- ggplot(dat, aes(x=x, y=y))
   }
+
+  gg <- gg + theme_bw()
 
   # make the plot
 
-  gg <- gg + geom_tile(color="white", size=size)
+  if (inherits(use_glyph, "logical")) {
+
+    gg <- gg + geom_tile(aes(fill=value), color="white", size=size)
+    gg <- gg + scale_fill_manual(name="",
+                                 values=colors,
+                                 labels=part_names)
+    gg <- gg + guides(fill=guide_legend(override.aes=list(colour=NULL)))
+
+  } else {
+
+    if (choose_font("FontAwesome", quiet=TRUE) == "") {
+      message("FontAwesome not found. Install via: https://github.com/FortAwesome/Font-Awesome/tree/master/fonts")
+      stop()
+    }
+
+    suppressWarnings(
+      suppressMessages(
+      font_import(system.file("fonts", package="waffle"),
+                  recursive=FALSE,
+                  prompt=FALSE)))
+
+    if (!(!interactive() || stats::runif(1) > 0.1)) {
+      message("Font Awesome by Dave Gandy - http://fontawesome.io")
+    }
+
+    gg <- gg + geom_tile(color=NA, fill=NA, size=size, alpha=0, show_guide=FALSE)
+    gg <- gg + geom_point(aes(color=value), fill=NA, size=0, show_guide=TRUE)
+    gg <- gg + geom_text(label=fa_unicode[use_glyph],
+                         aes(color=value),
+                         family="FontAwesome", size=glyph_size, show_guide=FALSE)
+    gg <- gg + scale_color_manual(name="",
+                                 values=colors,
+                                 labels=part_names)
+    gg <- gg + guides(color=guide_legend(override.aes=list(shape=15, size=7)))
+    gg <- gg + theme(legend.background=element_rect(fill=NA, color=NA))
+    gg <- gg + theme(legend.key=element_rect(color=NA))
+
+  }
+
   gg <- gg + labs(x=xlab, y=NULL, title=title)
   gg <- gg + scale_x_continuous(expand=c(0, 0))
   gg <- gg + scale_y_continuous(expand=c(0, 0))
-  gg <- gg + scale_fill_manual(name="",
-                               values=colors,
-                               labels=part_names)
-
-  gg <- gg + guides(fill=guide_legend(override.aes=list(colour=NULL)))
 
   if (equal) { gg <- gg + coord_equal() }
-
-  gg <- gg + theme_bw()
 
   gg <- gg + theme(panel.grid=element_blank())
   gg <- gg + theme(panel.border=element_blank())
