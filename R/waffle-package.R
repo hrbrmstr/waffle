@@ -11,4 +11,5 @@
 #' @import ggplot2 RColorBrewer grid gtable gridExtra
 #' @importFrom extrafont ttf_import
 #' @importFrom extrafont font_import
+#' @importFrom extrafont choose_font
 NULL
