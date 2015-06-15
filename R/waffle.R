@@ -43,6 +43,7 @@ x <- y <- value <- NULL
 #' @param pad how many blocks to right-pad the grid with
 #' @param use_glyph use specified FontAwesome glyph
 #' @param glyph_size size of the FontAwesome font
+#' @param legend_pos position of legend
 #' @export
 #' @examples
 #' parts <- c(80, 30, 20, 10)
@@ -57,7 +58,7 @@ x <- y <- value <- NULL
 #' # print(chart)
 waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
                    size=2, flip=FALSE, reverse=FALSE, equal=TRUE, pad=0,
-                   use_glyph=FALSE, glyph_size=12) {
+                   use_glyph=FALSE, glyph_size=12,legend_pos="right") {
 
   # fill in any missing names
 
@@ -87,6 +88,10 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
   # add NAs if needed to fill in the "rectangle"
 
   dat$value <- c(parts_vec, rep(NA, nrow(dat)-length(parts_vec)))
+  if(!inherits(use_glyph, "logical")){
+      fontlab <- rep(fa_unicode[use_glyph],length(unique(parts_vec)))
+      dat$fontlab <- c(fontlab[as.numeric(factor(parts_vec))], rep(NA, nrow(dat)-length(parts_vec)))
+  }
 
   if (flip) {
     gg <- ggplot(dat, aes(x=y, y=x))
@@ -125,8 +130,7 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
 
     gg <- gg + geom_tile(color=NA, fill=NA, size=size, alpha=0, show_guide=FALSE)
     gg <- gg + geom_point(aes(color=value), fill=NA, size=0, show_guide=TRUE)
-    gg <- gg + geom_text(label=fa_unicode[use_glyph],
-                         aes(color=value),
+    gg <- gg + geom_text(aes(color=value,label=fontlab),
                          family="FontAwesome", size=glyph_size, show_guide=FALSE)
     gg <- gg + scale_color_manual(name="",
                                  values=colors,
@@ -134,7 +138,7 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
     gg <- gg + guides(color=guide_legend(override.aes=list(shape=15, size=7)))
     gg <- gg + theme(legend.background=element_rect(fill=NA, color=NA))
     gg <- gg + theme(legend.key=element_rect(color=NA))
-
+    
   }
 
   gg <- gg + labs(x=xlab, y=NULL, title=title)
@@ -161,6 +165,6 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
   gg <- gg + theme(plot.margin=unit(c(0, 0, 0, 0), "null"))
   gg <- gg + theme(plot.margin=rep(unit(0, "null"), 4))
 
+  gg <- gg + theme(legend.position=legend_pos)
   gg
-
 }
