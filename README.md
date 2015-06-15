@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/hrbrmstr/waffle.svg)](https://travis-ci.org/hrbrmstr/waffle)
+[![Build Status](https://travis-ci.org/hrbrmstr/waffle.svg)](https://travis-ci.org/hrbrmstr/waffle) [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/waffle)](http://cran.r-project.org/web/packages/waffle) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/waffle)
 
 waffle is a package to make waffle charts (square pie charts)
 
@@ -17,7 +17,7 @@ The following functions are implemented:
 -   Version `0.2.1` released - added Travis tests to ensure independent package build confirmation
 -   Version `0.2.3` released - nulled many margins and made the use of `coord_equal` optional via the `equal` parameter
 -   Version `0.3` released - added a `pad` parameter to `waffle` to make it easier to align plots; added `iron` to make it easier to do the alignment
--   Version `0.4` released - added `use_glphy` and `glpyh_size` to `waffle` so you can now make isotype pictograms
+-   Version `0.4` released - added `use_glyph` and `glpyh_size` to `waffle` so you can now make isotype pictograms
 
 ### Installation
 
@@ -76,7 +76,7 @@ waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"))
 ``` r
 library(extrafont)
 waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"),
-       use_glpyh="medkit")
+       use_glyph="medkit", size=8)
 ```
 
     ## Registering fonts with R
@@ -152,10 +152,12 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Wed Mar 25 15:09:59 2015"
+    ## [1] "Sun Jun 14 20:39:03 2015"
 
 ``` r
 test_dir("tests/")
 ```
 
     ## basic functionality : .
+    ## 
+    ## You rock!
