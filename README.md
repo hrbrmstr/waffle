@@ -81,6 +81,8 @@ waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"),
 
     ## Registering fonts with R
 
+    ## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values (geom_text).
+
 ![](README_files/figure-markdown_github/ww2-1.png)
 
 ``` r
@@ -152,12 +154,10 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Sun Jun 14 20:39:03 2015"
+    ## [1] "Sun Jun 14 20:40:04 2015"
 
 ``` r
 test_dir("tests/")
 ```
 
     ## basic functionality : .
-    ## 
-    ## You rock!

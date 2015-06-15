@@ -6,7 +6,7 @@
 \usage{
 waffle(parts, rows = 10, xlab = NULL, title = NULL, colors = NA,
   size = 2, flip = FALSE, reverse = FALSE, equal = TRUE, pad = 0,
-  use_glyph = FALSE, glyph_size = 12)
+  use_glyph = FALSE, glyph_size = 12, legend_pos = "right")
 }
 \arguments{
 \item{parts}{named vector of values to use for the chart}
@@ -36,6 +36,8 @@ ggsave or knitr to control output sizes (or manually sizing the chart)}
 \item{use_glyph}{use specified FontAwesome glyph}
 
 \item{glyph_size}{size of the FontAwesome font}
+
+\item{legend_pos}{position of legend}
 }
 \description{
 Given a named vector, this function will return a ggplot object that
