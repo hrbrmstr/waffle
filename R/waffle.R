@@ -138,7 +138,7 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
     gg <- gg + guides(color=guide_legend(override.aes=list(shape=15, size=7)))
     gg <- gg + theme(legend.background=element_rect(fill=NA, color=NA))
     gg <- gg + theme(legend.key=element_rect(color=NA))
-    
+
   }
 
   gg <- gg + labs(x=xlab, y=NULL, title=title)
@@ -157,7 +157,6 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
   gg <- gg + theme(axis.ticks=element_blank())
   gg <- gg + theme(axis.line=element_blank())
   gg <- gg + theme(axis.ticks.length=unit(0, "null"))
-  gg <- gg + theme(axis.ticks.margin=unit(0, "null"))
 
   gg <- gg + theme(plot.title=element_text(size=18))
 

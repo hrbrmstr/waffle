@@ -8,7 +8,7 @@ The following functions are implemented:
 
 -   `waffle` : make a waffle chart ggplot2 object
 -   `iron` : vertically stitch together multiple waffle plots, left-aligning edges (best if used with the `waffle` `pad` parameter)
--   `as_rcdimple` : turn a waffle chart into a dimple.js htmlwidget
+-   `as_rcdimple` : turn a waffle chart into a dimple.js htmlwidget (only in the devtools version)
 
 ### News
 
@@ -18,11 +18,12 @@ The following functions are implemented:
 -   Version `0.2.3` released - nulled many margins and made the use of `coord_equal` optional via the `equal` parameter
 -   Version `0.3` released - added a `pad` parameter to `waffle` to make it easier to align plots; added `iron` to make it easier to do the alignment
 -   Version `0.4` released - added `use_glyph` and `glpyh_size` to `waffle` so you can now make isotype pictograms
+-   Version `0.5` released - new & improved ggplot2 compatibility
 
 ### Installation
 
 ``` r
-devtools::install_github("timelyportfolio/rcdimple") # only for htmlwidget functionality
+devtools::install_github("timelyportfolio/rcdimple") # only for htmlwidget functionality which is only available in the devtools release
 devtools::install_github("hrbrmstr/waffle")
 ```
 
@@ -30,16 +31,12 @@ devtools::install_github("hrbrmstr/waffle")
 
 ``` r
 library(waffle)
-```
 
-    ## Loading required package: ggplot2
-
-``` r
 # current verison
 packageVersion("waffle")
 ```
 
-    ## [1] '0.4'
+    ## [1] '0.5'
 
 ``` r
 # basic example
@@ -78,10 +75,6 @@ library(extrafont)
 waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"),
        use_glyph="medkit", size=8)
 ```
-
-    ## Registering fonts with R
-
-    ## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values (geom_text).
 
 ![](README_files/figure-markdown_github/ww2-1.png)
 
@@ -154,10 +147,11 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Sun Jun 14 20:40:04 2015"
+    ## [1] "Mon Dec 14 10:26:04 2015"
 
 ``` r
 test_dir("tests/")
 ```
 
-    ## basic functionality : .
+    ## testthat results ========================================================================================================
+    ## OK: 1 SKIPPED: 0 FAILED: 0

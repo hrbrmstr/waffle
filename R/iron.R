@@ -4,8 +4,7 @@ rbind_gtable_max <- function(...) {
 
   gtl <- list(...)
   stopifnot(all(sapply(gtl, is.gtable)))
-  bind2 <- function (x, y)
-  {
+  bind2 <- function (x, y) {
     stopifnot(ncol(x) == ncol(y))
     if (nrow(x) == 0)
       return(y)
@@ -20,16 +19,15 @@ rbind_gtable_max <- function(...) {
     x$grobs <- append(x$grobs, y$grobs)
     x
   }
-
   Reduce(bind2, gtl)
+
 }
 
 cbind_gtable_max <- function(...) {
 
   gtl <- list(...)
   stopifnot(all(sapply(gtl, is.gtable)))
-  bind2 <- function (x, y)
-  {
+  bind2 <- function (x, y) {
     stopifnot(nrow(x) == nrow(y))
     if (ncol(x) == 0)
       return(y)
@@ -45,6 +43,7 @@ cbind_gtable_max <- function(...) {
     x
   }
   Reduce(bind2, gtl)
+
 }
 
 insert_unit <- function (x, values, after = length(x)) {
