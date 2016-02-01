@@ -62,7 +62,7 @@ tile instead of a block (making it more like an isotype pictogram than a
 waffle chart). You'll need to actually install FontAwesome and use
 the \code{extrafont} package (\code{https://github.com/wch/extrafont}) to
 be able to use the FontAwesome glyphs. Sizing is also up to the user since
-fonts don't automatically scale with graphic resize.
+fonts do not automatically scale with graphic resize.
 
 Glyph idea inspired by Ruben C. Arslan (@_r_c_a)
 }

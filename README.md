@@ -18,6 +18,7 @@ The following functions are implemented:
 -   Version `0.3` released - added a `pad` parameter to `waffle` to make it easier to align plots; added `iron` to make it easier to do the alignment
 -   Version `0.4` released - added `use_glyph` and `glpyh_size` to `waffle` so you can now make isotype pictograms
 -   Version `0.5` released - new & improved ggplot2 compatibility
+-   Version `0.5.1` released - even moar improved ggplot2 compatibility
 
 ### Installation
 
@@ -34,7 +35,7 @@ library(waffle)
 packageVersion("waffle")
 ```
 
-    ## [1] '0.5'
+    ## [1] '0.5.1'
 
 ``` r
 # basic example
@@ -45,7 +46,7 @@ parts <- c(80, 30, 20, 10)
 waffle(parts, rows=8)
 ```
 
-![](README_files/figure-markdown_github/fig1-1.png)
+![](README_files/figure-markdown_github/fig1-1.png)<!-- -->
 
 ``` r
 # slightly more complex example
@@ -56,7 +57,7 @@ parts <- c(`Un-breached\nUS Population`=(318-11-79), `Premera`=11, `Anthem`=79)
 waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"))
 ```
 
-**Health records breaches as fraction of US Population** ![](README_files/figure-markdown_github/fig2-1.png)
+**Health records breaches as fraction of US Population** ![](README_files/figure-markdown_github/fig2-1.png)<!-- -->
 
 <smaller>One square == 1m ppl</smaller>
 
@@ -64,7 +65,7 @@ waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"))
 waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda")) 
 ```
 
-**Health records breaches as fraction of US Population** ![](README_files/figure-markdown_github/fig3-1.png)
+**Health records breaches as fraction of US Population** ![](README_files/figure-markdown_github/fig3-1.png)<!-- -->
 
 <smaller>(One square == 10m ppl)</smaller>
 
@@ -74,7 +75,7 @@ waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"),
        use_glyph="medkit", size=8)
 ```
 
-![](README_files/figure-markdown_github/ww2-1.png)
+![](README_files/figure-markdown_github/ww2-1.png)<!-- -->
 
 ``` r
 # replicating an old favourite
@@ -90,7 +91,7 @@ waffle(savings/392, rows=7, size=0.5,
        colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf"))
 ```
 
-\*Average Household Savings Each Year\*\* ![](README_files/figure-markdown_github/fig4a-1.png)
+\*Average Household Savings Each Year\*\* ![](README_files/figure-markdown_github/fig4a-1.png)<!-- -->
 
 <smaller> (1 square == $392)</smaller>
 
@@ -107,7 +108,7 @@ waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"))
 
 **Professional Workforce Makeup**
 
-![](README_files/figure-markdown_github/f5-1.png)
+![](README_files/figure-markdown_github/f5-1.png)<!-- -->
 
 Iron example (left-align & padding for multiple plots)
 
@@ -134,7 +135,7 @@ C <- waffle(stan.adult.1997/2, rows=7, size=0.5,
 iron(A, B, C)
 ```
 
-![](README_files/figure-markdown_github/f8-1.png)
+![](README_files/figure-markdown_github/f8-1.png)<!-- -->
 
 ### Test Results
 
@@ -145,7 +146,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Mon Dec 14 10:27:42 2015"
+    ## [1] "Mon Feb  1 16:43:10 2016"
 
 ``` r
 test_dir("tests/")

@@ -1,8 +1,8 @@
 Package: waffle
 Type: Package
 Title: Create Waffle Chart Visualizations in R
-Version: 0.5
-Date: 2015-12-14
+Version: 0.5.1
+Date: 2016-02-02
 Author: Bob Rudis <bob@rudis.net>
 Maintainer: Bob Rudis <bob@rudis.net>
 Description: Square pie charts (a.k.a. waffle charts) can be used
@@ -12,7 +12,7 @@ Description: Square pie charts (a.k.a. waffle charts) can be used
     necessarily adhere to this rule and can be created with a grid of any
     rectangular shape. Best practices suggest keeping the number of categories
     small, just as should be done when creating pie charts. Tools are provided
-    to create waffle charts as well as stitch them together and to use glyps
+    to create waffle charts as well as stitch them together, and to use glyphs
     for isotype pictogram creation.
 URL: https://github.com/hrbrmstr/waffle/tree/cran
 BugReports: https://github.com/hrbrmstr/waffle/issues

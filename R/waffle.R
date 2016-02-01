@@ -23,7 +23,7 @@ x <- y <- value <- NULL
 #' waffle chart). You'll need to actually install FontAwesome and use
 #' the \code{extrafont} package (\code{https://github.com/wch/extrafont}) to
 #' be able to use the FontAwesome glyphs. Sizing is also up to the user since
-#' fonts don't automatically scale with graphic resize.
+#' fonts do not automatically scale with graphic resize.
 #'
 #' Glyph idea inspired by Ruben C. Arslan (@@_r_c_a)
 #'
@@ -128,10 +128,10 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
       message("Font Awesome by Dave Gandy - http://fontawesome.io")
     }
 
-    gg <- gg + geom_tile(color=NA, fill=NA, size=size, alpha=0, show_guide=FALSE)
-    gg <- gg + geom_point(aes(color=value), fill=NA, size=0, show_guide=TRUE)
+    gg <- gg + geom_tile(color=NA, fill=NA, size=size, alpha=0, show.legend=FALSE)
+    gg <- gg + geom_point(aes(color=value), fill=NA, size=0, show.legend=TRUE)
     gg <- gg + geom_text(aes(color=value,label=fontlab),
-                         family="FontAwesome", size=glyph_size, show_guide=FALSE)
+                         family="FontAwesome", size=glyph_size, show.legend=FALSE)
     gg <- gg + scale_color_manual(name="",
                                  values=colors,
                                  labels=part_names)

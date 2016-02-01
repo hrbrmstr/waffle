@@ -30,6 +30,7 @@ The following functions are implemented:
 - Version `0.3` released - added a `pad` parameter to `waffle` to make it easier to align plots; added `iron` to make it easier to do the alignment
 - Version `0.4` released - added `use_glyph` and `glpyh_size` to `waffle` so you can now make isotype pictograms
 - Version `0.5` released - new & improved ggplot2 compatibility
+- Version `0.5.1` released - even moar improved ggplot2 compatibility
 
 ### Installation
 

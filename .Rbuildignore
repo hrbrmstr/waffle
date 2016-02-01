@@ -5,3 +5,4 @@
 ^README_files
 ^README.html
 ^\.git
+^cran-comments\.md$
