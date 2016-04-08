@@ -23,7 +23,11 @@ The following functions are implemented:
 ### Installation
 
 ``` r
-install.pacakges("hrbrmstr/waffle")
+## github dev version
+## devtools::install_github("hrbrmstr/waffle")
+
+## CRAN
+install.packages("waffle")
 ```
 
 ### Usage
