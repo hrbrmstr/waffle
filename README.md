@@ -1,3 +1,4 @@
+
 [![Build Status](https://travis-ci.org/hrbrmstr/waffle.svg)](https://travis-ci.org/hrbrmstr/waffle) [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/waffle)](http://cran.r-project.org/web/packages/waffle) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/waffle)
 
 waffle is a package to make waffle charts (square pie charts)
@@ -19,15 +20,12 @@ The following functions are implemented:
 -   Version `0.4` released - added `use_glyph` and `glpyh_size` to `waffle` so you can now make isotype pictograms
 -   Version `0.5` released - new & improved ggplot2 compatibility
 -   Version `0.5.1` released - even moar improved ggplot2 compatibility
+-   Version `0.6.0` - keep factor levels; improve default aesthetics
 
 ### Installation
 
 ``` r
-## github dev version
-## devtools::install_github("hrbrmstr/waffle")
-
-## CRAN
-install.packages("waffle")
+install.pacakges("hrbrmstr/waffle")
 ```
 
 ### Usage
@@ -39,7 +37,7 @@ library(waffle)
 packageVersion("waffle")
 ```
 
-    ## [1] '0.5.1'
+    ## [1] '0.6.0.9000'
 
 ``` r
 # basic example
@@ -50,7 +48,7 @@ parts <- c(80, 30, 20, 10)
 waffle(parts, rows=8)
 ```
 
-![](README_files/figure-markdown_github/fig1-1.png)<!-- -->
+![](README_files/figure-markdown_github/fig1-1.png)
 
 ``` r
 # slightly more complex example
@@ -61,7 +59,7 @@ parts <- c(`Un-breached\nUS Population`=(318-11-79), `Premera`=11, `Anthem`=79)
 waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"))
 ```
 
-**Health records breaches as fraction of US Population** ![](README_files/figure-markdown_github/fig2-1.png)<!-- -->
+**Health records breaches as fraction of US Population** ![](README_files/figure-markdown_github/fig2-1.png)
 
 <smaller>One square == 1m ppl</smaller>
 
@@ -69,7 +67,7 @@ waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"))
 waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda")) 
 ```
 
-**Health records breaches as fraction of US Population** ![](README_files/figure-markdown_github/fig3-1.png)<!-- -->
+**Health records breaches as fraction of US Population** ![](README_files/figure-markdown_github/fig3-1.png)
 
 <smaller>(One square == 10m ppl)</smaller>
 
@@ -79,7 +77,7 @@ waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"),
        use_glyph="medkit", size=8)
 ```
 
-![](README_files/figure-markdown_github/ww2-1.png)<!-- -->
+![](README_files/figure-markdown_github/ww2-1.png)
 
 ``` r
 # replicating an old favourite
@@ -95,7 +93,7 @@ waffle(savings/392, rows=7, size=0.5,
        colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf"))
 ```
 
-\*Average Household Savings Each Year\*\* ![](README_files/figure-markdown_github/fig4a-1.png)<!-- -->
+\*Average Household Savings Each Year\*\* ![](README_files/figure-markdown_github/fig4a-1.png)
 
 <smaller> (1 square == $392)</smaller>
 
@@ -110,9 +108,20 @@ professional <- c(`Male`=44, `Female (56%)`=56)
 waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"))
 ```
 
+### Keeps factor levels now
+
+``` r
+gridExtra::grid.arrange(
+  waffle(c(thing1=0, thing2=100), rows=5),  
+  waffle(c(thing1=25, thing2=75), rows=5)
+)
+```
+
+![](README_files/figure-markdown_github/fct-1.png)
+
 **Professional Workforce Makeup**
 
-![](README_files/figure-markdown_github/f5-1.png)<!-- -->
+![](README_files/figure-markdown_github/f5-1.png)
 
 Iron example (left-align & padding for multiple plots)
 
@@ -139,7 +148,7 @@ C <- waffle(stan.adult.1997/2, rows=7, size=0.5,
 iron(A, B, C)
 ```
 
-![](README_files/figure-markdown_github/f8-1.png)<!-- -->
+![](README_files/figure-markdown_github/f8-1.png)
 
 ### Test Results
 
@@ -150,7 +159,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Mon Feb  1 16:43:10 2016"
+    ## [1] "Wed Apr 20 09:59:11 2016"
 
 ``` r
 test_dir("tests/")
@@ -158,3 +167,5 @@ test_dir("tests/")
 
     ## testthat results ========================================================================================================
     ## OK: 1 SKIPPED: 0 FAILED: 0
+    ## 
+    ## DONE ===================================================================================================================

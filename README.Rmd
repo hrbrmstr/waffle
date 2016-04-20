@@ -1,10 +1,5 @@
 ---
-title: "README"
-author: "Bob Rudis"
-date: "`r Sys.Date()`"
-output:
-  md_document:
-    variant: markdown_github
+output: rmarkdown::github_document
 ---
 
 [![Build Status](https://travis-ci.org/hrbrmstr/waffle.svg)](https://travis-ci.org/hrbrmstr/waffle) 
@@ -31,6 +26,7 @@ The following functions are implemented:
 - Version `0.4` released - added `use_glyph` and `glpyh_size` to `waffle` so you can now make isotype pictograms
 - Version `0.5` released - new & improved ggplot2 compatibility
 - Version `0.5.1` released - even moar improved ggplot2 compatibility
+- Version `0.6.0` - keep factor levels; improve default aesthetics
 
 ### Installation
 
@@ -129,6 +125,15 @@ professional <- c(`Male`=44, `Female (56%)`=56)
 
 ```{r t5, eval=FALSE, message=FALSE, warning=FALSE}
 waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"))
+```
+
+### Keeps factor levels now
+
+```{r fct, fig.height=3, fig.width=6, message=FALSE, warning=FALSE}
+gridExtra::grid.arrange(
+  waffle(c(thing1=0, thing2=100), rows=5),  
+  waffle(c(thing1=25, thing2=75), rows=5)
+)
 ```
 
 
