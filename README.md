@@ -12,15 +12,15 @@ The following functions are implemented:
 
 ### News
 
--   Version `0.1` released
--   Version `0.2` released - added `as_rcdimple` thx to Kent Russell (only in non-CRAN version)
--   Version `0.2.1` released - added Travis tests to ensure independent package build confirmation
--   Version `0.2.3` released - nulled many margins and made the use of `coord_equal` optional via the `equal` parameter
--   Version `0.3` released - added a `pad` parameter to `waffle` to make it easier to align plots; added `iron` to make it easier to do the alignment
--   Version `0.4` released - added `use_glyph` and `glpyh_size` to `waffle` so you can now make isotype pictograms
--   Version `0.5` released - new & improved ggplot2 compatibility
--   Version `0.5.1` released - even moar improved ggplot2 compatibility
 -   Version `0.6.0` - keep factor levels; improve default aesthetics
+-   Version `0.5.1` released - even moar improved ggplot2 compatibility
+-   Version `0.5` released - new & improved ggplot2 compatibility
+-   Version `0.4` released - added `use_glyph` and `glpyh_size` to `waffle` so you can now make isotype pictograms
+-   Version `0.3` released - added a `pad` parameter to `waffle` to make it easier to align plots; added `iron` to make it easier to do the alignment
+-   Version `0.2.3` released - nulled many margins and made the use of `coord_equal` optional via the `equal` parameter
+-   Version `0.2.1` released - added Travis tests to ensure independent package build confirmation
+-   Version `0.2` released - added `as_rcdimple` thx to Kent Russell (only in non-CRAN version)
+-   Version `0.1` released
 
 ### Installation
 
@@ -159,7 +159,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Wed Apr 20 09:59:11 2016"
+    ## [1] "Wed Apr 20 10:03:39 2016"
 
 ``` r
 test_dir("tests/")
