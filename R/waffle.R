@@ -1,117 +1,152 @@
-y <- x <- value <- NULL
+x <- y <- value <- NULL
 
 #' Make waffle (square pie) charts
 #'
-#' Given a named vector, this function will return a ggplot object that represents a
-#' "waffle chart" of the values. The individual values will be summed up and each
-#' that will be the total number of squares in the "grid". You can perform appropriate
-#' value transformation ahead of time to get the desired "waffle" layout/effect.
+#' Given a named vector, this function will return a ggplot object that
+#' represents a waffle chart of the values. The individual values will be
+#' summed up and each that will be the total number of squares in the grid.
+#' You can perform appropriate value transformation ahead of time to get the
+#' desired waffle layout/effect.
 #'
-#' If the vector is not named or only partially named, \code{LETTERS} will be used instead.
-#' It is highly suggested that you limit the number of elements to plot, just like you should
-#' if you ever got wasted and decided that a regular pie chart was a good thing to create and
-#' then decide to be totally evil and make one to pollute this beautiful world of ours.
+#' If the vector is not named or only partially named, capital letters will be
+#' used instead. It is highly suggested that you limit the number of elements
+#' to plot, just like you should if you ever got wasted and decided that a
+#' regular pie chart was a good thing to create and then decide to be totally
+#' evil and make one to pollute this beautiful world of ours.
 #'
-#' Chart title and x-axis labels are optional, especially if you'll just be exporting to another
-#' program for use/display.
+#' Chart title and x-axis labels are optional, especially if you'll just be
+#' exporting to another program for use/display.
 #'
-#' @param parts [named] vector of values to use for the chart
+#' If you specify a string (vs \code{FALSE}) to \code{use_glyph} the function
+#' will map the input to a FontAwesome glyph name and use that glyph for the
+#' tile instead of a block (making it more like an isotype pictogram than a
+#' waffle chart). You'll need to actually install FontAwesome and use
+#' the \code{extrafont} package (\code{https://github.com/wch/extrafont}) to
+#' be able to use the FontAwesome glyphs. Sizing is also up to the user since
+#' fonts do not automatically scale with graphic resize.
+#'
+#' Glyph idea inspired by Ruben C. Arslan (@@_r_c_a)
+#'
+#' @param parts named vector of values to use for the chart
 #' @param rows number of rows of blocks
-#' @param xlab text for below the chart. Highly suggested this be used to give the
-#'     "1 sq == xyz" relationship if it's not obvious
+#' @param xlab text for below the chart. Highly suggested this be used to
+#'     give the "1 sq == xyz" relationship if it's not obvious
 #' @param title chart title
-#' @param colors exactly the number of colors as values in \code{parts}. If omitted,
-#'     Color Brewer "Set2" colors are used.
+#' @param colors exactly the number of colors as values in \code{parts}.
+#'     If omitted, Color Brewer "Set2" colors are used.
 #' @param size width of the separator between blocks (defaults to \code{2})
 #' @param flip flips x & y axes
 #' @param reverse reverses the order of the data
-#' @param equal by default, waffle uses \code{coord_equal}; this can cause layout problems,
-#'     so you an use this to disable it if you are using ggsave or knitr to control
-#'     output sizes (or manually sizing the chart)
+#' @param equal by default, waffle uses \code{coord_equal}; this can cause
+#'     layout problems, so you an use this to disable it if you are using
+#'     ggsave or knitr to control output sizes (or manually sizing the chart)
 #' @param pad how many blocks to right-pad the grid with
-#'
-#' @examples \dontrun{
-#' parts <- c(80, 30, 20, 10)
-#' waffle(parts, rows=8)
-#'
-#' parts <- c(`Un-breached US Population`=(318-11-79), `Premera`=11, `Anthem`=79)
-#'
-#' waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"),
-#'        title="Health records breaches as fraction of US Population",
-#'        xlab="One square == 1m ppl")
-#'
-#' waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"),
-#'        title="Health records breaches as fraction of US Population",
-#'        xlab="One square == 10m ppl")
-#'
-#' # http://graphics8.nytimes.com/images/2008/07/20/business/20debtgraphic.jpg
-#' # http://www.nytimes.com/2008/07/20/business/20debt.html
-#' savings <- c(`Mortgage ($84,911)`=84911, `Auto and tuition loans ($14,414)`=14414,
-#'              `Home equity loans ($10,062)`=10062, `Credit Cards ($8,565)`=8565)
-#' waffle(savings/392, rows=7, size=0.5,
-#'        colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf"),
-#'        title="Average Household Savings Each Year", xlab="1 square == $392")
-#'
-#' # https://eagereyes.org/techniques/square-pie-charts
-#' professional <- c(`Male`=44, `Female (56%)`=56)
-#' waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"),
-#'        title="Professional Workforce Makeup")
-#' }
-#'
+#' @param use_glyph use specified FontAwesome glyph
+#' @param glyph_size size of the FontAwesome font
+#' @param legend_pos position of legend
 #' @export
+#' @examples
+#' parts <- c(80, 30, 20, 10)
+#' chart <- waffle(parts, rows=8)
+#' # print(chart)
+#'
+#' # library(extrafont)
+#' # waffle(parts, rows=8, use_glyph="shield")
+#'
+#' parts <- c(One=80, Two=30, Three=20, Four=10)
+#' chart <- waffle(parts, rows=8)
+#' # print(chart)
 waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
-                   size=2, flip=FALSE, reverse=FALSE, equal=TRUE, pad=0) {
+                   size=2, flip=FALSE, reverse=FALSE, equal=TRUE, pad=0,
+                   use_glyph=FALSE, glyph_size=12, legend_pos="right") {
 
   # fill in any missing names
-
   part_names <- names(parts)
   if (length(part_names) < length(parts)) {
     part_names <- c(part_names, LETTERS[1:length(parts)-length(part_names)])
   }
 
-  # use Set2 if no colors are specified
+  names(parts) <- part_names
 
-  if (all(is.na(colors))) {
-    colors <- brewer.pal(length(parts), "Set2")
-  }
+  # use Set2 if no colors are specified
+  if (all(is.na(colors))) colors <- suppressWarnings(brewer.pal(length(parts), "Set2"))
 
   # make one big vector of all the bits
-
   parts_vec <- unlist(sapply(1:length(parts), function(i) {
-    rep(LETTERS[i+1], parts[i])
+    rep(names(parts)[i], parts[i])
   }))
 
-  if (reverse) { parts_vec <- rev(parts_vec) }
+  if (reverse) parts_vec <- rev(parts_vec)
 
   # setup the data frame for geom_rect
-
   dat <- expand.grid(y=1:rows, x=seq_len(pad + (ceiling(sum(parts) / rows))))
 
   # add NAs if needed to fill in the "rectangle"
-
   dat$value <- c(parts_vec, rep(NA, nrow(dat)-length(parts_vec)))
+  if(!inherits(use_glyph, "logical")){
+      fontlab <- rep(fa_unicode[use_glyph],length(unique(parts_vec)))
+      dat$fontlab <- c(fontlab[as.numeric(factor(parts_vec))], rep(NA, nrow(dat)-length(parts_vec)))
+  }
+
+  dat$value <- factor(dat$value, levels=part_names)
 
   if (flip) {
-    gg <- ggplot(dat, aes(x=y, y=x, fill=value))
+    gg <- ggplot(dat, aes(x=y, y=x))
   } else {
-    gg <- ggplot(dat, aes(x=x, y=y, fill=value))
+    gg <- ggplot(dat, aes(x=x, y=y))
   }
+
+  gg <- gg + theme_bw()
 
   # make the plot
 
-  gg <- gg + geom_tile(color="white", size=size)
+  if (inherits(use_glyph, "logical")) {
+
+    gg <- gg + geom_tile(aes(fill=value), color="white", size=size)
+    gg <- gg + scale_fill_manual(name="",
+                                 values=colors,
+                                 labels=part_names,
+                                 drop=FALSE)
+    gg <- gg + guides(fill=guide_legend(override.aes=list(colour="#00000000")))
+    gg <- gg + theme(legend.background=element_rect(fill="#00000000", color="#00000000"))
+    gg <- gg + theme(legend.key=element_rect(fill="#00000000", color="#00000000"))
+
+  } else {
+
+    if (choose_font("FontAwesome", quiet=TRUE) == "") {
+      stop("FontAwesome not found. Install via: https://github.com/FortAwesome/Font-Awesome/tree/master/fonts",
+           call.=FALSE)
+    }
+
+    suppressWarnings(
+      suppressMessages(
+      font_import(system.file("fonts", package="waffle"),
+                  recursive=FALSE,
+                  prompt=FALSE)))
+
+    if (!(!interactive() || stats::runif(1) > 0.1)) {
+      message("Font Awesome by Dave Gandy - http://fontawesome.io")
+    }
+
+    gg <- gg + geom_tile(color=NA, fill=NA, size=size, alpha=0, show.legend=FALSE)
+    gg <- gg + geom_point(aes(color=value), fill=NA, size=0, show.legend=TRUE)
+    gg <- gg + geom_text(aes(color=value,label=fontlab),
+                         family="FontAwesome", size=glyph_size, show.legend=FALSE)
+    gg <- gg + scale_color_manual(name="",
+                                 values=colors,
+                                 labels=part_names,
+                                 drop=FALSE)
+    gg <- gg + guides(color=guide_legend(override.aes=list(shape=15, size=7)))
+    gg <- gg + theme(legend.background=element_rect(fill="#00000000", color="#00000000"))
+    gg <- gg + theme(legend.key=element_rect(color="#00000000"))
+
+  }
+
   gg <- gg + labs(x=xlab, y=NULL, title=title)
   gg <- gg + scale_x_continuous(expand=c(0, 0))
   gg <- gg + scale_y_continuous(expand=c(0, 0))
-  gg <- gg + scale_fill_manual(name="",
-                               values=colors,
-                               labels=part_names)
-
-  gg <- gg + guides(fill=guide_legend(override.aes=list(colour=NULL)))
 
   if (equal) { gg <- gg + coord_equal() }
-
-    gg <- gg + theme_bw()
 
   gg <- gg + theme(panel.grid=element_blank())
   gg <- gg + theme(panel.border=element_blank())
@@ -123,7 +158,6 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
   gg <- gg + theme(axis.ticks=element_blank())
   gg <- gg + theme(axis.line=element_blank())
   gg <- gg + theme(axis.ticks.length=unit(0, "null"))
-  gg <- gg + theme(axis.ticks.margin=unit(0, "null"))
 
   gg <- gg + theme(plot.title=element_text(size=18))
 
@@ -131,64 +165,6 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
   gg <- gg + theme(plot.margin=unit(c(0, 0, 0, 0), "null"))
   gg <- gg + theme(plot.margin=rep(unit(0, "null"), 4))
 
+  gg <- gg + theme(legend.position=legend_pos)
   gg
-
-}
-
-#' Turn a ggplot waffle chart object into an htmlwidget
-#'
-#' Takes the output from \code{waffle} and turns it into an \code{rcdimple}
-#' \code{htmlwidget}.  For this to work, you will need to install
-#' \code{rcdimple} with \code{devtools::install_github("timelyportfolio/rcdimple")}.
-#'
-#' @param wf waffle chart ggplot2 object
-#' @param height height of the resultant \code{htmlwidget}
-#' @param width width of the resultant \code{htmlwidget}
-#'
-#' @examples \dontrun{
-#'   # requires install of rcdimple
-#'   # devtools::install_github("timelyportfolio/rcdimple")
-#'   parts <- c( 80, 30, 20, 10 )
-#'   as_rcdimple( waffle( parts, rows=8) )
-#' }
-#'
-#' @export
-as_rcdimple <- function( wf, height = NULL, width = NULL ) {
-
-  # not import since optional dependency
-  #  check here to see if rcdimple is available
-  if(!requireNamespace("rcdimple", quietly=TRUE)) stop("please devtools::install_github('timelyportfolio/rcdimple')", call. = FALSE)
-
-  # let ggplot2 do the work and build the chart
-  gb <- ggplot_build(wf)
-  dimp <- rcdimple::dimple(
-    na.omit(
-      data.frame(
-        group = wf$scales$scales[[3]]$labels[
-          match(wf$data$value,unique(wf$data$value))
-        ]
-        ,gb$data[[1]]
-        ,stringsAsFactors = F
-      )
-    )
-    , y~x
-    , type = "bar"
-    , groups = "group"
-    , width = width
-    , height = height
-    , xAxis = list( type = "addCategoryAxis", title  = "" )
-    , yAxis = list( type = "addCategoryAxis", title = "" )
-    , defaultColors = unique( na.omit(gb$data[[1]])$fill )
-    , title = list( text = wf$labels$title )
-    , tasks = list(
-        JS(
-          'function(){
-            this.widgetDimple[0].axes.forEach(function(ax){
-              ax.shapes.remove()
-            })
-          }'
-        )
-    )
-  )
-  return(dimp)
 }

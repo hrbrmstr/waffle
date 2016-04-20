@@ -1,13 +1,11 @@
 ---
-title: "README"
-author: "Bob Rudis"
-date: March 19, 2015
-output:
-  md_document:
-    variant: markdown_github
+output: rmarkdown::github_document
 ---
 
-[![Build Status](https://travis-ci.org/hrbrmstr/waffle.svg)](https://travis-ci.org/hrbrmstr/waffle)
+[![Build Status](https://travis-ci.org/hrbrmstr/waffle.svg)](https://travis-ci.org/hrbrmstr/waffle) 
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active) 
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/waffle)](http://cran.r-project.org/web/packages/waffle) 
+![downloads](http://cranlogs.r-pkg.org/badges/grand-total/waffle)
 
 waffle is a package to make waffle charts (square pie charts)
 
@@ -17,21 +15,23 @@ The following functions are implemented:
 
 - `waffle` : make a waffle chart ggplot2 object
 - `iron` : vertically stitch together multiple waffle plots, left-aligning edges (best if used with the `waffle` `pad` parameter)
-- `as_rcdimple` : turn a waffle chart into a dimple.js htmlwidget
 
 ### News
 
-- Version `0.1` released
-- Version `0.2` released - added `as_rcdimple` thx to Kent Russell
-- Version `0.2.1` released - added Travis tests to ensure independent package build confirmation
-- Version `0.2.3` released - nulled many margins and made the use of `coord_equal` optional via the `equal` parameter
+- Version `0.6.0` - keep factor levels; improve default aesthetics
+- Version `0.5.1` released - even moar improved ggplot2 compatibility
+- Version `0.5` released - new & improved ggplot2 compatibility
+- Version `0.4` released - added `use_glyph` and `glpyh_size` to `waffle` so you can now make isotype pictograms
 - Version `0.3` released - added a `pad` parameter to `waffle` to make it easier to align plots; added `iron` to make it easier to do the alignment
+- Version `0.2.3` released - nulled many margins and made the use of `coord_equal` optional via the `equal` parameter
+- Version `0.2.1` released - added Travis tests to ensure independent package build confirmation
+- Version `0.2` released - added `as_rcdimple` thx to Kent Russell (only in non-CRAN version)
+- Version `0.1` released
 
 ### Installation
 
-```{r s1, eval=FALSE}
-devtools::install_github("timelyportfolio/rcdimple") # only for htmlwidget functionality
-devtools::install_github("hrbrmstr/waffle")
+```{r s1, eval=FALSE, message=FALSE, warning=FALSE}
+install.pacakges("hrbrmstr/waffle")
 ```
 
 ```{r s2, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
@@ -40,7 +40,7 @@ options(width=120)
 
 ### Usage
 
-```{r s3}
+```{r s3, message=FALSE, warning=FALSE}
 library(waffle)
 
 # current verison
@@ -50,7 +50,7 @@ packageVersion("waffle")
 parts <- c(80, 30, 20, 10)
 ```
 
-```{r fig1, fig.width=6, fig.height=2.5}
+```{r fig1, fig.width=6, fig.height=2.5, message=FALSE, warning=FALSE}
 waffle(parts, rows=8)
 ```
 
@@ -59,27 +59,39 @@ waffle(parts, rows=8)
 parts <- c(`Un-breached\nUS Population`=(318-11-79), `Premera`=11, `Anthem`=79)
 ```
 
-```{r t1, eval=FALSE}
+```{r t1, eval=FALSE, message=FALSE, warning=FALSE}
 waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"))
 ```
 
 **Health records breaches as fraction of US Population**
-```{r fig2, echo= FALSE, fig.width=6, fig.height=1.75}
+```{r fig2, echo= FALSE, fig.width=6, fig.height=1.75, message=FALSE, warning=FALSE}
 waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"))
 ```
 
 <smaller>One square == 1m ppl</smaller>
 
-```{r t2, eval=FALSE}
+```{r t2, eval=FALSE, message=FALSE, warning=FALSE}
 waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda")) 
 ```
 
 **Health records breaches as fraction of US Population**
-```{r fig3, echo=FALSE, fig.width=6, fig.height=2}
+```{r fig3, echo=FALSE, fig.width=6, fig.height=2, message=FALSE, warning=FALSE}
 waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda")) 
 ```
 
 <smaller>(One square == 10m ppl)</smaller>
+
+```{r ww1, eval=FALSE, message=FALSE, warning=FALSE}
+library(extrafont)
+waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"),
+       use_glyph="medkit", size=8)
+```
+
+```{r ww2, echo=FALSE, fig.width=6, fig.height=2, message=FALSE, warning=FALSE}
+library(extrafont)
+waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"),
+       use_glyph="medkit", glyph_size=8)
+```
 
 ```{r s5}
 # replicating an old favourite
@@ -97,7 +109,7 @@ waffle(savings/392, rows=7, size=0.5,
 
 
 *Average Household Savings Each Year**
-```{r fig4a, echo=FALSE, fig.width=8, fig.height=2}
+```{r fig4a, echo=FALSE, fig.width=8, fig.height=2, message=FALSE, warning=FALSE}
 waffle(savings/392, rows=7, size=0.5, 
        colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf"))
 ```
@@ -111,20 +123,29 @@ waffle(savings/392, rows=7, size=0.5,
 professional <- c(`Male`=44, `Female (56%)`=56)
 ```
 
-```{r t5, eval=FALSE}
+```{r t5, eval=FALSE, message=FALSE, warning=FALSE}
 waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"))
+```
+
+### Keeps factor levels now
+
+```{r fct, fig.height=3, fig.width=6, message=FALSE, warning=FALSE}
+gridExtra::grid.arrange(
+  waffle(c(thing1=0, thing2=100), rows=5),  
+  waffle(c(thing1=25, thing2=75), rows=5)
+)
 ```
 
 
 **Professional Workforce Makeup**
 
-```{r f5, echo=FALSE, fig.height=3, fig.width=4}
+```{r f5, echo=FALSE, fig.height=3, fig.width=4, message=FALSE, warning=FALSE}
 waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"))
 ```
 
 Iron example (left-align & padding for multiple plots)
 
-```{r f8, fig.height=6, fig.width=7}
+```{r f8, fig.height=6, fig.width=7, message=FALSE, warning=FALSE}
 pain.adult.1997 <- c( `YOY (406)`=406, `Adult (24)`=24)
 A <- waffle(pain.adult.1997/2, rows=7, size=0.5, 
        colors=c("#c7d4b6", "#a3aabd"), 

@@ -1,0 +1,5 @@
+as_rcdimple             Turn a ggplot waffle chart object into an
+                        htmlwidget
+iron                    Veritical, left-aligned layout for waffle plots
+waffle                  A package to make waffle charts (square pie
+                        charts)

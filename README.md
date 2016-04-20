@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/hrbrmstr/waffle.svg)](https://travis-ci.org/hrbrmstr/waffle)
+
+[![Build Status](https://travis-ci.org/hrbrmstr/waffle.svg)](https://travis-ci.org/hrbrmstr/waffle) [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/waffle)](http://cran.r-project.org/web/packages/waffle) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/waffle)
 
 waffle is a package to make waffle charts (square pie charts)
 
@@ -8,39 +9,35 @@ The following functions are implemented:
 
 -   `waffle` : make a waffle chart ggplot2 object
 -   `iron` : vertically stitch together multiple waffle plots, left-aligning edges (best if used with the `waffle` `pad` parameter)
--   `as_rcdimple` : turn a waffle chart into a dimple.js htmlwidget
 
 ### News
 
--   Version `0.1` released
--   Version `0.2` released - added `as_rcdimple` thx to Kent Russell
--   Version `0.2.1` released - added Travis tests to ensure independent package build confirmation
--   Version `0.2.3` released - nulled many margins and made the use of `coord_equal` optional via the `equal` parameter
+-   Version `0.6.0` - keep factor levels; improve default aesthetics
+-   Version `0.5.1` released - even moar improved ggplot2 compatibility
+-   Version `0.5` released - new & improved ggplot2 compatibility
+-   Version `0.4` released - added `use_glyph` and `glpyh_size` to `waffle` so you can now make isotype pictograms
 -   Version `0.3` released - added a `pad` parameter to `waffle` to make it easier to align plots; added `iron` to make it easier to do the alignment
+-   Version `0.2.3` released - nulled many margins and made the use of `coord_equal` optional via the `equal` parameter
+-   Version `0.2.1` released - added Travis tests to ensure independent package build confirmation
+-   Version `0.2` released - added `as_rcdimple` thx to Kent Russell (only in non-CRAN version)
+-   Version `0.1` released
 
 ### Installation
 
 ``` r
-devtools::install_github("timelyportfolio/rcdimple") # only for htmlwidget functionality
-devtools::install_github("hrbrmstr/waffle")
+install.pacakges("hrbrmstr/waffle")
 ```
 
 ### Usage
 
 ``` r
 library(waffle)
-```
 
-    ## Loading required package: ggplot2
-    ## Loading required package: gtable
-    ## Loading required package: grid
-
-``` r
 # current verison
 packageVersion("waffle")
 ```
 
-    ## [1] '0.3'
+    ## [1] '0.6.0.9000'
 
 ``` r
 # basic example
@@ -75,6 +72,14 @@ waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"))
 <smaller>(One square == 10m ppl)</smaller>
 
 ``` r
+library(extrafont)
+waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"),
+       use_glyph="medkit", size=8)
+```
+
+![](README_files/figure-markdown_github/ww2-1.png)
+
+``` r
 # replicating an old favourite
 
 # http://graphics8.nytimes.com/images/2008/07/20/business/20debtgraphic.jpg
@@ -102,6 +107,17 @@ professional <- c(`Male`=44, `Female (56%)`=56)
 ``` r
 waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"))
 ```
+
+### Keeps factor levels now
+
+``` r
+gridExtra::grid.arrange(
+  waffle(c(thing1=0, thing2=100), rows=5),  
+  waffle(c(thing1=25, thing2=75), rows=5)
+)
+```
+
+![](README_files/figure-markdown_github/fct-1.png)
 
 **Professional Workforce Makeup**
 
@@ -143,10 +159,13 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Thu Mar 19 19:40:07 2015"
+    ## [1] "Wed Apr 20 10:03:39 2016"
 
 ``` r
 test_dir("tests/")
 ```
 
-    ## basic functionality : .
+    ## testthat results ========================================================================================================
+    ## OK: 1 SKIPPED: 0 FAILED: 0
+    ## 
+    ## DONE ===================================================================================================================
