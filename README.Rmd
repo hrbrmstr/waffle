@@ -31,7 +31,7 @@ The following functions are implemented:
 ### Installation
 
 ```{r s1, eval=FALSE, message=FALSE, warning=FALSE}
-install.pacakges("hrbrmstr/waffle")
+install.packages("waffle")
 ```
 
 ```{r s2, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
