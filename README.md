@@ -25,7 +25,7 @@ The following functions are implemented:
 ### Installation
 
 ``` r
-install.pacakges("hrbrmstr/waffle")
+install.packages("hrbrmstr/waffle")
 ```
 
 ### Usage
@@ -33,7 +33,7 @@ install.pacakges("hrbrmstr/waffle")
 ``` r
 library(waffle)
 
-# current verison
+# current version
 packageVersion("waffle")
 ```
 
