@@ -25,7 +25,7 @@ The following functions are implemented:
 ### Installation
 
 ``` r
-install.pacakges("hrbrmstr/waffle")
+install.packages("hrbrmstr/waffle")
 ```
 
 ### Usage
