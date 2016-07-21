@@ -33,7 +33,7 @@ install.packages("hrbrmstr/waffle")
 ``` r
 library(waffle)
 
-# current verison
+# current version
 packageVersion("waffle")
 ```
 
