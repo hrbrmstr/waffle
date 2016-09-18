@@ -35,7 +35,7 @@ library(waffle)
 
 # current verison
 packageVersion("waffle")
-## [1] '0.6.0.9000'
+## [1] '0.6.0'
 
 # basic example
 parts <- c(80, 30, 20, 10)
@@ -156,7 +156,7 @@ library(waffle)
 library(testthat)
 
 date()
-## [1] "Sun Sep 18 10:28:41 2016"
+## [1] "Sun Sep 18 10:35:04 2016"
 
 test_dir("tests/")
 ## testthat results ========================================================================================================

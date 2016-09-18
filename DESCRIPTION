@@ -13,7 +13,7 @@ Description: Square pie charts (a.k.a. waffle charts) can be used
     rectangular shape. Best practices suggest keeping the number of categories
     small, just as should be done when creating pie charts. Tools are provided
     to create waffle charts as well as stitch them together, and to use glyphs
-    for isotype pictogram creation.
+    for making isotype pictograms.
 URL: https://github.com/hrbrmstr/waffle/tree/cran
 BugReports: https://github.com/hrbrmstr/waffle/issues
 Suggests:
