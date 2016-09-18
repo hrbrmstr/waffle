@@ -1,5 +1,5 @@
 
-[![Build Status](https://travis-ci.org/hrbrmstr/waffle.svg)](https://travis-ci.org/hrbrmstr/waffle) [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/waffle)](http://cran.r-project.org/web/packages/waffle) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/waffle)
+[![Build Status](https://travis-ci.org/hrbrmstr/waffle.svg)](https://travis-ci.org/hrbrmstr/waffle) [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/waffle)](https://cran.r-project.org/package=waffle) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/waffle)
 
 waffle is a package to make waffle charts (square pie charts)
 
@@ -156,7 +156,7 @@ library(waffle)
 library(testthat)
 
 date()
-## [1] "Sun Sep 18 10:35:04 2016"
+## [1] "Sun Sep 18 10:40:27 2016"
 
 test_dir("tests/")
 ## testthat results ========================================================================================================

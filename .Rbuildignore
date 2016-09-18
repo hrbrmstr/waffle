@@ -1,8 +1,8 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.travis\.yml$
-^.*md$
+^.*Rmd$
 ^README_files
-^README.html
+^README\.html
 ^\.git
 ^cran-comments\.md$
