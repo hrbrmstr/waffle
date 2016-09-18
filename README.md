@@ -15,7 +15,7 @@ The following functions are implemented:
 -   Version `0.6.0` - keep factor levels; improve default aesthetics
 -   Version `0.5.1` released - even moar improved ggplot2 compatibility
 -   Version `0.5` released - new & improved ggplot2 compatibility
--   Version `0.4` released - added `use_glyph` and `glpyh_size` to `waffle` so you can now make isotype pictograms
+-   Version `0.4` released - added `use_glyph` and `glyph_size` to `waffle` so you can now make isotype pictograms
 -   Version `0.3` released - added a `pad` parameter to `waffle` to make it easier to align plots; added `iron` to make it easier to do the alignment
 -   Version `0.2.3` released - nulled many margins and made the use of `coord_equal` optional via the `equal` parameter
 -   Version `0.2.1` released - added Travis tests to ensure independent package build confirmation
@@ -25,7 +25,7 @@ The following functions are implemented:
 ### Installation
 
 ``` r
-install.packages("hrbrmstr/waffle")
+install.packages("waffle")
 ```
 
 ### Usage
@@ -33,13 +33,10 @@ install.packages("hrbrmstr/waffle")
 ``` r
 library(waffle)
 
-# current version
+# current verison
 packageVersion("waffle")
-```
+## [1] '0.6.0.9000'
 
-    ## [1] '0.6.0.9000'
-
-``` r
 # basic example
 parts <- c(80, 30, 20, 10)
 ```
@@ -48,7 +45,7 @@ parts <- c(80, 30, 20, 10)
 waffle(parts, rows=8)
 ```
 
-![](README_files/figure-markdown_github/fig1-1.png)
+<img src="README_files/figure-markdown_github/fig1-1.png" width="576" />
 
 ``` r
 # slightly more complex example
@@ -56,20 +53,21 @@ parts <- c(`Un-breached\nUS Population`=(318-11-79), `Premera`=11, `Anthem`=79)
 ```
 
 ``` r
-waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"))
+waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda")) +
+  theme(legend.position="bottom")
 ```
 
-**Health records breaches as fraction of US Population** ![](README_files/figure-markdown_github/fig2-1.png)
+**Health records breaches as fraction of US Population** <img src="README_files/figure-markdown_github/fig2-1.png" width="576" />
 
-<smaller>One square == 1m ppl</smaller>
+<span style="font-size:8pt">One square == 1m ppl</span>
 
 ``` r
 waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda")) 
 ```
 
-**Health records breaches as fraction of US Population** ![](README_files/figure-markdown_github/fig3-1.png)
+**Health records breaches as fraction of US Population** <img src="README_files/figure-markdown_github/fig3-1.png" width="576" />
 
-<smaller>(One square == 10m ppl)</smaller>
+<span style="font-size:8pt">(One square == 10m ppl)</span>
 
 ``` r
 library(extrafont)
@@ -77,25 +75,26 @@ waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"),
        use_glyph="medkit", size=8)
 ```
 
-![](README_files/figure-markdown_github/ww2-1.png)
+<img src="README_files/figure-markdown_github/ww2-1.png" width="576" />
 
 ``` r
 # replicating an old favourite
 
 # http://graphics8.nytimes.com/images/2008/07/20/business/20debtgraphic.jpg
 # http://www.nytimes.com/2008/07/20/business/20debt.html
-savings <- c(`Mortgage ($84,911)`=84911, `Auto and\ntuition loans ($14,414)`=14414, 
-              `Home equity loans ($10,062)`=10062, `Credit Cards ($8,565)`=8565)
+savings <- c(`Mortgage\n($84,911)`=84911, `Auto and\ntuition loans\n($14,414)`=14414, 
+              `Home equity loans\n($10,062)`=10062, `Credit Cards\n($8,565)`=8565)
 ```
 
 ``` r
 waffle(savings/392, rows=7, size=0.5, 
-       colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf"))
+       colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf")) +
+  theme(legend.position="bottom")
 ```
 
-\*Average Household Savings Each Year\*\* ![](README_files/figure-markdown_github/fig4a-1.png)
+**Average Household Savings Each Year** <img src="README_files/figure-markdown_github/fig4a-1.png" width="768" />
 
-<smaller> (1 square == $392)</smaller>
+<span style="font-size:8pt">(1 square == $392)</span>
 
 ``` r
 # similar to but not exact
@@ -117,11 +116,11 @@ gridExtra::grid.arrange(
 )
 ```
 
-![](README_files/figure-markdown_github/fct-1.png)
+<img src="README_files/figure-markdown_github/fct-1.png" width="576" />
 
 **Professional Workforce Makeup**
 
-![](README_files/figure-markdown_github/f5-1.png)
+<img src="README_files/figure-markdown_github/f5-1.png" width="384" />
 
 Iron example (left-align & padding for multiple plots)
 
@@ -148,7 +147,7 @@ C <- waffle(stan.adult.1997/2, rows=7, size=0.5,
 iron(A, B, C)
 ```
 
-![](README_files/figure-markdown_github/f8-1.png)
+<img src="README_files/figure-markdown_github/f8-1.png" width="672" />
 
 ### Test Results
 
@@ -157,15 +156,11 @@ library(waffle)
 library(testthat)
 
 date()
-```
+## [1] "Sun Sep 18 10:28:41 2016"
 
-    ## [1] "Wed Apr 20 10:03:39 2016"
-
-``` r
 test_dir("tests/")
+## testthat results ========================================================================================================
+## OK: 1 SKIPPED: 0 FAILED: 0
+## 
+## DONE ===================================================================================================================
 ```
-
-    ## testthat results ========================================================================================================
-    ## OK: 1 SKIPPED: 0 FAILED: 0
-    ## 
-    ## DONE ===================================================================================================================

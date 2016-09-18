@@ -1,10 +1,10 @@
 Package: waffle
 Type: Package
 Title: Create Waffle Chart Visualizations in R
-Version: 0.6.0.9000
-Date: 2016-04-20
-Author: Bob Rudis <bob@rudis.net>
-Maintainer: Bob Rudis <bob@rudis.net>
+Version: 0.6.0
+Date: 2016-09-18
+Author: Bob Rudis <bob@rud.is>, Dave Gandy (FontAwesome)
+Maintainer: Bob Rudis <bob@rud.is>
 Description: Square pie charts (a.k.a. waffle charts) can be used
     to communicate parts of a whole for categorical quantities. To emulate the
     percentage view of a pie chart, a 10x10 grid should be used with each square

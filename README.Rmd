@@ -1,7 +1,12 @@
 ---
 output: rmarkdown::github_document
 ---
-
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig.retina = 2
+)
+```
 [![Build Status](https://travis-ci.org/hrbrmstr/waffle.svg)](https://travis-ci.org/hrbrmstr/waffle) 
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active) 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/waffle)](http://cran.r-project.org/web/packages/waffle) 
@@ -21,7 +26,7 @@ The following functions are implemented:
 - Version `0.6.0` - keep factor levels; improve default aesthetics
 - Version `0.5.1` released - even moar improved ggplot2 compatibility
 - Version `0.5` released - new & improved ggplot2 compatibility
-- Version `0.4` released - added `use_glyph` and `glpyh_size` to `waffle` so you can now make isotype pictograms
+- Version `0.4` released - added `use_glyph` and `glyph_size` to `waffle` so you can now make isotype pictograms
 - Version `0.3` released - added a `pad` parameter to `waffle` to make it easier to align plots; added `iron` to make it easier to do the alignment
 - Version `0.2.3` released - nulled many margins and made the use of `coord_equal` optional via the `equal` parameter
 - Version `0.2.1` released - added Travis tests to ensure independent package build confirmation
@@ -59,16 +64,18 @@ waffle(parts, rows=8)
 parts <- c(`Un-breached\nUS Population`=(318-11-79), `Premera`=11, `Anthem`=79)
 ```
 
-```{r t1, eval=FALSE, message=FALSE, warning=FALSE}
-waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"))
+```{r t1, eval=FALSE, message=FALSE, warning=FALSE, fig.width=6, fig.height=3}
+waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda")) +
+  theme(legend.position="bottom")
 ```
 
 **Health records breaches as fraction of US Population**
-```{r fig2, echo= FALSE, fig.width=6, fig.height=1.75, message=FALSE, warning=FALSE}
-waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"))
+```{r fig2, echo=FALSE, fig.width=6, fig.height=1.75, message=FALSE, warning=FALSE}
+waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda")) +
+  theme(legend.position="bottom")
 ```
 
-<smaller>One square == 1m ppl</smaller>
+<span style="font-size:8pt">One square == 1m ppl</span>
 
 ```{r t2, eval=FALSE, message=FALSE, warning=FALSE}
 waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda")) 
@@ -79,7 +86,7 @@ waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"))
 waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda")) 
 ```
 
-<smaller>(One square == 10m ppl)</smaller>
+<span style="font-size:8pt">(One square == 10m ppl)</span>
 
 ```{r ww1, eval=FALSE, message=FALSE, warning=FALSE}
 library(extrafont)
@@ -98,23 +105,25 @@ waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"),
 
 # http://graphics8.nytimes.com/images/2008/07/20/business/20debtgraphic.jpg
 # http://www.nytimes.com/2008/07/20/business/20debt.html
-savings <- c(`Mortgage ($84,911)`=84911, `Auto and\ntuition loans ($14,414)`=14414, 
-              `Home equity loans ($10,062)`=10062, `Credit Cards ($8,565)`=8565)
+savings <- c(`Mortgage\n($84,911)`=84911, `Auto and\ntuition loans\n($14,414)`=14414, 
+              `Home equity loans\n($10,062)`=10062, `Credit Cards\n($8,565)`=8565)
 ```
 
 ```{r fig4, eval=FALSE}
 waffle(savings/392, rows=7, size=0.5, 
-       colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf"))
+       colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf")) +
+  theme(legend.position="bottom")
 ```
 
 
-*Average Household Savings Each Year**
-```{r fig4a, echo=FALSE, fig.width=8, fig.height=2, message=FALSE, warning=FALSE}
+**Average Household Savings Each Year**
+```{r fig4a, echo=FALSE, fig.width=8, fig.height=2.5, message=FALSE, warning=FALSE}
 waffle(savings/392, rows=7, size=0.5, 
-       colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf"))
+       colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf")) +
+    theme(legend.position="bottom")
 ```
 
-<smaller> (1 square == $392)</smaller>
+<span style="font-size:8pt">(1 square == $392)</span>
 
 ```{r s6}
 # similar to but not exact
