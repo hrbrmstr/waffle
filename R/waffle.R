@@ -92,7 +92,7 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
       dat$fontlab <- c(fontlab[as.numeric(factor(parts_vec, levels = names(parts)))], 
                        rep(NA, nrow(dat) - length(parts_vec)))
     } else if (length(use_glyph) == length(parts_vec)) {
-      fontlab <- c(fa_unicode[use_glyph], rep(NA, nrow(dat) - length(parts_vec)))
+      dat$fontlab <- c(fa_unicode[use_glyph], rep(NA, nrow(dat) - length(parts_vec)))
     } else {
       stop("'use_glyph' must have length 1, length(parts), or sum(parts)")
     }
