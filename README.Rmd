@@ -4,6 +4,7 @@ output: rmarkdown::github_document
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
+  message=FALSE,
   fig.retina = 2
 )
 ```

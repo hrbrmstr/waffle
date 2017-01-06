@@ -105,8 +105,8 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
     gg <- gg + geom_tile(aes(fill=value), color="white", size=size)
     gg <- gg + scale_fill_manual(name="",
                                  values=colors,
-                                 labels=part_names,
-                                 drop=FALSE)
+                                 labels=ifelse(is.na(part_names), "", part_names),
+                                 drop=TRUE)
     gg <- gg + guides(fill=guide_legend(override.aes=list(colour="#00000000")))
     gg <- gg + theme(legend.background=element_rect(fill="#00000000", color="#00000000"))
     gg <- gg + theme(legend.key=element_rect(fill="#00000000", color="#00000000"))
@@ -128,14 +128,14 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
       message("Font Awesome by Dave Gandy - http://fontawesome.io")
     }
 
-    gg <- gg + geom_tile(color=NA, fill=NA, size=size, alpha=0, show.legend=FALSE)
-    gg <- gg + geom_point(aes(color=value), fill=NA, size=0, show.legend=TRUE)
+    gg <- gg + geom_tile(color="#00000000", fill="#00000000", size=size, alpha=0, show.legend=FALSE)
+    gg <- gg + geom_point(aes(color=value), fill="#00000000", size=0, show.legend=TRUE)
     gg <- gg + geom_text(aes(color=value,label=fontlab),
                          family="FontAwesome", size=glyph_size, show.legend=FALSE)
     gg <- gg + scale_color_manual(name="",
                                  values=colors,
-                                 labels=part_names,
-                                 drop=FALSE)
+                                 labels=ifelse(is.na(part_names), "", part_names),
+                                 drop=TRUE)
     gg <- gg + guides(color=guide_legend(override.aes=list(shape=15, size=7)))
     gg <- gg + theme(legend.background=element_rect(fill="#00000000", color="#00000000"))
     gg <- gg + theme(legend.key=element_rect(color="#00000000"))
@@ -151,7 +151,7 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
   gg <- gg + theme(panel.grid=element_blank())
   gg <- gg + theme(panel.border=element_blank())
   gg <- gg + theme(panel.background=element_blank())
-  gg <- gg + theme(panel.margin=unit(0, "null"))
+  gg <- gg + theme(panel.spacing=unit(0, "null"))
 
   gg <- gg + theme(axis.text=element_blank())
   gg <- gg + theme(axis.title.x=element_text(size=10))
@@ -162,8 +162,8 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
   gg <- gg + theme(plot.title=element_text(size=18))
 
   gg <- gg + theme(plot.background=element_blank())
-  gg <- gg + theme(plot.margin=unit(c(0, 0, 0, 0), "null"))
-  gg <- gg + theme(plot.margin=rep(unit(0, "null"), 4))
+  gg <- gg + theme(panel.spacing=unit(c(0, 0, 0, 0), "null"))
+  gg <- gg + theme(panel.spacing=rep(unit(0, "null"), 4))
 
   gg <- gg + theme(legend.position=legend_pos)
   gg
