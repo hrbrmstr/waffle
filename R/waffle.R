@@ -88,6 +88,11 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
       dat$fontlab <- c(fontlab[as.numeric(factor(parts_vec))], rep(NA, nrow(dat)-length(parts_vec)))
   }
 
+  dat$value <- ifelse(is.na(dat$value), " ", dat$value)
+
+  if (" " %in% dat$value) part_names <- c(part_names, " ")
+  if (" " %in% dat$value) colors <- c(colors, "#00000000")
+
   dat$value <- factor(dat$value, levels=part_names)
 
   if (flip) {
@@ -105,7 +110,8 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
     gg <- gg + geom_tile(aes(fill=value), color="white", size=size)
     gg <- gg + scale_fill_manual(name="",
                                  values=colors,
-                                 labels=ifelse(is.na(part_names), "", part_names),
+                                 label=part_names,
+                                 na.value="white",
                                  drop=TRUE)
     gg <- gg + guides(fill=guide_legend(override.aes=list(colour="#00000000")))
     gg <- gg + theme(legend.background=element_rect(fill="#00000000", color="#00000000"))
