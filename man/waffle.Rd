@@ -4,14 +4,16 @@
 \alias{waffle}
 \title{Make waffle (square pie) charts}
 \usage{
-waffle(parts, rows = 10, xlab = NULL, title = NULL, colors = NA,
-  size = 2, flip = FALSE, reverse = FALSE, equal = TRUE, pad = 0,
-  use_glyph = FALSE, glyph_size = 12, legend_pos = "right")
+waffle(parts, rows = 10, keep = TRUE, xlab = NULL, title = NULL,
+  colors = NA, size = 2, flip = FALSE, reverse = FALSE, equal = TRUE,
+  pad = 0, use_glyph = FALSE, glyph_size = 12, legend_pos = "right")
 }
 \arguments{
 \item{parts}{named vector of values to use for the chart}
 
 \item{rows}{number of rows of blocks}
+
+\item{keep}{keep factor levels (i.e. for consistent legends across waffle plots)}
 
 \item{xlab}{text for below the chart. Highly suggested this be used to
 give the "1 sq == xyz" relationship if it's not obvious}

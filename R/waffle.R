@@ -1,5 +1,3 @@
-x <- y <- value <- NULL
-
 #' Make waffle (square pie) charts
 #'
 #' Given a named vector, this function will return a ggplot object that
@@ -29,6 +27,7 @@ x <- y <- value <- NULL
 #'
 #' @param parts named vector of values to use for the chart
 #' @param rows number of rows of blocks
+#' @param keep keep factor levels (i.e. for consistent legends across waffle plots)
 #' @param xlab text for below the chart. Highly suggested this be used to
 #'     give the "1 sq == xyz" relationship if it's not obvious
 #' @param title chart title
@@ -56,7 +55,7 @@ x <- y <- value <- NULL
 #' parts <- c(One=80, Two=30, Three=20, Four=10)
 #' chart <- waffle(parts, rows=8)
 #' # print(chart)
-waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
+waffle <- function(parts, rows=10, keep=TRUE, xlab=NULL, title=NULL, colors=NA,
                    size=2, flip=FALSE, reverse=FALSE, equal=TRUE, pad=0,
                    use_glyph=FALSE, glyph_size=12, legend_pos="right") {
 
@@ -79,13 +78,14 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
   if (reverse) parts_vec <- rev(parts_vec)
 
   # setup the data frame for geom_rect
-  dat <- expand.grid(y=1:rows, x=seq_len(pad + (ceiling(sum(parts) / rows))))
+dat <- expand.grid(y=1:rows, x=seq_len(pad + (ceiling(sum(parts) / rows))))
 
   # add NAs if needed to fill in the "rectangle"
   dat$value <- c(parts_vec, rep(NA, nrow(dat)-length(parts_vec)))
   if(!inherits(use_glyph, "logical")){
       fontlab <- rep(fa_unicode[use_glyph],length(unique(parts_vec)))
-      dat$fontlab <- c(fontlab[as.numeric(factor(parts_vec))], rep(NA, nrow(dat)-length(parts_vec)))
+      dat$fontlab <- c(fontlab[as.numeric(factor(parts_vec))],
+                       rep(NA, nrow(dat)-length(parts_vec)))
   }
 
   dat$value <- ifelse(is.na(dat$value), " ", dat$value)
@@ -95,11 +95,9 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
 
   dat$value <- factor(dat$value, levels=part_names)
 
-  if (flip) {
-    gg <- ggplot(dat, aes(x=y, y=x))
-  } else {
-    gg <- ggplot(dat, aes(x=x, y=y))
-  }
+  gg <- ggplot(dat, aes(x=x, y=y))
+
+  if (flip) gg <- ggplot(dat, aes(x=y, y=x))
 
   gg <- gg + theme_bw()
 
@@ -112,7 +110,7 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
                                  values=colors,
                                  label=part_names,
                                  na.value="white",
-                                 drop=TRUE)
+                                 drop=!keep)
     gg <- gg + guides(fill=guide_legend(override.aes=list(colour="#00000000")))
     gg <- gg + theme(legend.background=element_rect(fill="#00000000", color="#00000000"))
     gg <- gg + theme(legend.key=element_rect(fill="#00000000", color="#00000000"))
@@ -140,8 +138,8 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
                          family="FontAwesome", size=glyph_size, show.legend=FALSE)
     gg <- gg + scale_color_manual(name="",
                                  values=colors,
-                                 labels=ifelse(is.na(part_names), "", part_names),
-                                 drop=TRUE)
+                                 labels=part_names,
+                                 drop=!keep)
     gg <- gg + guides(color=guide_legend(override.aes=list(shape=15, size=7)))
     gg <- gg + theme(legend.background=element_rect(fill="#00000000", color="#00000000"))
     gg <- gg + theme(legend.key=element_rect(color="#00000000"))
@@ -152,7 +150,7 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
   gg <- gg + scale_x_continuous(expand=c(0, 0))
   gg <- gg + scale_y_continuous(expand=c(0, 0))
 
-  if (equal) { gg <- gg + coord_equal() }
+  if (equal) gg <- gg + coord_equal()
 
   gg <- gg + theme(panel.grid=element_blank())
   gg <- gg + theme(panel.border=element_blank())
@@ -169,8 +167,9 @@ waffle <- function(parts, rows=10, xlab=NULL, title=NULL, colors=NA,
 
   gg <- gg + theme(plot.background=element_blank())
   gg <- gg + theme(panel.spacing=unit(c(0, 0, 0, 0), "null"))
-  gg <- gg + theme(panel.spacing=rep(unit(0, "null"), 4))
 
   gg <- gg + theme(legend.position=legend_pos)
+
   gg
+
 }

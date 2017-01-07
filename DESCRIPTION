@@ -1,9 +1,12 @@
 Package: waffle
 Type: Package
 Title: Create Waffle Chart Visualizations in R
-Version: 0.6.0
-Date: 2016-09-18
-Author: Bob Rudis <bob@rud.is>, Dave Gandy (FontAwesome)
+Version: 0.7.0
+Date: 2017-01-07
+Authors@R: c(
+      person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre")),
+      person("Dave", "Gandy", role = "aut", comment = "Font Awesome")
+    )
 Maintainer: Bob Rudis <bob@rud.is>
 Description: Square pie charts (a.k.a. waffle charts) can be used
     to communicate parts of a whole for categorical quantities. To emulate the
@@ -19,8 +22,8 @@ BugReports: https://github.com/hrbrmstr/waffle/issues
 Suggests:
     testthat
 Depends:
-    R (>= 3.1.0),
-    ggplot2 (>= 1.0.1)
+    R (>= 3.2.0),
+    ggplot2 (>= 2.0.0)
 License: GPL (>= 2)
 Imports:
     RColorBrewer,
