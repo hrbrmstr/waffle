@@ -22,4 +22,3 @@ w3 <- waffle(parts, rows=8)
 # print chart
 ## iron(w1, w2, w3)
 }
-

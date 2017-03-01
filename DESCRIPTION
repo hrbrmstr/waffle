@@ -30,5 +30,7 @@ Imports:
     grid,
     gridExtra,
     gtable,
-    extrafont
-RoxygenNote: 5.0.1
+    extrafont,
+    curl,
+    stringr
+RoxygenNote: 6.0.1

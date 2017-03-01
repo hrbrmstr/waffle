@@ -9,4 +9,3 @@ fa_list()
 \description{
 List all FontAwesome names
 }
-

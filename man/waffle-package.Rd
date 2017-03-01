@@ -11,4 +11,3 @@ Font Awesome by Dave Gandy - http://fontawesome.io\cr
 License: SIL OFL 1.1\cr
 URL: http://scripts.sil.org/OFL
 }
-

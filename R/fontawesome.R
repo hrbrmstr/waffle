@@ -3,11 +3,11 @@ fa_unicode<- function() {
 # Waffles mappings from css names to unicode chars was out of date
 # This variation updates it from the latests css from github
 
-require(curl)
-require(stringr)
+#require(curl)
+#require(stringr)
 
 fa_url <-
-  curl("https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/css/font-awesome.css")
+  curl::curl("https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/css/font-awesome.css")
 
 fa_lib <- readLines(fa_url)
 
@@ -23,7 +23,7 @@ strings<-strings[!is.na(strings)]
 unicode<-unicode[!is.na(unicode)]
 
 #Convert to unicdoe
-unicode<-as.character(parse(text=shQuote(str_c('\\u',unicode))))
+unicode<-as.character(parse(text=shQuote(stringr::str_c('\\u',unicode))))
 
 
 fa_unicode <- structure(unicode, .Names = strings)
