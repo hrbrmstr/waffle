@@ -17,4 +17,6 @@
 #' @importFrom ggplot2 aes guide_legend element_rect element_blank element_text
 #' @importFrom grid arrow unit grid.newpage grid.draw unit.c unit.pmax unit.pmin
 #' @importFrom extrafont ttf_import font_import choose_font
+#' @import stringr
+#' @import curl
 NULL
