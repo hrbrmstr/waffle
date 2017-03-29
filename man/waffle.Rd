@@ -80,4 +80,3 @@ parts <- c(One=80, Two=30, Three=20, Four=10)
 chart <- waffle(parts, rows=8)
 # print(chart)
 }
-

@@ -12,4 +12,3 @@ fa_grep(pattern)
 \description{
 Search FontAwesome names for a pattern
 }
-

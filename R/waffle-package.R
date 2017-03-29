@@ -9,6 +9,8 @@
 #' @name waffle-package
 #' @docType package
 #' @import gridExtra
+#' @import stringr
+#' @import curl
 #' @importFrom gtable is.gtable
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom ggplot2 ggplot geom_tile scale_fill_manual guides geom_tile ggplotGrob
@@ -17,4 +19,5 @@
 #' @importFrom ggplot2 aes guide_legend element_rect element_blank element_text
 #' @importFrom grid arrow unit grid.newpage grid.draw unit.c unit.pmax unit.pmin
 #' @importFrom extrafont ttf_import font_import choose_font
+
 NULL

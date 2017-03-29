@@ -83,6 +83,7 @@ dat <- expand.grid(y=1:rows, x=seq_len(pad + (ceiling(sum(parts) / rows))))
   # add NAs if needed to fill in the "rectangle"
   dat$value <- c(parts_vec, rep(NA, nrow(dat)-length(parts_vec)))
   if(!inherits(use_glyph, "logical")){
+      fa_unicode<-fa_unicode()
       fontlab <- rep(fa_unicode[use_glyph],length(unique(parts_vec)))
       dat$fontlab <- c(fontlab[as.numeric(factor(parts_vec))],
                        rep(NA, nrow(dat)-length(parts_vec)))
@@ -131,6 +132,7 @@ dat <- expand.grid(y=1:rows, x=seq_len(pad + (ceiling(sum(parts) / rows))))
     if (!(!interactive() || stats::runif(1) > 0.1)) {
       message("Font Awesome by Dave Gandy - http://fontawesome.io")
     }
+
 
     gg <- gg + geom_tile(color="#00000000", fill="#00000000", size=size, alpha=0, show.legend=FALSE)
     gg <- gg + geom_point(aes(color=value), fill="#00000000", size=0, show.legend=TRUE)
