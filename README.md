@@ -23,20 +23,34 @@ library(waffle)
 
 # current verison
 packageVersion("waffle")
-## [1] '0.7.0'
-
-# basic example
-parts <- c(80, 30, 20, 10)
+## [1] '0.8.0'
 ```
 
+### Basic example
+
 ``` r
+parts <- c(80, 30, 20, 10)
+waffle(parts, rows=8)
+```
+
+<img src="README_files/figure-markdown_github/fig0-1.png" width="576" />
+
+### Use a data frame
+
+``` r
+parts <- data.frame(
+  names = LETTERS[1:4],
+  vals = c(80, 30, 20, 10)
+)
+
 waffle(parts, rows=8)
 ```
 
 <img src="README_files/figure-markdown_github/fig1-1.png" width="576" />
 
+### Slightly more complex example
+
 ``` r
-# slightly more complex example
 parts <- c(`Un-breached\nUS Population`=(318-11-79), `Premera`=11, `Anthem`=79)
 ```
 
@@ -64,11 +78,13 @@ waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"),
 
 <img src="README_files/figure-markdown_github/ww2-1.png" width="576" />
 
-``` r
-# replicating an old favourite
+### Replicating an old favourite
 
-# http://graphics8.nytimes.com/images/2008/07/20/business/20debtgraphic.jpg
-# http://www.nytimes.com/2008/07/20/business/20debt.html
+![](http://graphics8.nytimes.com/images/2008/07/20/business/20debtgraphic.jpg)
+
+Via: <http://www.nytimes.com/2008/07/20/business/20debt.html>
+
+``` r
 savings <- c(`Mortgage\n($84,911)`=84911, `Auto and\ntuition loans\n($14,414)`=14414, 
              `Home equity loans\n($10,062)`=10062, `Credit Cards\n($8,565)`=8565)
 ```
@@ -82,10 +98,11 @@ waffle(savings/392, rows=7, size=0.5, legend_pos="bottom",
 
 <span style="font-size:8pt">(1 square == $392)</span>
 
-``` r
-# similar to but not exact
+### More replication
 
-# https://eagereyes.org/techniques/square-pie-charts
+Similar to <https://eagereyes.org/techniques/square-pie-charts>
+
+``` r
 professional <- c(`Male`=44, `Female (56%)`=56)
 ```
 
@@ -157,7 +174,7 @@ library(waffle)
 library(testthat)
 
 date()
-## [1] "Sat Jan  7 08:05:00 2017"
+## [1] "Fri Apr  7 06:59:41 2017"
 
 test_dir("tests/")
 ## testthat results ========================================================================================================

@@ -1,8 +1,8 @@
 Package: waffle
 Type: Package
 Title: Create Waffle Chart Visualizations in R
-Version: 0.7.0
-Date: 2017-01-07
+Version: 0.8.0
+Date: 2017-04-07
 Authors@R: c(
       person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre")),
       person("Dave", "Gandy", role = "aut", comment = "Font Awesome")

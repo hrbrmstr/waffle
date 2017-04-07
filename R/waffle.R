@@ -1,13 +1,18 @@
 #' Make waffle (square pie) charts
 #'
-#' Given a named vector, this function will return a ggplot object that
+#' Given a named vector or a data frame, this function will return a ggplot object that
 #' represents a waffle chart of the values. The individual values will be
 #' summed up and each that will be the total number of squares in the grid.
 #' You can perform appropriate value transformation ahead of time to get the
 #' desired waffle layout/effect.
 #'
+#' If a data frame is used, the first two columns should contain the desired names
+#' and the values, respectively.
+#'
 #' If the vector is not named or only partially named, capital letters will be
-#' used instead. It is highly suggested that you limit the number of elements
+#' used instead.
+#'
+#' It is highly suggested that you limit the number of elements
 #' to plot, just like you should if you ever got wasted and decided that a
 #' regular pie chart was a good thing to create and then decide to be totally
 #' evil and make one to pollute this beautiful world of ours.
@@ -18,14 +23,14 @@
 #' If you specify a string (vs \code{FALSE}) to \code{use_glyph} the function
 #' will map the input to a FontAwesome glyph name and use that glyph for the
 #' tile instead of a block (making it more like an isotype pictogram than a
-#' waffle chart). You'll need to actually install FontAwesome and use
+#' waffle chart). You'll need to install FontAwesome and use
 #' the \code{extrafont} package (\code{https://github.com/wch/extrafont}) to
 #' be able to use the FontAwesome glyphs. Sizing is also up to the user since
 #' fonts do not automatically scale with graphic resize.
 #'
 #' Glyph idea inspired by Ruben C. Arslan (@@_r_c_a)
 #'
-#' @param parts named vector of values to use for the chart
+#' @param parts named vector of values or a data frame to use for the chart
 #' @param rows number of rows of blocks
 #' @param keep keep factor levels (i.e. for consistent legends across waffle plots)
 #' @param xlab text for below the chart. Highly suggested this be used to
@@ -46,8 +51,14 @@
 #' @export
 #' @examples
 #' parts <- c(80, 30, 20, 10)
-#' chart <- waffle(parts, rows=8)
-#' # print(chart)
+#' waffle(parts, rows=8)
+#'
+#' parts <- data.frame(
+#'   names = LETTERS[1:4],
+#'   vals = c(80, 30, 20, 10)
+#' )
+#'
+#' waffle(parts, rows=8)
 #'
 #' # library(extrafont)
 #' # waffle(parts, rows=8, use_glyph="shield")
@@ -58,6 +69,11 @@
 waffle <- function(parts, rows=10, keep=TRUE, xlab=NULL, title=NULL, colors=NA,
                    size=2, flip=FALSE, reverse=FALSE, equal=TRUE, pad=0,
                    use_glyph=FALSE, glyph_size=12, legend_pos="right") {
+
+  if (inherits(parts, "data.frame")) {
+    setNames(unlist(parts[,2], use.names = FALSE),
+             unlist(parts[,1], use.names = FALSE)) -> parts
+  }
 
   # fill in any missing names
   part_names <- names(parts)
@@ -78,7 +94,7 @@ waffle <- function(parts, rows=10, keep=TRUE, xlab=NULL, title=NULL, colors=NA,
   if (reverse) parts_vec <- rev(parts_vec)
 
   # setup the data frame for geom_rect
-dat <- expand.grid(y=1:rows, x=seq_len(pad + (ceiling(sum(parts) / rows))))
+  dat <- expand.grid(y=1:rows, x=seq_len(pad + (ceiling(sum(parts) / rows))))
 
   # add NAs if needed to fill in the "rectangle"
   dat$value <- c(parts_vec, rep(NA, nrow(dat)-length(parts_vec)))
@@ -132,7 +148,6 @@ dat <- expand.grid(y=1:rows, x=seq_len(pad + (ceiling(sum(parts) / rows))))
     if (!(!interactive() || stats::runif(1) > 0.1)) {
       message("Font Awesome by Dave Gandy - http://fontawesome.io")
     }
-
 
     gg <- gg + geom_tile(color="#00000000", fill="#00000000", size=size, alpha=0, show.legend=FALSE)
     gg <- gg + geom_point(aes(color=value), fill="#00000000", size=0, show.legend=TRUE)

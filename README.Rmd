@@ -34,17 +34,29 @@ library(waffle)
 
 # current verison
 packageVersion("waffle")
-
-# basic example
-parts <- c(80, 30, 20, 10)
 ```
 
-```{r fig1, fig.width=6, fig.height=2.5}
+### Basic example
+
+```{r fig0, fig.width=6, fig.height=2.5}
+parts <- c(80, 30, 20, 10)
 waffle(parts, rows=8)
 ```
 
+### Use a data frame
+
+```{r fig1, fig.width=6, fig.height=2.5}
+parts <- data.frame(
+  names = LETTERS[1:4],
+  vals = c(80, 30, 20, 10)
+)
+
+waffle(parts, rows=8)
+```
+
+### Slightly more complex example
+
 ```{r s4}
-# slightly more complex example
 parts <- c(`Un-breached\nUS Population`=(318-11-79), `Premera`=11, `Anthem`=79)
 ```
 
@@ -82,11 +94,14 @@ waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"),
        use_glyph="medkit", glyph_size=8)
 ```
 
-```{r s5}
-# replicating an old favourite
+### Replicating an old favourite
 
-# http://graphics8.nytimes.com/images/2008/07/20/business/20debtgraphic.jpg
-# http://www.nytimes.com/2008/07/20/business/20debt.html
+![](http://graphics8.nytimes.com/images/2008/07/20/business/20debtgraphic.jpg)
+
+Via: <http://www.nytimes.com/2008/07/20/business/20debt.html>
+
+
+```{r s5}
 savings <- c(`Mortgage\n($84,911)`=84911, `Auto and\ntuition loans\n($14,414)`=14414, 
              `Home equity loans\n($10,062)`=10062, `Credit Cards\n($8,565)`=8565)
 ```
@@ -105,10 +120,11 @@ waffle(savings/392, rows=7, size=0.5, legend_pos="bottom",
 
 <span style="font-size:8pt">(1 square == $392)</span>
 
-```{r s6}
-# similar to but not exact
+### More replication
 
-# https://eagereyes.org/techniques/square-pie-charts
+Similar to <https://eagereyes.org/techniques/square-pie-charts>
+
+```{r s6}
 professional <- c(`Male`=44, `Female (56%)`=56)
 ```
 

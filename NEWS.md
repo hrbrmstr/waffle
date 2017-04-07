@@ -1,5 +1,9 @@
 ### News
 
+waffle 0.8.0
+- `parts` can be now be a data frame. the first two columns will be uses as
+   names and values (respectively)
+
 waffle 0.7.0
 - yet more fixes for latest ggplot2 2.x
 - made factor-level keeping a parameter (TRUE by default)

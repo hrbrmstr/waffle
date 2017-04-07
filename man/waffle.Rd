@@ -9,7 +9,7 @@ waffle(parts, rows = 10, keep = TRUE, xlab = NULL, title = NULL,
   pad = 0, use_glyph = FALSE, glyph_size = 12, legend_pos = "right")
 }
 \arguments{
-\item{parts}{named vector of values to use for the chart}
+\item{parts}{named vector of values or a data frame to use for the chart}
 
 \item{rows}{number of rows of blocks}
 
@@ -42,15 +42,20 @@ ggsave or knitr to control output sizes (or manually sizing the chart)}
 \item{legend_pos}{position of legend}
 }
 \description{
-Given a named vector, this function will return a ggplot object that
+Given a named vector or a data frame, this function will return a ggplot object that
 represents a waffle chart of the values. The individual values will be
 summed up and each that will be the total number of squares in the grid.
 You can perform appropriate value transformation ahead of time to get the
 desired waffle layout/effect.
 }
 \details{
+If a data frame is used, the first two columns should contain the desired names
+and the values, respectively.
+
 If the vector is not named or only partially named, capital letters will be
-used instead. It is highly suggested that you limit the number of elements
+used instead.
+
+It is highly suggested that you limit the number of elements
 to plot, just like you should if you ever got wasted and decided that a
 regular pie chart was a good thing to create and then decide to be totally
 evil and make one to pollute this beautiful world of ours.
@@ -61,7 +66,7 @@ exporting to another program for use/display.
 If you specify a string (vs \code{FALSE}) to \code{use_glyph} the function
 will map the input to a FontAwesome glyph name and use that glyph for the
 tile instead of a block (making it more like an isotype pictogram than a
-waffle chart). You'll need to actually install FontAwesome and use
+waffle chart). You'll need to install FontAwesome and use
 the \code{extrafont} package (\code{https://github.com/wch/extrafont}) to
 be able to use the FontAwesome glyphs. Sizing is also up to the user since
 fonts do not automatically scale with graphic resize.
@@ -70,8 +75,14 @@ Glyph idea inspired by Ruben C. Arslan (@_r_c_a)
 }
 \examples{
 parts <- c(80, 30, 20, 10)
-chart <- waffle(parts, rows=8)
-# print(chart)
+waffle(parts, rows=8)
+
+parts <- data.frame(
+  names = LETTERS[1:4],
+  vals = c(80, 30, 20, 10)
+)
+
+waffle(parts, rows=8)
 
 # library(extrafont)
 # waffle(parts, rows=8, use_glyph="shield")
