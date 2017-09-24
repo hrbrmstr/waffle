@@ -6,7 +6,8 @@
 \usage{
 waffle(parts, rows = 10, keep = TRUE, xlab = NULL, title = NULL,
   colors = NA, size = 2, flip = FALSE, reverse = FALSE, equal = TRUE,
-  pad = 0, use_glyph = FALSE, glyph_size = 12, legend_pos = "right")
+  pad = 0, use_glyph = FALSE, glyph_size = 12, legend_pos = "right",
+  tile_color = "white")
 }
 \arguments{
 \item{parts}{named vector of values or a data frame to use for the chart}
