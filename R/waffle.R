@@ -68,7 +68,8 @@
 #' # print(chart)
 waffle <- function(parts, rows=10, keep=TRUE, xlab=NULL, title=NULL, colors=NA,
                    size=2, flip=FALSE, reverse=FALSE, equal=TRUE, pad=0,
-                   use_glyph=FALSE, glyph_size=12, legend_pos="right") {
+                   use_glyph=FALSE, glyph_size=12, legend_pos="right", 
+                   tile_color = "white") {
 
   if (inherits(parts, "data.frame")) {
     setNames(unlist(parts[,2], use.names = FALSE),
@@ -122,7 +123,7 @@ waffle <- function(parts, rows=10, keep=TRUE, xlab=NULL, title=NULL, colors=NA,
 
   if (inherits(use_glyph, "logical")) {
 
-    gg <- gg + geom_tile(aes(fill=value), color="white", size=size)
+    gg <- gg + geom_tile(aes(fill=value), color=tile_color, size=size)
     gg <- gg + scale_fill_manual(name="",
                                  values=colors,
                                  label=part_names,
@@ -149,7 +150,7 @@ waffle <- function(parts, rows=10, keep=TRUE, xlab=NULL, title=NULL, colors=NA,
       message("Font Awesome by Dave Gandy - http://fontawesome.io")
     }
 
-    gg <- gg + geom_tile(color="#00000000", fill="#00000000", size=size, alpha=0, show.legend=FALSE)
+    gg <- gg + geom_tile(color=tile_color, fill="#00000000", size=size, alpha=0, show.legend=FALSE)
     gg <- gg + geom_point(aes(color=value), fill="#00000000", size=0, show.legend=TRUE)
     gg <- gg + geom_text(aes(color=value,label=fontlab),
                          family="FontAwesome", size=glyph_size, show.legend=FALSE)
