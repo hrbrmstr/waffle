@@ -127,7 +127,7 @@ Without (you can disable this via `keep` parameter now):
 
 ``` r
 iron(
-  waffle(c(thing1=0, thing2=100), rows=5, keep=FALSE),  
+  waffle(c(thing1=100, thing2=0), rows=5, keep=FALSE),  
   waffle(c(thing1=25, thing2=75), rows=5, keep=FALSE)
 )
 ```
