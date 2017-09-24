@@ -1,7 +1,7 @@
 
-[![Build Status](https://travis-ci.org/hrbrmstr/waffle.svg)](https://travis-ci.org/hrbrmstr/waffle) [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/waffle)](https://cran.r-project.org/package=waffle) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/waffle)
+[![Build Status](https://travis-ci.org/hrbrmstr/waffle.svg)](https://travis-ci.org/hrbrmstr/waffle) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/waffle)](https://cran.r-project.org/package=waffle) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/waffle)
 
-waffle is a package to make waffle charts (square pie charts)
+`waffle` is a package to make waffle charts (square pie charts)
 
 It uses ggplot2 and returns a ggplot2 object.
 
@@ -9,18 +9,6 @@ The following functions are implemented:
 
 -   `waffle` : make a waffle chart ggplot2 object
 -   `iron` : vertically stitch together multiple waffle plots, left-aligning edges (best if used with the `waffle` `pad` parameter)
-
-### News
-
--   Version `0.6.0` - keep factor levels; improve default aesthetics
--   Version `0.5.1` released - even moar improved ggplot2 compatibility
--   Version `0.5` released - new & improved ggplot2 compatibility
--   Version `0.4` released - added `use_glyph` and `glyph_size` to `waffle` so you can now make isotype pictograms
--   Version `0.3` released - added a `pad` parameter to `waffle` to make it easier to align plots; added `iron` to make it easier to do the alignment
--   Version `0.2.3` released - nulled many margins and made the use of `coord_equal` optional via the `equal` parameter
--   Version `0.2.1` released - added Travis tests to ensure independent package build confirmation
--   Version `0.2` released - added `as_rcdimple` thx to Kent Russell (only in non-CRAN version)
--   Version `0.1` released
 
 ### Installation
 
@@ -35,26 +23,39 @@ library(waffle)
 
 # current verison
 packageVersion("waffle")
-## [1] '0.6.0'
-
-# basic example
-parts <- c(80, 30, 20, 10)
+## [1] '0.8.0'
 ```
 
+### Basic example
+
 ``` r
+parts <- c(80, 30, 20, 10)
+waffle(parts, rows=8)
+```
+
+<img src="README_files/figure-markdown_github/fig0-1.png" width="576" />
+
+### Use a data frame
+
+``` r
+parts <- data.frame(
+  names = LETTERS[1:4],
+  vals = c(80, 30, 20, 10)
+)
+
 waffle(parts, rows=8)
 ```
 
 <img src="README_files/figure-markdown_github/fig1-1.png" width="576" />
 
+### Slightly more complex example
+
 ``` r
-# slightly more complex example
 parts <- c(`Un-breached\nUS Population`=(318-11-79), `Premera`=11, `Anthem`=79)
 ```
 
 ``` r
-waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda")) +
-  theme(legend.position="bottom")
+waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"), legend_pos="bottom") 
 ```
 
 **Health records breaches as fraction of US Population** <img src="README_files/figure-markdown_github/fig2-1.png" width="576" />
@@ -77,29 +78,31 @@ waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"),
 
 <img src="README_files/figure-markdown_github/ww2-1.png" width="576" />
 
-``` r
-# replicating an old favourite
+### Replicating an old favourite
 
-# http://graphics8.nytimes.com/images/2008/07/20/business/20debtgraphic.jpg
-# http://www.nytimes.com/2008/07/20/business/20debt.html
+![](http://graphics8.nytimes.com/images/2008/07/20/business/20debtgraphic.jpg)
+
+Via: <http://www.nytimes.com/2008/07/20/business/20debt.html>
+
+``` r
 savings <- c(`Mortgage\n($84,911)`=84911, `Auto and\ntuition loans\n($14,414)`=14414, 
-              `Home equity loans\n($10,062)`=10062, `Credit Cards\n($8,565)`=8565)
+             `Home equity loans\n($10,062)`=10062, `Credit Cards\n($8,565)`=8565)
 ```
 
 ``` r
-waffle(savings/392, rows=7, size=0.5, 
-       colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf")) +
-  theme(legend.position="bottom")
+waffle(savings/392, rows=7, size=0.5, legend_pos="bottom",
+       colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf"))
 ```
 
 **Average Household Savings Each Year** <img src="README_files/figure-markdown_github/fig4a-1.png" width="768" />
 
 <span style="font-size:8pt">(1 square == $392)</span>
 
-``` r
-# similar to but not exact
+### More replication
 
-# https://eagereyes.org/techniques/square-pie-charts
+Similar to <https://eagereyes.org/techniques/square-pie-charts>
+
+``` r
 professional <- c(`Male`=44, `Female (56%)`=56)
 ```
 
@@ -107,16 +110,29 @@ professional <- c(`Male`=44, `Female (56%)`=56)
 waffle(professional, rows=10, size=0.5, colors=c("#af9139", "#544616"))
 ```
 
-### Keeps factor levels now
+### Keeps factor by default levels now
+
+With:
 
 ``` r
-gridExtra::grid.arrange(
+iron(
   waffle(c(thing1=0, thing2=100), rows=5),  
   waffle(c(thing1=25, thing2=75), rows=5)
 )
 ```
 
 <img src="README_files/figure-markdown_github/fct-1.png" width="576" />
+
+Without (you can disable this via `keep` parameter now):
+
+``` r
+iron(
+  waffle(c(thing1=100, thing2=0), rows=5, keep=FALSE),  
+  waffle(c(thing1=25, thing2=75), rows=5, keep=FALSE)
+)
+```
+
+<img src="README_files/figure-markdown_github/no_fct-1.png" width="576" />
 
 **Professional Workforce Makeup**
 
@@ -125,24 +141,26 @@ gridExtra::grid.arrange(
 Iron example (left-align & padding for multiple plots)
 
 ``` r
-pain.adult.1997 <- c( `YOY (406)`=406, `Adult (24)`=24)
+pain.adult.1997 <- c(`YOY (406)`=406, `Adult (24)`=24)
+
 A <- waffle(pain.adult.1997/2, rows=7, size=0.5, 
-       colors=c("#c7d4b6", "#a3aabd"), 
-       title="Paine Run Brook Trout Abundance (1997)", 
-       xlab="1 square = 2 fish", pad=3)
+            colors=c("#c7d4b6", "#a3aabd"), 
+            title="Paine Run Brook Trout Abundance (1997)", 
+            xlab="1 square = 2 fish", pad=3)
 
-pine.adult.1997 <- c( `YOY (221)`=221, `Adult (143)`=143)
+pine.adult.1997 <- c(`YOY (221)`=221, `Adult (143)`=143)
+
 B <- waffle(pine.adult.1997/2, rows=7, size=0.5, 
-                             colors=c("#c7d4b6", "#a3aabd"), 
-                             title="Piney River Brook Trout Abundance (1997)", 
-                             xlab="1 square = 2 fish", pad=8)
+            colors=c("#c7d4b6", "#a3aabd"), 
+            title="Piney River Brook Trout Abundance (1997)", 
+            xlab="1 square = 2 fish", pad=8)
 
-stan.adult.1997 <- c( `YOY (270)`=270, `Adult (197)`=197)
+stan.adult.1997 <- c(`YOY (270)`=270, `Adult (197)`=197)
+
 C <- waffle(stan.adult.1997/2, rows=7, size=0.5, 
-                             colors=c("#c7d4b6", "#a3aabd"), 
-                             title="Staunton River Trout Abundance (1997)", 
-                             xlab="1 square = 2 fish")
-
+            colors=c("#c7d4b6", "#a3aabd"), 
+            title="Staunton River Trout Abundance (1997)", 
+            xlab="1 square = 2 fish")
 
 iron(A, B, C)
 ```
@@ -156,7 +174,7 @@ library(waffle)
 library(testthat)
 
 date()
-## [1] "Sun Sep 18 10:40:27 2016"
+## [1] "Fri Apr  7 06:59:41 2017"
 
 test_dir("tests/")
 ## testthat results ========================================================================================================
