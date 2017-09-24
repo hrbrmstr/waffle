@@ -33,7 +33,7 @@ parts <- c(80, 30, 20, 10)
 waffle(parts, rows=8)
 ```
 
-<img src="README_files/figure-markdown_github/fig0-1.png" width="576" />
+<img src="README_files/figure-markdown_github-ascii_identifiers/fig0-1.png" width="576" />
 
 ### Use a data frame
 
@@ -46,7 +46,7 @@ parts <- data.frame(
 waffle(parts, rows=8)
 ```
 
-<img src="README_files/figure-markdown_github/fig1-1.png" width="576" />
+<img src="README_files/figure-markdown_github-ascii_identifiers/fig1-1.png" width="576" />
 
 ### Slightly more complex example
 
@@ -58,7 +58,7 @@ parts <- c(`Un-breached\nUS Population`=(318-11-79), `Premera`=11, `Anthem`=79)
 waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"), legend_pos="bottom") 
 ```
 
-**Health records breaches as fraction of US Population** <img src="README_files/figure-markdown_github/fig2-1.png" width="576" />
+**Health records breaches as fraction of US Population** <img src="README_files/figure-markdown_github-ascii_identifiers/fig2-1.png" width="576" />
 
 <span style="font-size:8pt">One square == 1m ppl</span>
 
@@ -66,7 +66,7 @@ waffle(parts, rows=8, size=1, colors=c("#969696", "#1879bf", "#009bda"), legend_
 waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda")) 
 ```
 
-**Health records breaches as fraction of US Population** <img src="README_files/figure-markdown_github/fig3-1.png" width="576" />
+**Health records breaches as fraction of US Population** <img src="README_files/figure-markdown_github-ascii_identifiers/fig3-1.png" width="576" />
 
 <span style="font-size:8pt">(One square == 10m ppl)</span>
 
@@ -76,7 +76,7 @@ waffle(parts/10, rows=3, colors=c("#969696", "#1879bf", "#009bda"),
        use_glyph="medkit", size=8)
 ```
 
-<img src="README_files/figure-markdown_github/ww2-1.png" width="576" />
+<img src="README_files/figure-markdown_github-ascii_identifiers/ww2-1.png" width="576" />
 
 ### Replicating an old favourite
 
@@ -94,7 +94,7 @@ waffle(savings/392, rows=7, size=0.5, legend_pos="bottom",
        colors=c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf"))
 ```
 
-**Average Household Savings Each Year** <img src="README_files/figure-markdown_github/fig4a-1.png" width="768" />
+**Average Household Savings Each Year** <img src="README_files/figure-markdown_github-ascii_identifiers/fig4a-1.png" width="768" />
 
 <span style="font-size:8pt">(1 square == $392)</span>
 
@@ -121,22 +121,22 @@ iron(
 )
 ```
 
-<img src="README_files/figure-markdown_github/fct-1.png" width="576" />
+<img src="README_files/figure-markdown_github-ascii_identifiers/fct-1.png" width="576" />
 
 Without (you can disable this via `keep` parameter now):
 
 ``` r
 iron(
-  waffle(c(thing1=100, thing2=0), rows=5, keep=FALSE),  
+  waffle(c(thing1=0, thing2=100), rows=5, keep=FALSE),  
   waffle(c(thing1=25, thing2=75), rows=5, keep=FALSE)
 )
 ```
 
-<img src="README_files/figure-markdown_github/no_fct-1.png" width="576" />
+<img src="README_files/figure-markdown_github-ascii_identifiers/no_fct-1.png" width="576" />
 
 **Professional Workforce Makeup**
 
-<img src="README_files/figure-markdown_github/f5-1.png" width="384" />
+<img src="README_files/figure-markdown_github-ascii_identifiers/f5-1.png" width="384" />
 
 Iron example (left-align & padding for multiple plots)
 
@@ -165,7 +165,7 @@ C <- waffle(stan.adult.1997/2, rows=7, size=0.5,
 iron(A, B, C)
 ```
 
-<img src="README_files/figure-markdown_github/f8-1.png" width="672" />
+<img src="README_files/figure-markdown_github-ascii_identifiers/f8-1.png" width="672" />
 
 ### Test Results
 
@@ -174,7 +174,7 @@ library(waffle)
 library(testthat)
 
 date()
-## [1] "Fri Apr  7 06:59:41 2017"
+## [1] "Sun Sep 24 13:53:09 2017"
 
 test_dir("tests/")
 ## testthat results ========================================================================================================
