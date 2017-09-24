@@ -98,11 +98,20 @@ waffle <- function(parts, rows=10, keep=TRUE, xlab=NULL, title=NULL, colors=NA,
 
   # add NAs if needed to fill in the "rectangle"
   dat$value <- c(parts_vec, rep(NA, nrow(dat)-length(parts_vec)))
-  if(!inherits(use_glyph, "logical")){
-      fa_unicode<-fa_unicode()
-      fontlab <- rep(fa_unicode[use_glyph],length(unique(parts_vec)))
-      dat$fontlab <- c(fontlab[as.numeric(factor(parts_vec))],
-                       rep(NA, nrow(dat)-length(parts_vec)))
+  
+  if (!inherits(use_glyph, "logical")) {
+    if (length(use_glyph) == 1L) {
+      dat$fontlab <- c(rep(fa_unicode[use_glyph], length(parts_vec)), 
+                       rep(NA, nrow(dat) - length(parts_vec)))
+    } else if (length(use_glyph) == length(parts)) {
+      fontlab <- fa_unicode[use_glyph]
+      dat$fontlab <- c(fontlab[as.numeric(factor(parts_vec, levels = names(parts)))], 
+                       rep(NA, nrow(dat) - length(parts_vec)))
+    } else if (length(use_glyph) == length(parts_vec)) {
+      dat$fontlab <- c(fa_unicode[use_glyph], rep(NA, nrow(dat) - length(parts_vec)))
+    } else {
+      stop("'use_glyph' must have length 1, length(parts), or sum(parts)")
+    }
   }
 
   dat$value <- ifelse(is.na(dat$value), " ", dat$value)
