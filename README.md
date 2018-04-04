@@ -107,7 +107,7 @@ waffle(
 )
 ```
 
-<img src="README_files/figure-gfm/ww2-1.png" width="576" />
+<img src="README_files/figure-gfm/medkit-1.png" width="576" />
 
 ### Replicating an old favourite
 

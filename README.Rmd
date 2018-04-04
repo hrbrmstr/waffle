@@ -102,7 +102,7 @@ waffle(
 
 <span style="font-size:8pt">(One square == 10m ppl)</span>
 
-```{r ww1, eval=FALSE}
+```{r medkit0, eval=FALSE}
 library(extrafont)
 
 waffle(
@@ -111,7 +111,7 @@ waffle(
 )
 ```
 
-```{r ww2, echo=FALSE, fig.width=6, fig.height=2}
+```{r medkit, echo=FALSE, fig.width=6, fig.height=2}
 library(extrafont)
 
 waffle(
