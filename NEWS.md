@@ -1,5 +1,9 @@
 ### News
 
+waffle 0.9.0
+- Fix for errors retrieving FontAwesome CSS for glyph names
+- Enabled use of any compatible font for extended glpyh compatibility
+
 waffle 0.8.0
 - `parts` can be now be a data frame. the first two columns will be uses as
    names and values (respectively)

@@ -1,44 +1,36 @@
-
-fa_unicode<- function() {
 # Waffles mappings from css names to unicode chars was out of date
 # This variation updates it from the latests css from github
+.fa_unicode_init <- function() {
 
-#require(curl)
-#require(stringr)
+  fa_lib <- readLines(system.file("css", "fontawesome.css", package="waffle"))
 
-fa_url <-
-  curl::curl("https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/css/font-awesome.css")
+  #Extract from CSS
+  strings <- stringr::str_extract(fa_lib, ("(?<=fa-)(.*)(?=:before \\{)"))
+  unicode <- stringr::str_extract(fa_lib, stringr::regex("(?<=content: \")(.*)(?=\")"))
+  unicode <- stringr::str_replace(unicode, "\\\\", "")
 
-fa_lib <- readLines(fa_url)
+  #remove NA lines
+  strings <- strings[!is.na(strings)]
+  unicode <- unicode[!is.na(unicode)]
 
-close(fa_url)
+  #Convert to unicdoe
+  unicode <- as.character(parse(text=shQuote(stringr::str_c('\\u',unicode))))
 
-#Extract from CSS
-strings<-stringr::str_extract(fa_lib, ("(?<=fa-)(.*)(?=:before \\{)"))
-unicode<-stringr::str_extract(fa_lib, regex("(?<=content: \")(.*)(?=\")"))
-unicode<-stringr::str_replace(unicode, "\\\\", "")
+  fa_unicode <- structure(unicode, .Names = strings)
 
-#remove NA lines
-strings<-strings[!is.na(strings)]
-unicode<-unicode[!is.na(unicode)]
+  return(fa_unicode)
 
-#Convert to unicdoe
-unicode<-as.character(parse(text=shQuote(stringr::str_c('\\u',unicode))))
-
-
-fa_unicode <- structure(unicode, .Names = strings)
-
-return(fa_unicode)
 }
+
+.fa_unicode <- .fa_unicode_init()
 
 #' Search FontAwesome names for a pattern
 #'
 #' @param pattern pattern to search for in the names of FontAwesome fonts
 #' @export
-fa_grep <- function(pattern) { grep(pattern, names(fa_unicode), value=TRUE) }
+fa_grep <- function(pattern) { grep(pattern, names(.fa_unicode), value=TRUE) }
 
 #' List all FontAwesome names
 #'
 #' @export
-fa_list <- function() { print(names(fa_unicode)) }
-
+fa_list <- function() { print(names(.fa_unicode)) }

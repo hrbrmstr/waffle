@@ -6,7 +6,9 @@
 \usage{
 waffle(parts, rows = 10, keep = TRUE, xlab = NULL, title = NULL,
   colors = NA, size = 2, flip = FALSE, reverse = FALSE, equal = TRUE,
-  pad = 0, use_glyph = FALSE, glyph_size = 12, legend_pos = "right")
+  pad = 0, use_glyph = FALSE, glyph_size = 12,
+  glyph_font = "FontAwesome", glyph_font_family = "FontAwesome",
+  legend_pos = "right")
 }
 \arguments{
 \item{parts}{named vector of values or a data frame to use for the chart}
@@ -20,7 +22,7 @@ give the "1 sq == xyz" relationship if it's not obvious}
 
 \item{title}{chart title}
 
-\item{colors}{exactly the number of colors as values in \code{parts}.
+\item{colors}{exactly the number of colors as values in \code{parts.}
 If omitted, Color Brewer "Set2" colors are used.}
 
 \item{size}{width of the separator between blocks (defaults to \code{2})}
@@ -35,9 +37,25 @@ ggsave or knitr to control output sizes (or manually sizing the chart)}
 
 \item{pad}{how many blocks to right-pad the grid with}
 
-\item{use_glyph}{use specified FontAwesome glyph}
+\item{use_glyph}{use specified glyph; if using built-in Font Awesome, can be
+the glyph name; otherwise, it must be the unicode glyph from the custom
+font the caller is using.}
 
-\item{glyph_size}{size of the FontAwesome font}
+\item{glyph_size}{size of the Font Awesome font}
+
+\item{glyph_font, glyph_font_family}{if \code{use_glyph} is not \code{FALSE},
+the \code{gplyph_font} will be looked up in the font database and
+the \code{glpyph_font_family} used as the \code{family} parameter to ggplot for
+font display since fonts in R, Python and anythign that relies on
+legacy font C libraries are woefully messed up. You may need to adjust
+either of these "font" parameters depending on your system & OS version
+due to the fact that font names are different even between OS versions
+(sometimes).\cr
+\cr
+The package comes with Font Awesome and helpers for it. Use of any other fonts
+requires the caller to be familiar with using fonts in R. NOT ALL FONTS
+will work with ggplot2 and definitely not under all graphics devices
+for ggplot2.}
 
 \item{legend_pos}{position of legend}
 }
@@ -64,7 +82,7 @@ Chart title and x-axis labels are optional, especially if you'll just be
 exporting to another program for use/display.
 
 If you specify a string (vs \code{FALSE}) to \code{use_glyph} the function
-will map the input to a FontAwesome glyph name and use that glyph for the
+will map the input to a Font Awesome glyph name and use that glyph for the
 tile instead of a block (making it more like an isotype pictogram than a
 waffle chart). You'll need to install FontAwesome and use
 the \code{extrafont} package (\code{https://github.com/wch/extrafont}) to
@@ -72,6 +90,10 @@ be able to use the FontAwesome glyphs. Sizing is also up to the user since
 fonts do not automatically scale with graphic resize.
 
 Glyph idea inspired by Ruben C. Arslan (@_r_c_a)
+}
+\note{
+You MUST use the FontAwesome font bundled with the package. It
+lives in \code{system.file("fonts", package="waffle")}.
 }
 \examples{
 parts <- c(80, 30, 20, 10)

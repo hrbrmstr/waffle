@@ -4,5 +4,8 @@
 ^.*Rmd$
 ^README_files
 ^README\.html
+^README\.Rmd
+^README\.md
 ^\.git
 ^cran-comments\.md$
+^CONDUCT\.md$
