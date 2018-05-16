@@ -2,10 +2,7 @@
 ^\.Rproj\.user$
 ^\.travis\.yml$
 ^.*Rmd$
-^README_files
-^README\.html
-^README\.Rmd
-^README\.md
+^README.*$
 ^\.git
 ^cran-comments\.md$
 ^CONDUCT\.md$

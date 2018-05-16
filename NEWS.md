@@ -1,5 +1,8 @@
 ### News
 
+waffle 0.9.1
+- Fix minor CRAN issues
+
 waffle 0.9.0
 - Fix for errors retrieving FontAwesome CSS for glyph names
 - Enabled use of any compatible font for extended glpyh compatibility
