@@ -7,8 +7,7 @@ Authors@R: c(
     person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre"), 
            comment = c(ORCID = "0000-0001-5670-2640")),
     person("Dave", "Gandy", role = "aut", comment = "Font Awesome"),
-    person("Matthias", "Jütte", role = "ctb")
-)
+    person("Matthias", "Jütte", role = "ctb"))
 Maintainer: Bob Rudis <bob@rud.is>
 Description: Square pie charts (a.k.a. waffle charts) can be used
     to communicate parts of a whole for categorical quantities. To emulate the
