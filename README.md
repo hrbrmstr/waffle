@@ -33,7 +33,8 @@ The following functions are implemented:
 ## Installation
 
 ``` r
-install.packages("waffle")
+install.packages('devtools')
+install_github("hrbrmstr/waffle")
 ```
 
 ## Usage
