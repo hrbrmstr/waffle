@@ -33,7 +33,7 @@ The following functions are implemented:
 ## Installation
 
 ``` r
-install.packages('devtools')
+install.packages("devtools")
 install_github("hrbrmstr/waffle")
 ```
 
