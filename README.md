@@ -28,13 +28,13 @@ The following functions are implemented:
   - `iron` : vertically stitch together multiple waffle plots,
     left-aligning edges (best if used with the `waffle` `pad` parameter)
   - `fa_grep`: Search FontAwesome names for a pattern
-  - \`fa\_list: List all FontAwesome names
+  - `fa_list`: List all FontAwesome names
+  - `geom_waffle`/`stat_waffle`: Waffle geoms\! (WIP)
 
 ## Installation
 
 ``` r
-install.packages("devtools")
-install_github("hrbrmstr/waffle")
+install.packages("waffle")
 ```
 
 ## Usage
@@ -44,8 +44,37 @@ library(waffle)
 
 # current verison
 packageVersion("waffle")
-## [1] '0.9.0'
+## [1] '0.9.1'
 ```
+
+### Geoms\! (WIP)
+
+``` r
+library(hrbrthemes)
+library(waffle)
+library(tidyverse)
+
+tibble(
+  parts = factor(rep(month.abb[1:3], 3), levels=month.abb[1:3]),
+  values = c(10, 20, 30, 6, 14, 40, 30, 20, 10),
+  fct = c(rep("Thing 1", 3), rep("Thing 2", 3), rep("Thing 3", 3))
+) -> xdf
+
+ggplot(xdf, aes(fill=parts, values=values)) +
+  geom_waffle(color = "white", size=1.125, n_rows = 6) +
+  facet_wrap(~fct, ncol=1) +
+  scale_x_discrete(expand=c(0,0)) +
+  scale_y_discrete(expand=c(0,0)) +
+  ggthemes::scale_fill_tableau(name=NULL) +
+  coord_equal() +
+  labs(
+    title = "Faceted Waffle Geoms"
+  ) +
+  theme_ipsum_rc(grid="") +
+  theme_enhance_waffle()
+```
+
+<img src="README_files/figure-gfm/geoms-1.png" width="576" />
 
 ### Basic example
 

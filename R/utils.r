@@ -75,3 +75,16 @@ insert_unit <- function (x, values, after = length(x)) {
   }
 
 }
+
+# Name ggplot grid object
+# Convenience function to name grid objects
+#
+# @keyword internal
+ggname <- function(prefix, grob) {
+  grob$name <- grid::grobName(grob, prefix)
+  grob
+}
+
+"%||%" <- function(a, b) { if (!is.null(a)) a else b }
+
+.pt <- 2.84527559055118
