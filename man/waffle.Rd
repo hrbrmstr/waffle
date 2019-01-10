@@ -5,8 +5,8 @@
 \title{Make waffle (square pie) charts}
 \usage{
 waffle(parts, rows = 10, keep = TRUE, xlab = NULL, title = NULL,
-  colors = NA, size = 2, flip = FALSE, reverse = FALSE, equal = TRUE,
-  pad = 0, use_glyph = FALSE, glyph_size = 12,
+  colors = NA, size = 2, flip = FALSE, reverse = FALSE,
+  equal = TRUE, pad = 0, use_glyph = FALSE, glyph_size = 12,
   glyph_font = "FontAwesome", glyph_font_family = "FontAwesome",
   legend_pos = "right")
 }
