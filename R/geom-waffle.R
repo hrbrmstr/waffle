@@ -10,6 +10,7 @@
 #'   default), it is combined with the default mapping at the top level of the
 #'   plot. You must supply `mapping` if there is no plot mapping.
 #' @param n_rows how many rows should there be in the waffle chart? default is 10
+#' @param flip if TRUE, flip x and y coords. n_rows then becomes n_cols. useful to acheieve waffle column chart effect.
 #' @param make_proportional compute proportions from the raw values? (i.e. each
 #'        value `n` will be replaced with `n`/`sum(n)`); default is `FALSE`.
 #' @param data The data to be displayed in this layer. There are three
@@ -43,7 +44,7 @@
 #' @export
 geom_waffle <- function(
   mapping = NULL, data = NULL,
-  n_rows = 10, make_proportional = FALSE,
+  n_rows = 10, flip = FALSE, make_proportional = FALSE,
   na.rm = TRUE, show.legend = NA, inherit.aes = TRUE, ...) {
 
   ggplot2::layer(
@@ -57,6 +58,7 @@ geom_waffle <- function(
     params = list(
       na.rm = TRUE,
       n_rows = n_rows,
+      flip = flip,
       make_proportional = make_proportional,
       ...
     )
@@ -78,13 +80,27 @@ GeomWaffle <- ggplot2::ggproto(
 
   required_aes = c("x", "y"),
 
-  extra_params = c("na.rm", "width", "height"),
+  extra_params = c("na.rm", "width", "height", "flip"),
 
   setup_data = function(data, params) {
 
     # message("Called GEOM setup_data()")
 
     waf.dat <- data #data.frame(data)#, stringsAsFactors=FALSE)
+
+    # swap x and y values if flip is TRUE
+    if (params$flip) {
+      waf.dat$x_temp <- waf.dat$x
+      waf.dat$x <- waf.dat$y
+      waf.dat$y <- waf.dat$x_temp
+      waf.dat$x_temp <- NULL
+    }
+
+    # reduce all values by 0.5
+    # this allows for axis ticks to align _between_ square rows/cols 
+    # rather than in the middle of a row/col
+    waf.dat$x <- waf.dat$x - .5
+    waf.dat$y <- waf.dat$y - .5
 
     waf.dat$width <- waf.dat$width %||% params$width %||% ggplot2::resolution(waf.dat$x, FALSE)
     waf.dat$height <- waf.dat$height %||% params$height %||% ggplot2::resolution(waf.dat$y, FALSE)
