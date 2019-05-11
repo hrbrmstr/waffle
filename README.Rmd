@@ -72,6 +72,36 @@ ggplot(xdf, aes(fill=parts, values=values)) +
   theme_enhance_waffle()
 ```
 
+### Waffle Bar Charts with scales!
+
+```{r waffle-bars, fig.retina=2}
+library(dplyr)
+library(waffle)
+
+storms %>% 
+  filter(year >= 2010) %>% 
+  count(year, status) -> storms_df
+
+ggplot(storms_df, aes(fill = status, values = n)) + 
+  geom_waffle(color = "white", size = .25, n_rows = 10, flip = TRUE) +
+  facet_wrap(~year, nrow = 1, strip.position = "bottom") +
+  scale_x_discrete() + 
+  scale_y_continuous(labels = function(x) x * 10, # make this multiplyer the same as n_rows
+                     expand = c(0,0)) +
+  ggthemes::scale_fill_tableau(name=NULL) +
+  coord_equal() +
+  labs(
+    title = "Faceted Waffle Bar Chart",
+    subtitle = "{dplyr} storms data",
+    x = "Year",
+    y = "Count"
+  ) +
+  theme_minimal(base_family = "Roboto Condensed") +
+  theme(panel.grid = element_blank(), axis.ticks.y = element_line()) +
+  guides(fill = guide_legend(reverse = TRUE))
+```
+
+
 ### Basic example
 
 ```{r fig0, fig.width=6, fig.height=2.5}

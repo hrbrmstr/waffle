@@ -10,7 +10,8 @@
 #'   default), it is combined with the default mapping at the top level of the
 #'   plot. You must supply `mapping` if there is no plot mapping.
 #' @param n_rows how many rows should there be in the waffle chart? default is 10
-#' @param flip if TRUE, flip x and y coords. n_rows then becomes n_cols. useful to acheieve waffle column chart effect.
+#' @param flip If `TRUE`, flip x and y coords. n_rows then becomes n_cols.
+#'     Useful to achieve waffle column chart effect. Defaults is `FALSE`.
 #' @param make_proportional compute proportions from the raw values? (i.e. each
 #'        value `n` will be replaced with `n`/`sum(n)`); default is `FALSE`.
 #' @param data The data to be displayed in this layer. There are three
@@ -97,7 +98,7 @@ GeomWaffle <- ggplot2::ggproto(
     }
 
     # reduce all values by 0.5
-    # this allows for axis ticks to align _between_ square rows/cols 
+    # this allows for axis ticks to align _between_ square rows/cols
     # rather than in the middle of a row/col
     waf.dat$x <- waf.dat$x - .5
     waf.dat$y <- waf.dat$y - .5
