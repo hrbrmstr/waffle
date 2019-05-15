@@ -138,7 +138,7 @@ waffle(
 )
 ```
 
-**Average Household Savings Each Year**
+**Average Household Debt**
 <img src="README_files/figure-gfm/fig4a-1.png" width="768" />
 
 <span style="font-size:8pt">(1 square == $392)</span>
