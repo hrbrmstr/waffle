@@ -9,7 +9,7 @@
 \title{Waffle (Square pie chart) Geom}
 \format{An object of class \code{GeomWaffle} (inherits from \code{Geom}, \code{ggproto}, \code{gg}) of length 7.}
 \usage{
-geom_waffle(mapping = NULL, data = NULL, n_rows = 10,
+geom_waffle(mapping = NULL, data = NULL, n_rows = 10, flip = FALSE,
   make_proportional = FALSE, na.rm = TRUE, show.legend = NA,
   inherit.aes = TRUE, ...)
 
@@ -42,6 +42,9 @@ the plot data. The return value must be a \code{data.frame.}, and
 will be used as the layer data.}
 
 \item{n_rows}{how many rows should there be in the waffle chart? default is 10}
+
+\item{flip}{If \code{TRUE}, flip x and y coords. n_rows then becomes n_cols.
+Useful to achieve waffle column chart effect. Defaults is \code{FALSE}.}
 
 \item{make_proportional}{compute proportions from the raw values? (i.e. each
 value \code{n} will be replaced with \code{n}/\code{sum(n)}); default is \code{FALSE}.}

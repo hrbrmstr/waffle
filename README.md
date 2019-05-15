@@ -24,11 +24,13 @@ It uses ggplot2 and returns a ggplot2 object.
 
 ## NOTE
 
-The `master` branch is the stable branch of `waffle`. 
+The `master` branch is the stable branch of `waffle`.
 
-The current in-development branch is [`1.0.0`](https://github.com/hrbrmstr/waffle/tree/1.0.0) if you want to play with bleeding edge features (like the new waffle geom).
+The current in-development branch is
+[`1.0.0`](https://github.com/hrbrmstr/waffle/tree/1.0.0) if you want to
+play with bleeding edge features (like the new waffle geom).
 
-## What's Inside The Tin?
+## What’s Inside The Tin?
 
 The following functions are implemented:
 
@@ -52,7 +54,7 @@ library(waffle)
 
 # current verison
 packageVersion("waffle")
-## [1] '0.9.1'
+## [1] '0.9.2'
 ```
 
 ### Geoms\! (WIP)
@@ -83,6 +85,35 @@ ggplot(xdf, aes(fill=parts, values=values)) +
 ```
 
 <img src="README_files/figure-gfm/geoms-1.png" width="576" />
+
+### Waffle Bar Charts with scales\!
+
+``` r
+library(dplyr)
+library(waffle)
+storms %>% 
+  filter(year >= 2010) %>% 
+  count(year, status) -> storms_df
+ggplot(storms_df, aes(fill = status, values = n)) + 
+  geom_waffle(color = "white", size = .25, n_rows = 10, flip = TRUE) +
+  facet_wrap(~year, nrow = 1, strip.position = "bottom") +
+  scale_x_discrete() + 
+  scale_y_continuous(labels = function(x) x * 10, # make this multiplyer the same as n_rows
+                     expand = c(0,0)) +
+  ggthemes::scale_fill_tableau(name=NULL) +
+  coord_equal() +
+  labs(
+    title = "Faceted Waffle Bar Chart",
+    subtitle = "{dplyr} storms data",
+    x = "Year",
+    y = "Count"
+  ) +
+  theme_minimal(base_family = "Roboto Condensed") +
+  theme(panel.grid = element_blank(), axis.ticks.y = element_line()) +
+  guides(fill = guide_legend(reverse = TRUE))
+```
+
+<img src="README_files/figure-gfm/waffle-bars-1.png" width="672" />
 
 ### Basic example
 
