@@ -6,7 +6,9 @@ Date: 2018-04-04
 Authors@R: c(
     person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre"), 
            comment = c(ORCID = "0000-0001-5670-2640")),
-    person("Dave", "Gandy", role = "aut", comment = "Font Awesome")
+    person("Dave", "Gandy", role = "aut", comment = "Font Awesome"),
+    person("Paul", "Campbell", email = "pacampbell91@gmail.com", 
+           role = "ctb", comment = "geom_bar flip")
   )
 Maintainer: Bob Rudis <bob@rud.is>
 Description: Square pie charts (a.k.a. waffle charts) can be used
