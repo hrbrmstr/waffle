@@ -22,16 +22,6 @@ and to use glyphs for making isotype pictograms.
 
 It uses ggplot2 and returns a ggplot2 object.
 
-## NOTE
-
-The `master` branch is the stable branch of `waffle`.
-
-The current in-development branch is
-[`1.0.0`](https://github.com/hrbrmstr/waffle/tree/1.0.0) if you want to
-play with bleeding edge features (like the new waffle geom).
-
-## What’s Inside The Tin?
-
 The following functions are implemented:
 
   - `waffle` : make a waffle chart ggplot2 object
@@ -45,6 +35,11 @@ The following functions are implemented:
 
 ``` r
 install.packages("waffle")
+
+# OR
+
+install.packages("devtools")
+install_github("hrbrmstr/waffle")
 ```
 
 ## Usage
@@ -91,9 +86,11 @@ ggplot(xdf, aes(fill=parts, values=values)) +
 ``` r
 library(dplyr)
 library(waffle)
+
 storms %>% 
   filter(year >= 2010) %>% 
   count(year, status) -> storms_df
+
 ggplot(storms_df, aes(fill = status, values = n)) + 
   geom_waffle(color = "white", size = .25, n_rows = 10, flip = TRUE) +
   facet_wrap(~year, nrow = 1, strip.position = "bottom") +
@@ -198,7 +195,7 @@ waffle(
 )
 ```
 
-**Average Household Debt**
+**Average Household Savings Each Year**
 <img src="README_files/figure-gfm/fig4a-1.png" width="768" />
 
 <span style="font-size:8pt">(1 square == $392)</span>
