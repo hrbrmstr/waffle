@@ -178,7 +178,7 @@ waffle(
 ```
 
 
-**Average Household Savings Each Year**
+**Average Household Debt**
 ```{r fig4a, echo=FALSE, fig.width=8, fig.height=2.5}
 waffle(
   savings / 392, rows = 7, size = 0.5, legend_pos = "bottom",
