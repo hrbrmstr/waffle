@@ -22,6 +22,14 @@ and to use glyphs for making isotype pictograms.
 
 It uses ggplot2 and returns a ggplot2 object.
 
+## NOTE
+
+The `master` branch is the stable branch of `waffle`. 
+
+The current in-development branch is [`1.0.0`](https://github.com/hrbrmstr/waffle/tree/1.0.0) if you want to play with bleeding edge features (like the new waffle geom).
+
+## What's Inside The Tin?
+
 The following functions are implemented:
 
   - `waffle` : make a waffle chart ggplot2 object
@@ -33,7 +41,8 @@ The following functions are implemented:
 ## Installation
 
 ``` r
-install.packages("waffle")
+install.packages("devtools")
+install_github("hrbrmstr/waffle")
 ```
 
 ## Usage
