@@ -11,7 +11,7 @@ Authors@R: c(
     person("Matthias", "Jütte", role = "ctb"),
     person("Paul", "Campbell", email = "pacampbell91@gmail.com", 
            role = "ctb", comment = "geom_bar flip")
-)
+    )
 Maintainer: Bob Rudis <bob@rud.is>
 Description: Square pie charts (a.k.a. waffle charts) can be used
     to communicate parts of a whole for categorical quantities. To emulate the
