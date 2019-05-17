@@ -22,25 +22,22 @@ and to use glyphs for making isotype pictograms.
 
 It uses ggplot2 and returns a ggplot2 object.
 
-## NOTE
-
-The `master` branch is the stable branch of `waffle`. 
-
-The current in-development branch is [`1.0.0`](https://github.com/hrbrmstr/waffle/tree/1.0.0) if you want to play with bleeding edge features (like the new waffle geom).
-
-## What's Inside The Tin?
-
 The following functions are implemented:
 
   - `waffle` : make a waffle chart ggplot2 object
   - `iron` : vertically stitch together multiple waffle plots,
     left-aligning edges (best if used with the `waffle` `pad` parameter)
   - `fa_grep`: Search FontAwesome names for a pattern
-  - \`fa\_list: List all FontAwesome names
+  - `fa_list`: List all FontAwesome names
+  - `geom_waffle`/`stat_waffle`: Waffle geoms\! (WIP)
 
 ## Installation
 
 ``` r
+install.packages("waffle")
+
+# OR
+
 install.packages("devtools")
 install_github("hrbrmstr/waffle")
 ```
@@ -52,8 +49,68 @@ library(waffle)
 
 # current verison
 packageVersion("waffle")
-## [1] '0.9.0'
+## [1] '0.9.2'
 ```
+
+### Geoms\! (WIP)
+
+``` r
+library(hrbrthemes)
+library(waffle)
+library(tidyverse)
+
+tibble(
+  parts = factor(rep(month.abb[1:3], 3), levels=month.abb[1:3]),
+  values = c(10, 20, 30, 6, 14, 40, 30, 20, 10),
+  fct = c(rep("Thing 1", 3), rep("Thing 2", 3), rep("Thing 3", 3))
+) -> xdf
+
+ggplot(xdf, aes(fill=parts, values=values)) +
+  geom_waffle(color = "white", size=1.125, n_rows = 6) +
+  facet_wrap(~fct, ncol=1) +
+  scale_x_discrete(expand=c(0,0)) +
+  scale_y_discrete(expand=c(0,0)) +
+  ggthemes::scale_fill_tableau(name=NULL) +
+  coord_equal() +
+  labs(
+    title = "Faceted Waffle Geoms"
+  ) +
+  theme_ipsum_rc(grid="") +
+  theme_enhance_waffle()
+```
+
+<img src="README_files/figure-gfm/geoms-1.png" width="576" />
+
+### Waffle Bar Charts with scales\!
+
+``` r
+library(dplyr)
+library(waffle)
+
+storms %>% 
+  filter(year >= 2010) %>% 
+  count(year, status) -> storms_df
+
+ggplot(storms_df, aes(fill = status, values = n)) + 
+  geom_waffle(color = "white", size = .25, n_rows = 10, flip = TRUE) +
+  facet_wrap(~year, nrow = 1, strip.position = "bottom") +
+  scale_x_discrete() + 
+  scale_y_continuous(labels = function(x) x * 10, # make this multiplyer the same as n_rows
+                     expand = c(0,0)) +
+  ggthemes::scale_fill_tableau(name=NULL) +
+  coord_equal() +
+  labs(
+    title = "Faceted Waffle Bar Chart",
+    subtitle = "{dplyr} storms data",
+    x = "Year",
+    y = "Count"
+  ) +
+  theme_minimal(base_family = "Roboto Condensed") +
+  theme(panel.grid = element_blank(), axis.ticks.y = element_line()) +
+  guides(fill = guide_legend(reverse = TRUE))
+```
+
+<img src="README_files/figure-gfm/waffle-bars-1.png" width="672" />
 
 ### Basic example
 
@@ -138,7 +195,7 @@ waffle(
 )
 ```
 
-**Average Household Debt**
+**Average Household Savings Each Year**
 <img src="README_files/figure-gfm/fig4a-1.png" width="768" />
 
 <span style="font-size:8pt">(1 square == $392)</span>
