@@ -43,6 +43,17 @@
 #'   `color = "red"` or `size = 3`. They may also be parameters
 #'   to the paired geom/stat.
 #' @export
+#' @examples
+#' data.frame(
+#'   parts = factor(rep(month.abb[1:3], 3), levels=month.abb[1:3]),
+#'   values = c(10, 20, 30, 6, 14, 40, 30, 20, 10),
+#'   fct = c(rep("Thing 1", 3), rep("Thing 2", 3), rep("Thing 3", 3))
+#' ) -> xdf
+#'
+#' ggplot(xdf, aes(fill = parts, values = values)) +
+#'   geom_waffle() +
+#'   facet_wrap(~fct) +
+#'   coord_equal()
 geom_waffle <- function(
   mapping = NULL, data = NULL,
   n_rows = 10, flip = FALSE, make_proportional = FALSE,

@@ -75,4 +75,16 @@ There are two special/critical \code{aes()} mappings:
 \item \code{values} (which column you're mapping the filling for the squares with)
 }
 }
+\examples{
+data.frame(
+  parts = factor(rep(month.abb[1:3], 3), levels=month.abb[1:3]),
+  values = c(10, 20, 30, 6, 14, 40, 30, 20, 10),
+  fct = c(rep("Thing 1", 3), rep("Thing 2", 3), rep("Thing 3", 3))
+) -> xdf
+
+ggplot(xdf, aes(fill = parts, values = values)) +
+  geom_waffle() +
+  facet_wrap(~fct) +
+  coord_equal()
+}
 \keyword{datasets}
