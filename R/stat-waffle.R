@@ -6,7 +6,7 @@ stat_waffle<- function(mapping = NULL, data = NULL,
                        inherit.aes = TRUE, ...) {
 
   layer(
-    stat = StatWtg,
+    stat = StatWaffle,
     data = data,
     mapping = mapping,
     geom = "waffle",

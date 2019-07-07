@@ -1,5 +1,9 @@
 ### News
 
+waffle 1.0.1
+- geom_waffle()
+- CRAN checks pass
+
 waffle 0.9.1
 - Fix minor CRAN issues
 

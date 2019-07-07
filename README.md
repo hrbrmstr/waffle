@@ -49,7 +49,7 @@ library(waffle)
 
 # current verison
 packageVersion("waffle")
-## [1] '0.9.2'
+## [1] '1.0.1'
 ```
 
 ### Geoms\! (WIP)

@@ -1,8 +1,8 @@
 Package: waffle
 Type: Package
 Title: Create Waffle Chart Visualizations
-Version: 1.0.0
-Date: 2019-05-15
+Version: 1.0.1
+Date: 2019-07-07
 Authors@R: c(
     person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre"), 
            comment = c(ORCID = "0000-0001-5670-2640")),
@@ -23,8 +23,8 @@ Description: Square pie charts (a.k.a. waffle charts) can be used
     to create waffle charts as well as stitch them together, and to use glyphs
     for making isotype pictograms.
 Encoding: UTF-8
-URL: https://github.com/hrbrmstr/waffle/tree/cran
-BugReports: https://github.com/hrbrmstr/waffle/issues
+URL: https://gitlab.com/hrbrmstr/waffle
+BugReports: https://gitlab.com/hrbrmstr/waffle/issues
 Suggests:
     testthat
 Depends:
