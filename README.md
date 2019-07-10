@@ -26,6 +26,7 @@ It uses ggplot2 and returns a ggplot2 object.
 
 The following functions are implemented:
 
+  - `waffle`: Make waffle (square pie) charts
   - `fa_grep`: Search Font Awesome glyph names for a pattern
   - `fa_list`: List all Font Awesome glyphs
   - `geom_waffle`: Waffle (Square pie chart) Geom
@@ -290,8 +291,8 @@ cloc::cloc_pkg_md()
 
 | Lang | \# Files |  (%) | LoC |  (%) | Blank lines |  (%) | \# Lines |  (%) |
 | :--- | -------: | ---: | --: | ---: | ----------: | ---: | -------: | ---: |
-| R    |       12 | 0.92 | 387 | 0.75 |         140 | 0.66 |      269 | 0.75 |
-| Rmd  |        1 | 0.08 | 131 | 0.25 |          72 | 0.34 |       92 | 0.25 |
+| R    |       12 | 0.92 | 387 | 0.75 |         140 | 0.66 |      269 | 0.74 |
+| Rmd  |        1 | 0.08 | 131 | 0.25 |          72 | 0.34 |       93 | 0.26 |
 
 ## Code of Conduct
 

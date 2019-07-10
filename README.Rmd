@@ -22,6 +22,7 @@ It uses ggplot2 and returns a ggplot2 object.
 
 The following functions are implemented:
 
+- `waffle`: Make waffle (square pie) charts
 ```{r ingredients, results='asis', echo=FALSE}
 hrbrpkghelpr::describe_ingredients()
 ```
