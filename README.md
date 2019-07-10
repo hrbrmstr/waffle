@@ -170,7 +170,7 @@ library(extrafont)
 waffle(
   parts / 10, rows = 3, colors = c("#969696", "#1879bf", "#009bda"),
   use_glyph = "medkit", size = 8
-)
+) + expand_limits(y = c(0, 4))
 ```
 
 <img src="README_files/figure-gfm/medkit-1.png" width="576" />

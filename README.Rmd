@@ -171,7 +171,7 @@ library(extrafont)
 waffle(
   parts / 10, rows = 3, colors = c("#969696", "#1879bf", "#009bda"),
   use_glyph = "medkit", size = 8
-)
+) + expand_limits(y = c(0, 4))
 ```
 
 ```{r medkit, echo=FALSE, fig.width=6, fig.height=2}
@@ -180,7 +180,7 @@ library(extrafont)
 waffle(
   parts / 10, rows = 3, colors = c("#969696", "#1879bf", "#009bda"),
   use_glyph = "medkit", glyph_size = 8
-)
+) + expand_limits(y = c(0, 4))
 ```
 
 ### Replicating an old favourite

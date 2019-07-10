@@ -2,13 +2,13 @@
 % Please edit documentation in R/fontawesome.R
 \name{fa_grep}
 \alias{fa_grep}
-\title{Search FontAwesome names for a pattern}
+\title{Search Font Awesome glyph names for a pattern}
 \usage{
 fa_grep(pattern)
 }
 \arguments{
-\item{pattern}{pattern to search for in the names of FontAwesome fonts}
+\item{pattern}{pattern to search for in the names of Font Awesome fonts}
 }
 \description{
-Search FontAwesome names for a pattern
+Search Font Awesome glyph names for a pattern
 }

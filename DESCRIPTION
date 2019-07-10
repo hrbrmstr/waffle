@@ -39,5 +39,7 @@ Imports:
     extrafont,
     curl,
     stringr,
-    stats
+    stats,
+    htmlwidgets,
+    DT
 RoxygenNote: 6.1.1

@@ -87,11 +87,11 @@
 #' # print(chart)
 waffle <- function(parts, rows=10, keep=TRUE, xlab=NULL, title=NULL, colors=NA,
                    size=2, flip=FALSE, reverse=FALSE, equal=TRUE, pad=0,
-                   use_glyph=FALSE,
-                   glyph_size=12,
-                   glyph_font = "FontAwesome",
-                   glyph_font_family = "FontAwesome",
-                   legend_pos="right") {
+                   use_glyph = FALSE,
+                   glyph_size = 12,
+                   glyph_font = "Font Awesome 5 Free Solid",
+                   glyph_font_family = "FontAwesome5Free-Solid",
+                   legend_pos = "right") {
 
   if (inherits(parts, "data.frame")) {
     stats::setNames(
@@ -128,39 +128,46 @@ waffle <- function(parts, rows=10, keep=TRUE, xlab=NULL, title=NULL, colors=NA,
 
     if (length(use_glyph) == 1L) {
 
-      if (glyph_font == "FontAwesome") {
+      if (grepl("wesom", glyph_font)) {
+        fontlab <- .fa_unicode[.fa_unicode[["name"]] == use_glyph, "unicode"]
         dat$fontlab <- c(
-          rep(.fa_unicode[use_glyph], length(parts_vec)),
-          rep(NA, nrow(dat) - length(parts_vec)
+          rep(fontlab, length(parts_vec)),
+          rep("", nrow(dat) - length(parts_vec)
+          # rep(NA, nrow(dat) - length(parts_vec)
           )
         )
       } else {
         dat$fontlab <- c(
           rep(use_glyph, length(parts_vec)),
-          rep(NA, nrow(dat) - length(parts_vec)
+          rep("", nrow(dat) - length(parts_vec)
+          # rep(NA, nrow(dat) - length(parts_vec)
           )
         )
       }
 
     } else if (length(use_glyph) == length(parts)) {
 
-      if (glyph_font == "FontAwesome") {
-        fontlab <- .fa_unicode[use_glyph]
+      if (grepl("wesom", glyph_font)) {
+        fontlab <- .fa_unicode[.fa_unicode[["name"]] %in% use_glyph, "unicode"]
+        # fontlab <- .fa_unicode[use_glyph]
         dat$fontlab <- c(
           fontlab[as.numeric(factor(parts_vec, levels = names(parts)))],
-          rep(NA, nrow(dat) - length(parts_vec))
+          rep("", nrow(dat) - length(parts_vec))
+          # rep(NA, nrow(dat) - length(parts_vec))
         )
       } else {
         dat$fontlab <- c(
           use_glyph[as.numeric(factor(parts_vec, levels = names(parts)))],
-          rep(NA, nrow(dat) - length(parts_vec))
+          # rep(NA, nrow(dat) - length(parts_vec))
+          rep("", nrow(dat) - length(parts_vec))
         )
       }
 
     } else if (length(use_glyph) == length(parts_vec)) {
 
-      if (glyph_font == "FontAwesome") {
-        dat$fontlab <- c(.fa_unicode[use_glyph], rep(NA, nrow(dat) - length(parts_vec)))
+      if (grepl("wesom", glyph_font)) {
+        fontlab <- .fa_unicode[.fa_unicode[["name"]] %in% use_glyph, "unicode"]
+        dat$fontlab <- c(fontlab, rep(NA, nrow(dat) - length(parts_vec)))
       } else {
         dat$fontlab <- c(use_glyph, rep(NA, nrow(dat) - length(parts_vec)))
       }

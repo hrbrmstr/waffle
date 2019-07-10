@@ -7,8 +7,8 @@
 waffle(parts, rows = 10, keep = TRUE, xlab = NULL, title = NULL,
   colors = NA, size = 2, flip = FALSE, reverse = FALSE,
   equal = TRUE, pad = 0, use_glyph = FALSE, glyph_size = 12,
-  glyph_font = "FontAwesome", glyph_font_family = "FontAwesome",
-  legend_pos = "right")
+  glyph_font = "Font Awesome 5 Free Solid",
+  glyph_font_family = "FontAwesome5Free-Solid", legend_pos = "right")
 }
 \arguments{
 \item{parts}{named vector of values or a data frame to use for the chart}

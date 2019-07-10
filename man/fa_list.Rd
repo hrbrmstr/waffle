@@ -2,10 +2,10 @@
 % Please edit documentation in R/fontawesome.R
 \name{fa_list}
 \alias{fa_list}
-\title{List all FontAwesome names}
+\title{List all Font Awesome glyphs}
 \usage{
 fa_list()
 }
 \description{
-List all FontAwesome names
+List all Font Awesome glyphs
 }

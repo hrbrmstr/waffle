@@ -11,6 +11,8 @@
 #' @import gridExtra
 #' @import stringr
 #' @import curl
+#' @import DT
+#' @import htmlwidgets
 #' @importFrom gtable is.gtable
 #' @importFrom RColorBrewer brewer.pal
 #' @importFrom ggplot2 ggplot geom_tile scale_fill_manual guides geom_tile ggplotGrob
