@@ -1,8 +1,8 @@
 
 [![Build
 Status](https://travis-ci.org/hrbrmstr/waffle.svg)](https://travis-ci.org/hrbrmstr/waffle)
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/waffle)](https://cran.r-project.org/package=waffle)
-![downloads](http://cranlogs.r-pkg.org/badges/grand-total/waffle)
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/waffle)](https://cran.r-project.org/package=waffle)
+![downloads](https://cranlogs.r-pkg.org/badges/grand-total/waffle)
 
 # waffle
 
@@ -22,24 +22,28 @@ and to use glyphs for making isotype pictograms.
 
 It uses ggplot2 and returns a ggplot2 object.
 
+## What’s Inside the Tin
+
 The following functions are implemented:
 
-  - `waffle` : make a waffle chart ggplot2 object
-  - `iron` : vertically stitch together multiple waffle plots,
-    left-aligning edges (best if used with the `waffle` `pad` parameter)
-  - `fa_grep`: Search FontAwesome names for a pattern
-  - `fa_list`: List all FontAwesome names
-  - `geom_waffle`/`stat_waffle`: Waffle geoms\! (WIP)
+  - `fa_grep`: Search Font Awesome glyph names for a pattern
+  - `fa_list`: List all Font Awesome glyphs
+  - `geom_waffle`: Waffle (Square pie chart) Geom
+  - `install_fa_fonts`: Install Font Awesome 5 Fonts
+  - `iron`: Veritical, left-aligned layout for waffle plots
+  - `theme_enhance_waffle`: Waffle chart theme cruft remover that can be
+    used with any other theme
 
 ## Installation
 
 ``` r
-install.packages("waffle")
-
-# OR
-
-install.packages("devtools")
-install_github("hrbrmstr/waffle")
+install.packages("waffle", repos = "https://cinc.rud.is")
+# or
+devtools::install_git("https://git.sr.ht/~hrbrmstr/waffle")
+# or
+devtools::install_gitlab("hrbrmstr/waffle")
+# or
+devtools::install_github("hrbrmstr/waffle")
 ```
 
 ## Usage
@@ -277,6 +281,17 @@ iron(A, B, C)
 ```
 
 <img src="README_files/figure-gfm/f8-1.png" width="672" />
+
+## Package Code Metrics
+
+``` r
+cloc::cloc_pkg_md()
+```
+
+| Lang | \# Files |  (%) | LoC |  (%) | Blank lines |  (%) | \# Lines |  (%) |
+| :--- | -------: | ---: | --: | ---: | ----------: | ---: | -------: | ---: |
+| R    |       12 | 0.92 | 387 | 0.75 |         140 | 0.66 |      269 | 0.75 |
+| Rmd  |        1 | 0.08 | 131 | 0.25 |          72 | 0.34 |       92 | 0.25 |
 
 ## Code of Conduct
 
