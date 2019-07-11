@@ -1,7 +1,35 @@
-#' Waffle (Square pie chart) Geom
+#' @export
+draw_key_pictogram <- function(data, params, size) {
+
+  # message("Called draw_key_pictogram()")
+
+  # print(str(data, 1))
+  # print(str(params, 1))
+  # print(str(size, 1))
+
+  # return(draw_key_text(data, params, size))
+
+  data[["label"]] <- .fa_unicode[.fa_unicode[["name"]] %in% data[["fa_glyph"]], "unicode"]
+  fat <- .fa_unicode[.fa_unicode[["name"]] %in% data[["fa_glyph"]], "type"]
+  ftrans <- c(solid = "FontAwesome5Free-Solid", brands = "FontAwesome5Brands-Regular")
+  data[["family"]] <- ftrans[fat]
+  data[["size"]] <- data[["size"]] * 2
+
+  grid::textGrob(
+    data$label, 0.5, 0.25,
+    rot = data$angle %||% 0,
+    gp = grid::gpar(
+      col = alpha(data$colour %||% data$fill %||% "black", data$alpha),
+      fontfamily = data$family %||% "",
+      fontface = data$fontface %||% 1,
+      fontsize = (data$size %||% 3.88) * .pt
+    )
+  )
+}
+#' Isotype pictogram "waffle" charts
 #'
 #' There are two special/critical `aes()` mappings:
-#' - `fill` (so the geom knows which column to map the country names/abbrevs to)
+#' - `colour` (so the geom knows which column to map the country names/abbrevs to)
 #' - `values` (which column you're mapping the filling for the squares with)
 #'
 #' @md
@@ -51,55 +79,59 @@
 #' ) -> xdf
 #'
 #' ggplot(xdf, aes(fill = parts, values = values)) +
-#'   geom_waffle() +
+#'   geom_pictogram() +
 #'   facet_wrap(~fct) +
 #'   coord_equal()
-geom_waffle <- function(
+geom_pictogram <- function(
   mapping = NULL, data = NULL,
   n_rows = 10, flip = FALSE, make_proportional = FALSE,
   na.rm = TRUE, show.legend = NA, inherit.aes = TRUE, ...) {
 
+  # message("Called geom_pictogram()")
+
   ggplot2::layer(
     data = data,
     mapping = mapping,
-    stat = "waffle",
-    geom = GeomWaffle,
+    stat = "pictogram",
+    geom = GeomPictogram,
     position = "identity",
     show.legend = show.legend,
     inherit.aes = inherit.aes,
+    check.aes = FALSE,
     params = list(
-      na.rm = TRUE,
+      na.rm = na.rm,
       n_rows = n_rows,
       flip = flip,
       make_proportional = make_proportional,
-      use = "fill",
+      use = "colour",
       ...
     )
   )
 
 }
 
-#' @rdname geom_waffle
+#' @rdname geom_pictogram
 #' @export
-GeomWaffle <- ggplot2::ggproto(
-  `_class` = "GeomWaffle",
+GeomPictogram <- ggplot2::ggproto(
+  `_class` = "GeomPictogram",
   `_inherit` = ggplot2::Geom,
 
   default_aes = ggplot2::aes(
-    values = "values",
+    fa_glyph = "circle", fa_type = "solid",
     fill = NA, colour = "#b2b2b2", alpha = NA,
-    size = 0.125, linetype = 1, width = NA, height = NA
+    size = 2, linetype = 1, width = NA, height = NA
   ),
 
-  required_aes = c("x", "y"),
+  required_aes = c("x", "y", "values", "fa_glyph", "fa_type"),
 
   extra_params = c("na.rm", "width", "height", "flip", "use"),
 
   setup_data = function(data, params) {
 
-    # message("Called GEOM setup_data()")
+    # message("Called GeomPictogram::setup_data()")
+    # print(str(data, 1))
 
-    waf.dat <- data #data.frame(data)#, stringsAsFactors=FALSE)
+    waf.dat <- data
 
     # swap x and y values if flip is TRUE
     if (params$flip) {
@@ -112,17 +144,23 @@ GeomWaffle <- ggplot2::ggproto(
     # reduce all values by 0.5
     # this allows for axis ticks to align _between_ square rows/cols
     # rather than in the middle of a row/col
-    waf.dat$x <- waf.dat$x - .5
-    waf.dat$y <- waf.dat$y - .5
+    waf.dat$x <- waf.dat$x - 0.5
+    waf.dat$y <- waf.dat$y - 0.5
 
     waf.dat$width <- waf.dat$width %||% params$width %||% ggplot2::resolution(waf.dat$x, FALSE)
     waf.dat$height <- waf.dat$height %||% params$height %||% ggplot2::resolution(waf.dat$y, FALSE)
 
     transform(
       waf.dat,
-      xmin = x - width / 2,  xmax = x + width / 2,  width = NULL,
-      ymin = y - height / 2, ymax = y + height / 2, height = NULL
+      xmin = x - width / 2,
+      xmax = x + width / 2,
+      width = NULL,
+      ymin = y - height / 2,
+      ymax = y + height / 2,
+      height = NULL
     ) -> xdat
+
+    # print(str(xdat, 1))
 
     xdat
 
@@ -130,6 +168,8 @@ GeomWaffle <- ggplot2::ggproto(
 
   draw_group = function(self, data, panel_params, coord,
                         n_rows = 10, make_proportional = FALSE) {
+
+    # message("Called GeomPictogram::draw_group()")
 
     # message("Called GEOM draw_group()")
 
@@ -139,14 +179,55 @@ GeomWaffle <- ggplot2::ggproto(
 
     coord <- ggplot2::coord_equal()
 
+    # gg <- gg + geom_tile(
+    #   color = "#00000000", fill = "#00000000", size = size,
+    #   alpha = 0, show.legend = FALSE
+    # )
+
+    gtdat <- tile_data
+    gtdat[["colour"]] <- "#00000000"
+    gtdat[["color"]] <- "#00000000"
+    gtdat[["fill"]] <- "#00000000"
+
+    g_pgdat <<- tile_data
+
+    self$default_aes[["fa_glyph"]] <- tile_data[["fa_glyph"]][[1]]
+
+    pgdat <- tile_data
+    pgdat[["label"]] <- .fa_unicode[.fa_unicode[["name"]] %in% pgdat[["fa_glyph"]], "unicode"]
+    fat <- .fa_unicode[.fa_unicode[["name"]] %in% pgdat[["fa_glyph"]], "type"]
+    ftrans <- c(solid = "FontAwesome5Free-Solid", brands = "FontAwesome5Brands-Regular")
+    pgdat[["family"]] <- ftrans[fat]
+    pgdat[["size"]] <- pgdat[["size"]] * 2
+    pgdat[["angle"]] = 0
+    pgdat[["hjust"]] <- 0.5
+    pgdat[["vjust"]] <- 0.5
+    pgdat[["fontface"]] <- 1
+    pgdat[["lineheight"]] <- 1
+
+    # print(str(pgdat, 1))
+
+    # gg <- gg + geom_text(
+    #   aes(color = value, label = fontlab),
+    #   family = glyph_font_family,
+    #   size = glyph_size,
+    #   show.legend = FALSE
+    # )
+
     grid::gList(
-      GeomTile$draw_panel(tile_data, panel_params, coord)
+      # GeomTile$draw_panel(gtdat, panel_params, coord),
+      GeomText$draw_panel(pgdat, panel_params, coord)
     ) -> grobs
 
-    ggname("geom_waffle", grid::grobTree(children = grobs))
+    ggname("geom_pictogram", grid::grobTree(children = grobs))
 
   },
 
-  draw_key = ggplot2::draw_key_polygon
+  aesthetics = function(self) {
+    # message("Called GeomPictogram::aesthetics()")
+    c(union(self$required_aes, names(self$default_aes)), self$optional_aes, "group")
+  },
+
+  draw_key = draw_key_pictogram
 
 )

@@ -84,16 +84,16 @@ exporting to another program for use/display.
 If you specify a string (vs \code{FALSE}) to \code{use_glyph} the function
 will map the input to a Font Awesome glyph name and use that glyph for the
 tile instead of a block (making it more like an isotype pictogram than a
-waffle chart). You'll need to install FontAwesome and use
-the \code{extrafont} package (\code{https://github.com/wch/extrafont}) to
-be able to use the FontAwesome glyphs. Sizing is also up to the user since
+waffle chart). You'll need to install Font Awesome 5 and use
+the \href{`https://github.com/wch/extrafont`}{extrafont package} to
+be able to use Font Awesome 5 glyphs. Sizing is also up to the user since
 fonts do not automatically scale with graphic resize.
 
 Glyph idea inspired by Ruben C. Arslan (@_r_c_a)
 }
 \note{
-You MUST use the FontAwesome font bundled with the package. It
-lives in \code{system.file("fonts", package="waffle")}.
+You MUST use the Font Awesome 5 fonts bundled with the package.
+See \code{\link[=install_fa_fonts]{install_fa_fonts()}}.
 }
 \examples{
 parts <- c(80, 30, 20, 10)

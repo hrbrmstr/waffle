@@ -181,7 +181,7 @@ waffle(
 
 ### Replicating an old favourite
 
-![](http://graphics8.nytimes.com/images/2008/07/20/business/20debtgraphic.jpg)
+![](https://graphics8.nytimes.com/images/2008/07/20/business/20debtgraphic.jpg)
 
 Via: <https://www.nytimes.com/2008/07/20/business/20debt.html>
 

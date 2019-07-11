@@ -47,7 +47,7 @@
     vb,
     sprintf('%s width="24" height="24"', vb)
   ) -> fdf[["glyph"]]
-  DT::datatable(fdf, escape = FALSE)
+  DT::datatable(fdf[,c("name", "type", "glyph")], escape = FALSE)
 }
 
 #' Search Font Awesome glyph names for a pattern
