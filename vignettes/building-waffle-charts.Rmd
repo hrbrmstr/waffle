@@ -3,8 +3,10 @@ title: "Building Waffle Charts"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Building Waffle Charts}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -15,7 +17,6 @@ knitr::opts_chunk$set(
 ```
 
 ```{r libs}
-library(hrbrthemes)
 library(waffle)
 library(ggplot2)
 library(dplyr)
@@ -47,7 +48,7 @@ xdf %>%
   expand_limits(x=c(0,0), y=c(0,0)) +
   coord_equal() +
   labs(fill = NULL, colour = NULL) +
-  theme_ipsum_rc(grid="") +
+  theme_minimal() +
   theme_enhance_waffle() -> waf
 ```
 
@@ -218,6 +219,7 @@ waf +
     n_rows = 5, color = "white", show.legend = FALSE, flip = TRUE
   ) +
   facet_wrap(~states) +
+  theme_minimal() +
   theme(panel.spacing.x = unit(0, "npc")) +
   theme(strip.text.x = element_text(hjust = 0.5)) 
 ```
@@ -232,7 +234,7 @@ xdf %>%
   expand_limits(x=c(0,0), y=c(0,0)) +
   coord_equal() +
   labs(fill = NULL, colour = NULL) +
-  theme_ipsum_rc(grid="") +
+  theme_minimal() +
   theme_enhance_waffle() -> buf
 ```
 
@@ -246,7 +248,7 @@ buf +
     color = "white", size = 0.33
   ) +
   facet_wrap(~fct) +
-    theme(strip.text.x = element_text(hjust = 0.5))
+  theme(strip.text.x = element_text(hjust = 0.5))
 ```
 
 Again, waffles generally work better when they are square and each one sums to 100 and this is even more true in a buffet grid of waffles:

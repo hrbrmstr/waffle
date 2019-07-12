@@ -25,12 +25,12 @@ Description: Square pie charts (a.k.a. waffle charts) can be used
 Encoding: UTF-8
 URL: https://gitlab.com/hrbrmstr/waffle
 BugReports: https://gitlab.com/hrbrmstr/waffle/issues
+Copyright: file inst/COPYRIGHTS
 Suggests:
     testthat,
     knitr,
     rmarkdown,
     dplyr,
-    hrbrthemes,
     ggthemes
 Depends:
     R (>= 3.5.0),
