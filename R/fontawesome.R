@@ -50,3 +50,29 @@ install_fa_fonts <- function() {
     "your system."
   )
 }
+
+#' Font Awesome 5 easy use font name objets
+#' @name fa5_fonts
+#' @export
+NULL
+
+#' @description `fa5_solid` is shorthand for "`FontAwesome5Free-Solid`"
+#' @rdname fa5_fonts
+#' @docType data
+#' @export
+fa5_solid <- "FontAwesome5Free-Solid"
+
+#' @description `fa5_brand` is shorthand for "`FontAwesome5Brands-Regular`"
+#' @rdname fa5_fonts
+#' @docType data
+#' @export
+fa5_brand <- "FontAwesome5Brands-Regular"
+
+
+
+
+
+
+
+
+
