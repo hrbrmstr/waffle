@@ -7,6 +7,9 @@ round_preserve_sum <- function(x, digits = 0) {
   y / up
 }
 
+
+is_missing_arg <- function(x) identical(x, quote(expr = ))
+
 # VIA: http://stackoverflow.com/q/13294952/1457051
 
 rbind_gtable_max <- function(...) {
