@@ -26,10 +26,15 @@ Encoding: UTF-8
 URL: https://gitlab.com/hrbrmstr/waffle
 BugReports: https://gitlab.com/hrbrmstr/waffle/issues
 Suggests:
-    testthat
+    testthat,
+    knitr,
+    rmarkdown,
+    dplyr,
+    hrbrthemes,
+    ggthemes
 Depends:
-    R (>= 3.2.0),
-    ggplot2 (>= 2.0.0)
+    R (>= 3.5.0),
+    ggplot2 (>= 3.1.0)
 License: GPL (>= 2)
 Imports:
     RColorBrewer,
@@ -43,3 +48,4 @@ Imports:
     htmlwidgets,
     DT
 RoxygenNote: 6.1.1
+VignetteBuilder: knitr

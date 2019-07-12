@@ -83,7 +83,7 @@ storms %>%
   filter(year >= 2010) %>% 
   count(year, status) -> storms_df
 
-ggplot(storms_df, aes(fill = status, values = n)) + 
+ggplot(storms_df, aes(fill = status, values = n)) +
   geom_waffle(color = "white", size = .25, n_rows = 10, flip = TRUE) +
   facet_wrap(~year, nrow = 1, strip.position = "bottom") +
   scale_x_discrete() + 

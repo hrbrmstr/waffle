@@ -96,7 +96,7 @@ storms %>%
   filter(year >= 2010) %>% 
   count(year, status) -> storms_df
 
-ggplot(storms_df, aes(fill = status, values = n)) + 
+ggplot(storms_df, aes(fill = status, values = n)) +
   geom_waffle(color = "white", size = .25, n_rows = 10, flip = TRUE) +
   facet_wrap(~year, nrow = 1, strip.position = "bottom") +
   scale_x_discrete() + 
@@ -182,7 +182,7 @@ waffle(
 
 ### Replicating an old favourite
 
-![](http://graphics8.nytimes.com/images/2008/07/20/business/20debtgraphic.jpg)
+![](https://graphics8.nytimes.com/images/2008/07/20/business/20debtgraphic.jpg)
 
 Via: <https://www.nytimes.com/2008/07/20/business/20debt.html>
 
@@ -289,10 +289,10 @@ iron(A, B, C)
 cloc::cloc_pkg_md()
 ```
 
-| Lang | \# Files |  (%) | LoC |  (%) | Blank lines |  (%) | \# Lines |  (%) |
-| :--- | -------: | ---: | --: | ---: | ----------: | ---: | -------: | ---: |
-| R    |       12 | 0.92 | 387 | 0.75 |         140 | 0.66 |      269 | 0.74 |
-| Rmd  |        1 | 0.08 | 131 | 0.25 |          72 | 0.34 |       93 | 0.26 |
+| Lang | \# Files | (%) | LoC |  (%) | Blank lines |  (%) | \# Lines |  (%) |
+| :--- | -------: | --: | --: | ---: | ----------: | ---: | -------: | ---: |
+| R    |       18 | 0.9 | 545 | 0.63 |         202 | 0.61 |     1011 | 0.85 |
+| Rmd  |        2 | 0.1 | 317 | 0.37 |         130 | 0.39 |      181 | 0.15 |
 
 ## Code of Conduct
 
