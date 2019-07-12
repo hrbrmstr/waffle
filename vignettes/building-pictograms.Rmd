@@ -35,8 +35,7 @@ extrafont::loadfonts(quiet = TRUE)
 
 extrafont::fonttable() %>% 
   as_tibble() %>% 
-  filter(grepl("Awesom", FamilyName)) %>% 
-  select(afmfile, FullName, FamilyName, FontName)
+  filter(grepl("Awesom", FamilyName)) 
 ```
 
 Because it's 2019 and fonts are still daftly difficult across operating systems you may have different `FontName` or `FamilyName` values for each. If so, you won't be able to use the shortcut names and will have to work some things out on your own or file an issue so I can try to account for your setup in the package itself.
