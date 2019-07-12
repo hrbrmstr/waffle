@@ -23,13 +23,13 @@ It uses ggplot2 and returns a ggplot2 object.
 The following functions are implemented:
 
 - `waffle`: Make waffle (square pie) charts
-```{r ingredients, results='asis', echo=FALSE}
+```{r ingredients, results='asis', echo=FALSE, cache=FALSE}
 hrbrpkghelpr::describe_ingredients()
 ```
 
 ## Installation
 
-```{r nstall-ex, results='asis', echo = FALSE}
+```{r nstall-ex, results='asis', echo = FALSE, cache=FALSE}
 hrbrpkghelpr::install_block()
 ```
 

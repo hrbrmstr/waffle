@@ -99,7 +99,6 @@ draw_key_pictogram <- function(data, params, size) {
 #'   `color = "red"` or `size = 3`. They may also be parameters
 #'   to the paired geom/stat.
 #' @export
-#' @export
 geom_pictogram <- function(mapping = NULL, data = NULL,
                            n_rows = 10, make_proportional = FALSE, flip = FALSE,
                            ..., na.rm = FALSE, show.legend = NA, inherit.aes = TRUE) {

@@ -27,11 +27,15 @@ It uses ggplot2 and returns a ggplot2 object.
 The following functions are implemented:
 
   - `waffle`: Make waffle (square pie) charts
+  - `draw_key_pictogram`: Legend builder for pictograms
   - `fa_grep`: Search Font Awesome glyph names for a pattern
   - `fa_list`: List all Font Awesome glyphs
+  - `geom_pictogram`: Pictogram Geom
   - `geom_waffle`: Waffle (Square pie chart) Geom
   - `install_fa_fonts`: Install Font Awesome 5 Fonts
   - `iron`: Veritical, left-aligned layout for waffle plots
+  - `scale_label_pictogram`: Used with geom\_pictogram() to map Font
+    Awesome fonts to labels
   - `theme_enhance_waffle`: Waffle chart theme cruft remover that can be
     used with any other theme
 
@@ -375,10 +379,10 @@ iron(A, B, C)
 cloc::cloc_pkg_md()
 ```
 
-| Lang | \# Files |  (%) | LoC |  (%) | Blank lines |  (%) | \# Lines |  (%) |
-| :--- | -------: | ---: | --: | ---: | ----------: | ---: | -------: | ---: |
-| R    |       16 | 0.89 | 628 | 0.62 |         209 | 0.61 |      373 | 0.67 |
-| Rmd  |        2 | 0.11 | 383 | 0.38 |         135 | 0.39 |      184 | 0.33 |
+| Lang | \# Files |  (%) | LoC |  (%) | Blank lines |  (%) | \# Lines | (%) |
+| :--- | -------: | ---: | --: | ---: | ----------: | ---: | -------: | --: |
+| R    |       16 | 0.89 | 628 | 0.62 |         209 | 0.61 |      430 | 0.7 |
+| Rmd  |        2 | 0.11 | 383 | 0.38 |         135 | 0.39 |      184 | 0.3 |
 
 ## Code of Conduct
 
