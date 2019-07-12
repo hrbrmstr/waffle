@@ -51,13 +51,99 @@ devtools::install_github("hrbrmstr/waffle")
 
 ``` r
 library(waffle)
+library(waffle)
+library(magrittr)
+library(hrbrthemes)
+library(ggplot2)
+library(dplyr)
+library(waffle)
 
 # current verison
 packageVersion("waffle")
 ## [1] '1.0.1'
 ```
 
-### Geoms\! (WIP)
+### Some new bits up first
+
+``` r
+data.frame(
+  parts = factor(rep(month.abb[1:3], 3), levels=month.abb[1:3]),
+  vals = c(10, 20, 30, 6, 14, 40, 30, 20, 10),
+  col = rep(c("blue", "black", "red"), 3),
+  fct = c(rep("Thing 1", 3),
+          rep("Thing 2", 3),
+          rep("Thing 3", 3))
+) -> xdf
+
+xdf %>%
+  count(parts, wt = vals) %>%
+  ggplot(aes(fill = parts, values = n)) +
+  geom_waffle(n_rows = 20, size = 0.33, colour = "white", flip = TRUE) +
+  scale_fill_manual(
+    name = NULL,
+    values = c("#a40000", "#c68958", "#ae6056"),
+    labels = c("Fruit", "Sammich", "Pizza")
+  ) +
+  coord_equal() +
+  theme_ipsum_rc(grid="") +
+  theme_enhance_waffle()
+```
+
+<img src="README_files/figure-gfm/unnamed-chunk-2-1.png" width="768" />
+
+``` r
+
+xdf %>%
+  count(parts, wt = vals) %>%
+  ggplot(aes(label = parts, values = n)) +
+  geom_pictogram(n_rows = 10, aes(colour = parts), flip = TRUE, make_proportional = TRUE) +
+  scale_color_manual(
+    name = NULL,
+    values = c("#a40000", "#c68958", "#ae6056"),
+    labels = c("Fruit", "Sammich", "Pizza")
+  ) +
+  scale_label_pictogram(
+    name = NULL,
+    values = c("apple-alt", "bread-slice", "pizza-slice"),
+    labels = c("Fruit", "Sammich", "Pizza")
+  ) +
+  coord_equal() +
+  theme_ipsum_rc(grid="") +
+  theme_enhance_waffle() +
+  theme(legend.key.height = unit(2.25, "line")) +
+  theme(legend.text = element_text(size = 10, hjust = 0, vjust = 0.75))
+```
+
+<img src="README_files/figure-gfm/unnamed-chunk-2-2.png" width="768" />
+
+``` r
+
+xdf %>%
+  count(parts, wt = vals) %>%
+  ggplot(aes(label = parts, values = n)) +
+  geom_pictogram(
+    n_rows = 20, size = 6, aes(colour = parts), flip = TRUE,
+    family = "FontAwesome5Brands-Regular"
+  ) +
+  scale_color_manual(
+    name = NULL,
+    values = c("#073f9c", "black", "#f34323"),
+    labels = c("BitBucket", "GitHub", "Other")
+  ) +
+  scale_label_pictogram(
+    name = NULL,
+    values = c("bitbucket", "github", "git-alt"),
+    labels = c("BitBucket", "GitHub", "Other")
+  ) +
+  coord_equal() +
+  theme_ipsum_rc(grid="") +
+  theme_enhance_waffle() +
+  theme(legend.text = element_text(hjust = 0, vjust = 1))
+```
+
+<img src="README_files/figure-gfm/unnamed-chunk-2-3.png" width="768" />
+
+### Geoms\!
 
 ``` r
 library(hrbrthemes)
@@ -96,7 +182,7 @@ storms %>%
   filter(year >= 2010) %>% 
   count(year, status) -> storms_df
 
-ggplot(storms_df, aes(fill = status, values = n)) + 
+ggplot(storms_df, aes(fill = status, values = n)) +
   geom_waffle(color = "white", size = .25, n_rows = 10, flip = TRUE) +
   facet_wrap(~year, nrow = 1, strip.position = "bottom") +
   scale_x_discrete() + 
@@ -182,7 +268,7 @@ waffle(
 
 ### Replicating an old favourite
 
-![](http://graphics8.nytimes.com/images/2008/07/20/business/20debtgraphic.jpg)
+![](https://graphics8.nytimes.com/images/2008/07/20/business/20debtgraphic.jpg)
 
 Via: <https://www.nytimes.com/2008/07/20/business/20debt.html>
 
@@ -291,8 +377,8 @@ cloc::cloc_pkg_md()
 
 | Lang | \# Files |  (%) | LoC |  (%) | Blank lines |  (%) | \# Lines |  (%) |
 | :--- | -------: | ---: | --: | ---: | ----------: | ---: | -------: | ---: |
-| R    |       12 | 0.92 | 387 | 0.75 |         140 | 0.66 |      269 | 0.74 |
-| Rmd  |        1 | 0.08 | 131 | 0.25 |          72 | 0.34 |       93 | 0.26 |
+| R    |       16 | 0.89 | 628 | 0.62 |         209 | 0.61 |      373 | 0.67 |
+| Rmd  |        2 | 0.11 | 383 | 0.38 |         135 | 0.39 |      184 | 0.33 |
 
 ## Code of Conduct
 

@@ -23,17 +23,16 @@
 #' If you specify a string (vs `FALSE`) to `use_glyph` the function
 #' will map the input to a Font Awesome glyph name and use that glyph for the
 #' tile instead of a block (making it more like an isotype pictogram than a
-#' waffle chart). You'll need to install FontAwesome and use
-#' the `extrafont` package (`https://github.com/wch/extrafont`) to
-#' be able to use the FontAwesome glyphs. Sizing is also up to the user since
+#' waffle chart). You'll need to install Font Awesome 5 and use
+#' the [`extrafont` package](`https://github.com/wch/extrafont`) to
+#' be able to use Font Awesome 5 glyphs. Sizing is also up to the user since
 #' fonts do not automatically scale with graphic resize.
 #'
 #' Glyph idea inspired by Ruben C. Arslan (@@_r_c_a)
 #'
-#'
 #' @md
-#' @note You MUST use the FontAwesome font bundled with the package. It
-#'       lives in `system.file("fonts", package="waffle")`.
+#' @note You MUST use the Font Awesome 5 fonts bundled with the package.
+#'       See [install_fa_fonts()].
 #' @param parts named vector of values or a data frame to use for the chart
 #' @param rows number of rows of blocks
 #' @param keep keep factor levels (i.e. for consistent legends across waffle plots)

@@ -1,3 +1,15 @@
+round_preserve_sum <- function(x, digits = 0) {
+  up <- 10^digits
+  x <- x * up
+  y <- floor(x)
+  indices <- tail(order(x - y), round(sum(x)) - sum(y))
+  y[indices] <- y[indices] + 1
+  y / up
+}
+
+
+is_missing_arg <- function(x) identical(x, quote(expr = ))
+
 # VIA: http://stackoverflow.com/q/13294952/1457051
 
 rbind_gtable_max <- function(...) {
@@ -86,5 +98,6 @@ ggname <- function(prefix, grob) {
 }
 
 "%||%" <- function(a, b) { if (!is.null(a)) a else b }
+"%l0%" <- function(a, b) { if (length(a)) a else b }
 
-.pt <- 2.84527559055118
+.pt <- ggplot2::.pt

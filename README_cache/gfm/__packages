@@ -1,0 +1,14 @@
+base
+ggplot2
+waffle
+magrittr
+hrbrthemes
+dplyr
+tidyverse
+tibble
+tidyr
+readr
+purrr
+stringr
+forcats
+extrafont
