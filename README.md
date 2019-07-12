@@ -44,9 +44,13 @@ The following functions are implemented:
 ``` r
 install.packages("waffle", repos = "https://cinc.rud.is")
 # or
+devtools::install_git("https://git.rud.is/hrbrmstr/waffle.git")
+# or
 devtools::install_git("https://git.sr.ht/~hrbrmstr/waffle")
 # or
 devtools::install_gitlab("hrbrmstr/waffle")
+# or
+devtools::install_bitbucket("hrbrmstr/waffle")
 # or
 devtools::install_github("hrbrmstr/waffle")
 ```
@@ -54,7 +58,6 @@ devtools::install_github("hrbrmstr/waffle")
 ## Usage
 
 ``` r
-library(waffle)
 library(waffle)
 library(magrittr)
 library(hrbrthemes)

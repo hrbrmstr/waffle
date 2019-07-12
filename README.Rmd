@@ -41,7 +41,6 @@ options(width = 120)
 
 ```{r s3, cache=FALSE}
 library(waffle)
-library(waffle)
 library(magrittr)
 library(hrbrthemes)
 library(ggplot2)
