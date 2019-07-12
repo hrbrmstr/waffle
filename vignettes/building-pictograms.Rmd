@@ -9,14 +9,14 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r top, include=FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   echo = TRUE, message = FALSE, warning = FALSE, 
   fig.width = 8, fig.height = 6, out.width = "100%"
 )
 ```
 
-```{r setup}
+```{r libs}
 library(waffle)
 library(hrbrthemes)
 library(extrafont)
