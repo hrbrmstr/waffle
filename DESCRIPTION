@@ -47,6 +47,7 @@ Imports:
     stats,
     htmlwidgets,
     DT,
-    rlang
+    rlang,
+    utils
 RoxygenNote: 6.1.1
 VignetteBuilder: knitr

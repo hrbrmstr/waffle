@@ -23,7 +23,7 @@ draw_key_waffle <- function(data, params, size, ...) { # nocov start
 #' Waffle (Square pie chart) Geom
 #'
 #' There are two special/critical `aes()` mappings:
-#' - `fill` (so the geom knows which column to map the country names/abbrevs to)
+#' - `fill` (so the geom knows which column to map the fills to)
 #' - `values` (which column you're mapping the filling for the squares with)
 #'
 #' @md
@@ -36,7 +36,7 @@ draw_key_waffle <- function(data, params, size, ...) { # nocov start
 #'     Useful to achieve waffle column chart effect. Defaults is `FALSE`.
 #' @param make_proportional compute proportions from the raw values? (i.e. each
 #'        value `n` will be replaced with `n`/`sum(n)`); default is `FALSE`.
-#' @param radius radius
+#' @param radius radius for round squares
 #' @param data The data to be displayed in this layer. There are three
 #'    options:
 #'
@@ -61,6 +61,7 @@ draw_key_waffle <- function(data, params, size, ...) { # nocov start
 #'   rather than combining with them. This is most useful for helper functions
 #'   that define both data and aesthetics and shouldn't inherit behaviour from
 #'   the default plot specification, e.g. `borders()`.
+#' @param geom geom to use (default is "waffle")
 #' @param ... other arguments passed on to `layer()`. These are
 #'   often aesthetics, used to set an aesthetic to a fixed value, like
 #'   `color = "red"` or `size = 3`. They may also be parameters
