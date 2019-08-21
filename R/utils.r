@@ -88,6 +88,14 @@ insert_unit <- function (x, values, after = length(x)) {
 
 }
 
+# order an expand.grid alternatingly, providing a better layout for waffle
+snake_sort_grid <- function(grid){
+  y <- grid[[1]]
+  x <- grid[[2]]
+  o <- order(x, ifelse(x%%2 > 0, y, -y))
+  grid[o,]
+}
+
 # Name ggplot grid object
 # Convenience function to name grid objects
 #
