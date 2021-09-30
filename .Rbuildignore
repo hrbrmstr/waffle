@@ -3,6 +3,8 @@
 ^\.travis\.yml$
 ^README.*$
 ^\.git$
+^\.github$
+^inst/LICENSE$
 ^\.vscode$
 ^cran-comments\.md$
 ^CONDUCT\.md$
