@@ -1,3 +1,6 @@
+waffle 1.0.2
+- Remove dependency on {plyr}
+
 waffle 1.0.1
 - geom_waffle()
 - CRAN checks pass

@@ -130,7 +130,7 @@ StatWaffle <- ggplot2::ggproto(
 
     }) -> p
 
-    p <- plyr::rbind.fill(p)
+    p <- dplyr::bind_rows(p)
     p[[use]] <- factor(p[[use]], levels=flvls)
     p[["colour"]] <- factor(p[["colour"]], levels = clvls)
 

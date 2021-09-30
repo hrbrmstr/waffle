@@ -30,7 +30,7 @@ To use FA fonts you need to install them onto your system and then make them ava
 
 To see if that incantation worked, you can do:
 
-```{r ef}
+```{r ef, eval = FALSE}
 extrafont::loadfonts(quiet = TRUE)
 
 extrafont::fonttable() %>% 
