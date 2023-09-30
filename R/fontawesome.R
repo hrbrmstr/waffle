@@ -49,6 +49,7 @@ install_fa_fonts <- function() {
     "\n\nPlease navigate to that directory and install them on ",
     "your system."
   )
+  invisible(system.file("fonts", package = "waffle"))
 }
 
 #' Font Awesome 5 Solid
