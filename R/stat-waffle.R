@@ -3,7 +3,7 @@
 stat_waffle <- function(mapping = NULL, data = NULL, geom = "waffle",
                         n_rows = 10, make_proportional = FALSE, flip = FALSE,
                         radius = grid::unit(0, "npc"),
-                        na.rm = NA, show.legend = NA,
+                        na.rm = FALSE, show.legend = NA,
                         inherit.aes = TRUE, ...) {
 
   # msg("Called => stat_waffle::stat_waffle()")

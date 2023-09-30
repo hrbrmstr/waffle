@@ -4,7 +4,9 @@
 \name{fa5_solid}
 \alias{fa5_solid}
 \title{Font Awesome 5 Solid}
-\format{An object of class \code{character} of length 1.}
+\format{
+An object of class \code{character} of length 1.
+}
 \usage{
 fa5_solid
 }

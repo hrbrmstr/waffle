@@ -6,3 +6,6 @@
 ^\.vscode$
 ^cran-comments\.md$
 ^CONDUCT\.md$
+^\.github
+^\.gitattributes
+^CRAN-SUBMISSION$

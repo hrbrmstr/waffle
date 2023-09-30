@@ -24,7 +24,7 @@
 #' will map the input to a Font Awesome glyph name and use that glyph for the
 #' tile instead of a block (making it more like an isotype pictogram than a
 #' waffle chart). You'll need to install Font Awesome 5 and use
-#' the [`extrafont` package](`https://github.com/wch/extrafont`) to
+#' the `extrafont` package to
 #' be able to use Font Awesome 5 glyphs. Sizing is also up to the user since
 #' fonts do not automatically scale with graphic resize.
 #'

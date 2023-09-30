@@ -1,4 +1,4 @@
-draw_key_waffle <- function(data, params, size, ...) { # nocov start
+draw_key_waffle <- function(data, params, size, ...) {
 
   # msg("Called => draw_key_waffle()")
   #
@@ -18,7 +18,7 @@ draw_key_waffle <- function(data, params, size, ...) { # nocov start
       lty = data$linetype %||% 1
     )
   )
-} # nocov end
+}
 
 #' Waffle (Square pie chart) Geom
 #'
@@ -79,7 +79,7 @@ draw_key_waffle <- function(data, params, size, ...) { # nocov start
 #'   facet_wrap(~fct)
 geom_waffle <- function(mapping = NULL, data = NULL,
                         n_rows = 10, make_proportional = FALSE, flip = FALSE,
-                        na.rm = NA, show.legend = NA,
+                        na.rm = FALSE, show.legend = NA,
                         radius = grid::unit(0, "npc"),
                         inherit.aes = TRUE, ...) {
 

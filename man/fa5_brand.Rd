@@ -4,7 +4,9 @@
 \name{fa5_brand}
 \alias{fa5_brand}
 \title{Font Awesome 5 Brand}
-\format{An object of class \code{character} of length 1.}
+\format{
+An object of class \code{character} of length 1.
+}
 \usage{
 fa5_brand
 }

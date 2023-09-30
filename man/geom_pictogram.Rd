@@ -5,11 +5,21 @@
 \alias{geom_pictogram}
 \alias{GeomPictogram}
 \title{Pictogram Geom}
-\format{An object of class \code{GeomPictogram} (inherits from \code{GeomText}, \code{Geom}, \code{ggproto}, \code{gg}) of length 5.}
+\format{
+An object of class \code{GeomPictogram} (inherits from \code{GeomText}, \code{Geom}, \code{ggproto}, \code{gg}) of length 5.
+}
 \usage{
-geom_pictogram(mapping = NULL, data = NULL, n_rows = 10,
-  make_proportional = FALSE, flip = FALSE, ..., na.rm = FALSE,
-  show.legend = NA, inherit.aes = TRUE)
+geom_pictogram(
+  mapping = NULL,
+  data = NULL,
+  n_rows = 10,
+  make_proportional = FALSE,
+  flip = FALSE,
+  ...,
+  na.rm = FALSE,
+  show.legend = NA,
+  inherit.aes = TRUE
+)
 
 GeomPictogram
 }

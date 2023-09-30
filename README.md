@@ -1,10 +1,5 @@
 
-[![Build
-Status](https://travis-ci.org/hrbrmstr/waffle.svg)](https://travis-ci.org/hrbrmstr/waffle)
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/waffle)](https://cran.r-project.org/package=waffle)
-![downloads](https://cranlogs.r-pkg.org/badges/grand-total/waffle)
-
-# waffle
+# 🧇 waffle
 
 Create Waffle Chart Visualizations
 
@@ -26,34 +21,42 @@ It uses ggplot2 and returns a ggplot2 object.
 
 The following functions are implemented:
 
-  - `waffle`: Make waffle (square pie) charts
-  - `draw_key_pictogram`: Legend builder for pictograms
-  - `fa_grep`: Search Font Awesome glyph names for a pattern
-  - `fa_list`: List all Font Awesome glyphs
-  - `geom_pictogram`: Pictogram Geom
-  - `geom_waffle`: Waffle (Square pie chart) Geom
-  - `install_fa_fonts`: Install Font Awesome 5 Fonts
-  - `iron`: Veritical, left-aligned layout for waffle plots
-  - `scale_label_pictogram`: Used with geom\_pictogram() to map Font
-    Awesome fonts to labels
-  - `theme_enhance_waffle`: Waffle chart theme cruft remover that can be
-    used with any other theme
+- `waffle`: Make waffle (square pie) charts
+
+- `draw_key_pictogram`: Legend builder for pictograms
+
+- `fa_grep`: Search Font Awesome glyph names for a pattern
+
+- `fa_list`: List all Font Awesome glyphs
+
+- `fa5_brand`: Font Awesome 5 Brand
+
+- `fa5_solid`: Font Awesome 5 Solid
+
+- `geom_pictogram`: Pictogram Geom
+
+- `geom_waffle`: Waffle (Square pie chart) Geom
+
+- `install_fa_fonts`: Install Font Awesome 5 Fonts
+
+- `iron`: Veritical, left-aligned layout for waffle plots
+
+- `scale_label_pictogram`: Used with geom_pictogram() to map Font
+  Awesome fonts to labels
+
+- `theme_enhance_waffle`: Waffle chart theme cruft remover that can be
+  used with any other theme
 
 ## Installation
 
 ``` r
-install.packages("waffle", repos = "https://cinc.rud.is")
+install.packages("waffle") # NOTE: CRAN version is 0.7.0
 # or
-devtools::install_git("https://git.rud.is/hrbrmstr/waffle.git")
-# or
-devtools::install_git("https://git.sr.ht/~hrbrmstr/waffle")
-# or
-devtools::install_gitlab("hrbrmstr/waffle")
-# or
-devtools::install_bitbucket("hrbrmstr/waffle")
-# or
-devtools::install_github("hrbrmstr/waffle")
+remotes::install_github("hrbrmstr/waffle")
 ```
+
+NOTE: To use the ‘remotes’ install options you will need to have the
+[{remotes} package](https://github.com/r-lib/remotes) installed.
 
 ## Usage
 
@@ -67,7 +70,7 @@ library(waffle)
 
 # current verison
 packageVersion("waffle")
-## [1] '1.0.1'
+## [1] '1.0.2'
 ```
 
 ### Some new bits up first
@@ -76,16 +79,25 @@ packageVersion("waffle")
 data.frame(
   parts = factor(rep(month.abb[1:3], 3), levels=month.abb[1:3]),
   vals = c(10, 20, 30, 6, 14, 40, 30, 20, 10),
-  col = rep(c("blue", "black", "red"), 3),
-  fct = c(rep("Thing 1", 3),
-          rep("Thing 2", 3),
-          rep("Thing 3", 3))
+  col = rep(c("navy", "black", "maroon"), 3),
+  fct = c(
+    rep("Thing 1", 3),
+    rep("Thing 2", 3),
+    rep("Thing 3", 3)
+  )
 ) -> xdf
 
 xdf %>%
   count(parts, wt = vals) %>%
-  ggplot(aes(fill = parts, values = n)) +
-  geom_waffle(n_rows = 20, size = 0.33, colour = "white", flip = TRUE) +
+  ggplot(
+    aes(fill = parts, values = n)
+  ) +
+  geom_waffle(
+    n_rows = 20,
+    size = 0.33, 
+    colour = "white",
+    flip = TRUE
+  ) +
   scale_fill_manual(
     name = NULL,
     values = c("#a40000", "#c68958", "#ae6056"),
@@ -96,14 +108,21 @@ xdf %>%
   theme_enhance_waffle()
 ```
 
-<img src="README_files/figure-gfm/unnamed-chunk-2-1.png" width="768" />
+<img src="README_files/figure-commonmark/new-bits-1.png" width="768" />
 
 ``` r
 
 xdf %>%
   count(parts, wt = vals) %>%
-  ggplot(aes(label = parts, values = n)) +
-  geom_pictogram(n_rows = 10, aes(colour = parts), flip = TRUE, make_proportional = TRUE) +
+  ggplot(
+    aes(label = parts, values = n)
+  ) +
+  geom_pictogram(
+    n_rows = 10, 
+    aes(colour = parts), 
+    flip = TRUE, 
+    make_proportional = TRUE
+  ) +
   scale_color_manual(
     name = NULL,
     values = c("#a40000", "#c68958", "#ae6056"),
@@ -117,19 +136,26 @@ xdf %>%
   coord_equal() +
   theme_ipsum_rc(grid="") +
   theme_enhance_waffle() +
-  theme(legend.key.height = unit(2.25, "line")) +
-  theme(legend.text = element_text(size = 10, hjust = 0, vjust = 0.75))
+  theme(
+    legend.key.height = unit(2.25, "line"),
+    legend.text = element_text(size = 10, hjust = 0, vjust = 0.75)
+  ) 
 ```
 
-<img src="README_files/figure-gfm/unnamed-chunk-2-2.png" width="768" />
+<img src="README_files/figure-commonmark/new-bits-2.png" width="768" />
 
 ``` r
 
 xdf %>%
   count(parts, wt = vals) %>%
-  ggplot(aes(label = parts, values = n)) +
+  ggplot(
+    aes(label = parts, values = n)
+  ) +
   geom_pictogram(
-    n_rows = 20, size = 6, aes(colour = parts), flip = TRUE,
+    n_rows = 20, 
+    size = 6, 
+    aes(colour = parts), 
+    flip = TRUE,
     family = "FontAwesome5Brands-Regular"
   ) +
   scale_color_manual(
@@ -145,12 +171,14 @@ xdf %>%
   coord_equal() +
   theme_ipsum_rc(grid="") +
   theme_enhance_waffle() +
-  theme(legend.text = element_text(hjust = 0, vjust = 1))
+  theme(
+    legend.text = element_text(hjust = 0, vjust = 1)
+  )
 ```
 
-<img src="README_files/figure-gfm/unnamed-chunk-2-3.png" width="768" />
+<img src="README_files/figure-commonmark/new-bits-3.png" width="768" />
 
-### Geoms\!
+### Geoms!
 
 ``` r
 library(hrbrthemes)
@@ -163,11 +191,22 @@ tibble(
   fct = c(rep("Thing 1", 3), rep("Thing 2", 3), rep("Thing 3", 3))
 ) -> xdf
 
-ggplot(xdf, aes(fill=parts, values=values)) +
-  geom_waffle(color = "white", size=1.125, n_rows = 6) +
+ggplot(
+  data = xdf, 
+  aes(fill=parts, values=values)
+) +
+  geom_waffle(
+    color = "white", 
+    size = 1.125, 
+    n_rows = 6
+  ) +
   facet_wrap(~fct, ncol=1) +
-  scale_x_discrete(expand=c(0,0)) +
-  scale_y_discrete(expand=c(0,0)) +
+  scale_x_discrete(
+    expand = c(0,0,0,0)
+  ) +
+  scale_y_discrete(
+    expand = c(0,0,0,0)
+  ) +
   ggthemes::scale_fill_tableau(name=NULL) +
   coord_equal() +
   labs(
@@ -177,9 +216,9 @@ ggplot(xdf, aes(fill=parts, values=values)) +
   theme_enhance_waffle()
 ```
 
-<img src="README_files/figure-gfm/geoms-1.png" width="576" />
+<img src="README_files/figure-commonmark/geoms-1.png" width="576" />
 
-### Waffle Bar Charts with scales\!
+### Waffle Bar Charts with scales!
 
 ``` r
 library(dplyr)
@@ -189,26 +228,47 @@ storms %>%
   filter(year >= 2010) %>% 
   count(year, status) -> storms_df
 
-ggplot(storms_df, aes(fill = status, values = n)) +
-  geom_waffle(color = "white", size = .25, n_rows = 10, flip = TRUE) +
-  facet_wrap(~year, nrow = 1, strip.position = "bottom") +
+ggplot(
+  data = storms_df, 
+  aes(fill = status, values = n)
+) +
+  geom_waffle(
+    color = "white", 
+    size = .25, 
+    n_rows = 10, 
+    flip = TRUE
+  ) +
+  facet_wrap(
+    ~year, 
+    nrow = 1, 
+    strip.position = "bottom"
+  ) +
   scale_x_discrete() + 
-  scale_y_continuous(labels = function(x) x * 10, # make this multiplyer the same as n_rows
-                     expand = c(0,0)) +
+  scale_y_continuous(
+    labels = function(x) x * 10, # make this multiplier the same as n_rows
+    expand = c(0,0)
+  ) +
   ggthemes::scale_fill_tableau(name=NULL) +
   coord_equal() +
   labs(
+    x = "Year", y = "Count",
     title = "Faceted Waffle Bar Chart",
-    subtitle = "{dplyr} storms data",
-    x = "Year",
-    y = "Count"
+    subtitle = "{dplyr} storms data"
   ) +
-  theme_minimal(base_family = "Roboto Condensed") +
-  theme(panel.grid = element_blank(), axis.ticks.y = element_line()) +
-  guides(fill = guide_legend(reverse = TRUE))
+  theme_minimal(
+    base_family = "Roboto Condensed"
+  ) +
+  theme(
+    panel.grid = element_blank(), 
+    axis.ticks.y = element_line()
+  ) +
+  guides(
+    fill = guide_legend(reverse = TRUE)
+  )
 ```
 
-<img src="README_files/figure-gfm/waffle-bars-1.png" width="672" />
+<img src="README_files/figure-commonmark/waffle-bars-1.png"
+width="672" />
 
 ### Basic example
 
@@ -217,7 +277,7 @@ parts <- c(80, 30, 20, 10)
 waffle(parts, rows = 8)
 ```
 
-<img src="README_files/figure-gfm/fig0-1.png" width="576" />
+<img src="README_files/figure-commonmark/fig0-1.png" width="576" />
 
 ### Use a data frame
 
@@ -230,35 +290,45 @@ parts <- data.frame(
 waffle(parts, rows = 8)
 ```
 
-<img src="README_files/figure-gfm/fig1-1.png" width="576" />
+<img src="README_files/figure-commonmark/fig1-1.png" width="576" />
 
 ### Slightly more complex example
 
 ``` r
-parts <- c(`Un-breached\nUS Population` = (318 - 11 - 79), `Premera` = 11, `Anthem` = 79)
+c(
+  `Un-breached\nUS Population` = (318 - 11 - 79), 
+  `Premera` = 11, 
+  `Anthem` = 79
+) -> parts
 ```
 
 ``` r
 waffle(
-  parts, rows = 8, size = 1, 
-  colors = c("#969696", "#1879bf", "#009bda"), legend_pos = "bottom"
+  parts = parts, 
+  rows = 8, 
+  size = 1, 
+  colors = c("#969696", "#1879bf", "#009bda"),
+  legend_pos = "bottom"
 )
 ```
 
 **Health records breaches as fraction of US Population**
-<img src="README_files/figure-gfm/fig2-1.png" width="576" />
+
+<img src="README_files/figure-commonmark/fig2-1.png" width="576" />
 
 <span style="font-size:8pt">One square == 1m ppl</span>
 
 ``` r
 waffle(
-  parts / 10, rows = 3,
+  parts = parts / 10, 
+  rows = 3,
   colors = c("#969696", "#1879bf", "#009bda")
 )
 ```
 
 **Health records breaches as fraction of US Population**
-<img src="README_files/figure-gfm/fig3-1.png" width="576" />
+
+<img src="README_files/figure-commonmark/fig3-1.png" width="576" />
 
 <span style="font-size:8pt">(One square == 10m ppl)</span>
 
@@ -266,12 +336,18 @@ waffle(
 library(extrafont)
 
 waffle(
-  parts / 10, rows = 3, colors = c("#969696", "#1879bf", "#009bda"),
-  use_glyph = "medkit", size = 8
-) + expand_limits(y = c(0, 4))
+  parts = parts / 10, 
+  rows = 3, 
+  colors = c("#969696", "#1879bf", "#009bda"),
+  use_glyph = "medkit", 
+  size = 8
+) + 
+  expand_limits(
+    y = c(0, 4)
+  )
 ```
 
-<img src="README_files/figure-gfm/medkit-1.png" width="576" />
+<img src="README_files/figure-commonmark/medkit-1.png" width="576" />
 
 ### Replicating an old favourite
 
@@ -280,23 +356,29 @@ waffle(
 Via: <https://www.nytimes.com/2008/07/20/business/20debt.html>
 
 ``` r
-savings <- c(
-  `Mortgage\n($84,911)` = 84911, `Auto and\ntuition loans\n($14,414)` = 14414,
-  `Home equity loans\n($10,062)` = 10062, `Credit Cards\n($8,565)` = 8565
-)
+c(
+  `Mortgage\n($84,911)` = 84911, 
+  `Auto and\ntuition loans\n($14,414)` = 14414,
+  `Home equity loans\n($10,062)` = 10062, 
+  `Credit Cards\n($8,565)` = 8565
+) -> savings
 ```
 
 ``` r
 waffle(
-  savings / 392, rows = 7, size = 0.5, legend_pos = "bottom",
+  parts = savings / 392, 
+  rows = 7, 
+  size = 0.5, 
+  legend_pos = "bottom",
   colors = c("#c7d4b6", "#a3aabd", "#a0d0de", "#97b5cf")
 )
 ```
 
 **Average Household Savings Each Year**
-<img src="README_files/figure-gfm/fig4a-1.png" width="768" />
 
-<span style="font-size:8pt">(1 square == $392)</span>
+<img src="README_files/figure-commonmark/fig4a-1.png" width="768" />
+
+<span style="font-size:8pt">(1 square == \$392)</span>
 
 ### More replication
 
@@ -308,7 +390,9 @@ professional <- c(`Male` = 44, `Female (56%)` = 56)
 
 ``` r
 waffle(
-  professional, rows = 10, size = 0.5,
+  parts = professional, 
+  rows = 10, 
+  size = 0.5,
   colors = c("#af9139", "#544616")
 )
 ```
@@ -319,27 +403,41 @@ With:
 
 ``` r
 iron(
-  waffle(c(thing1 = 0, thing2 = 100), rows = 5),
-  waffle(c(thing1 = 25, thing2 = 75), rows = 5)
+  waffle(
+    parts = c(thing1 = 0, thing2 = 100), 
+    rows = 5
+  ),
+  waffle(
+    parts = c(thing1 = 25, thing2 = 75), 
+    rows = 5
+  )
 )
 ```
 
-<img src="README_files/figure-gfm/fct-1.png" width="576" />
+<img src="README_files/figure-commonmark/fct-1.png" width="576" />
 
 Without (you can disable this via `keep` parameter now):
 
 ``` r
 iron(
-  waffle(c(thing1 = 0, thing2 = 100), rows = 5, keep = FALSE),
-  waffle(c(thing1 = 25, thing2 = 75), rows = 5, keep = FALSE)
+  waffle(
+    parts = c(thing1 = 0, thing2 = 100), 
+    rows = 5, 
+    keep = FALSE
+  ),
+  waffle(
+    parts = c(thing1 = 25, thing2 = 75), 
+    rows = 5, 
+    keep = FALSE
+  )
 )
 ```
 
-<img src="README_files/figure-gfm/no_fct-1.png" width="576" />
+<img src="README_files/figure-commonmark/no_fct-1.png" width="576" />
 
 **Professional Workforce Makeup**
 
-<img src="README_files/figure-gfm/f5-1.png" width="384" />
+<img src="README_files/figure-commonmark/f5-1.png" width="384" />
 
 Iron example (left-align & padding for multiple plots)
 
@@ -347,7 +445,9 @@ Iron example (left-align & padding for multiple plots)
 pain.adult.1997 <- c(`YOY (406)` = 406, `Adult (24)` = 24)
 
 waffle(
-  pain.adult.1997 / 2, rows = 7, size = 0.5,
+  parts = pain.adult.1997 / 2,
+  rows = 7, 
+  size = 0.5,
   colors = c("#c7d4b6", "#a3aabd"),
   title = "Paine Run Brook Trout Abundance (1997)",
   xlab = "1 square = 2 fish", pad = 3
@@ -356,7 +456,9 @@ waffle(
 pine.adult.1997 <- c(`YOY (221)` = 221, `Adult (143)` = 143)
 
 waffle(
-  pine.adult.1997 / 2, rows = 7, size = 0.5,
+  parts = pine.adult.1997 / 2, 
+  rows = 7, 
+  size = 0.5,
   colors = c("#c7d4b6", "#a3aabd"),
   title = "Piney River Brook Trout Abundance (1997)",
   xlab = "1 square = 2 fish", pad = 8
@@ -365,7 +467,9 @@ waffle(
 stan.adult.1997 <- c(`YOY (270)` = 270, `Adult (197)` = 197)
 
 waffle(
-  stan.adult.1997 / 2, rows = 7, size = 0.5,
+  parts = stan.adult.1997 / 2, 
+  rows = 7, 
+  size = 0.5,
   colors = c("#c7d4b6", "#a3aabd"),
   title = "Staunton River Trout Abundance (1997)",
   xlab = "1 square = 2 fish"
@@ -374,7 +478,7 @@ waffle(
 iron(A, B, C)
 ```
 
-<img src="README_files/figure-gfm/f8-1.png" width="672" />
+<img src="README_files/figure-commonmark/f8-1.png" width="672" />
 
 ## Package Code Metrics
 
@@ -382,10 +486,13 @@ iron(A, B, C)
 cloc::cloc_pkg_md()
 ```
 
-| Lang | \# Files |  (%) | LoC |  (%) | Blank lines |  (%) | \# Lines | (%) |
-| :--- | -------: | ---: | --: | ---: | ----------: | ---: | -------: | --: |
-| R    |       16 | 0.89 | 628 | 0.62 |         209 | 0.61 |      430 | 0.7 |
-| Rmd  |        2 | 0.11 | 383 | 0.38 |         135 | 0.39 |      184 | 0.3 |
+| Lang | \# Files |  (%) | LoC |  (%) | Blank lines |  (%) | \# Lines |  (%) |
+|:-----|---------:|-----:|----:|-----:|------------:|-----:|---------:|-----:|
+| R    |       14 | 0.44 | 624 | 0.35 |         218 | 0.36 |      439 | 0.38 |
+| Rmd  |        2 | 0.06 | 255 | 0.15 |          88 | 0.14 |      139 | 0.12 |
+| SUM  |       16 | 0.50 | 879 | 0.50 |         306 | 0.50 |      578 | 0.50 |
+
+{cloc} 📦 metrics for waffle
 
 ## Code of Conduct
 

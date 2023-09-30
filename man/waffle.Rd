@@ -4,11 +4,24 @@
 \alias{waffle}
 \title{Make waffle (square pie) charts}
 \usage{
-waffle(parts, rows = 10, keep = TRUE, xlab = NULL, title = NULL,
-  colors = NA, size = 2, flip = FALSE, reverse = FALSE,
-  equal = TRUE, pad = 0, use_glyph = FALSE, glyph_size = 12,
+waffle(
+  parts,
+  rows = 10,
+  keep = TRUE,
+  xlab = NULL,
+  title = NULL,
+  colors = NA,
+  size = 2,
+  flip = FALSE,
+  reverse = FALSE,
+  equal = TRUE,
+  pad = 0,
+  use_glyph = FALSE,
+  glyph_size = 12,
   glyph_font = "Font Awesome 5 Free Solid",
-  glyph_font_family = "FontAwesome5Free-Solid", legend_pos = "right")
+  glyph_font_family = "FontAwesome5Free-Solid",
+  legend_pos = "right"
+)
 }
 \arguments{
 \item{parts}{named vector of values or a data frame to use for the chart}
@@ -85,7 +98,7 @@ If you specify a string (vs \code{FALSE}) to \code{use_glyph} the function
 will map the input to a Font Awesome glyph name and use that glyph for the
 tile instead of a block (making it more like an isotype pictogram than a
 waffle chart). You'll need to install Font Awesome 5 and use
-the \href{`https://github.com/wch/extrafont`}{extrafont package} to
+the \code{extrafont} package to
 be able to use Font Awesome 5 glyphs. Sizing is also up to the user since
 fonts do not automatically scale with graphic resize.
 

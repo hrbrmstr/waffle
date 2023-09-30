@@ -7,19 +7,40 @@
 \alias{stat_waffle}
 \alias{StatWaffle}
 \title{Waffle (Square pie chart) Geom}
-\format{An object of class \code{GeomWaffle} (inherits from \code{GeomRtile}, \code{GeomRrect}, \code{Geom}, \code{ggproto}, \code{gg}) of length 5.}
+\format{
+An object of class \code{GeomWaffle} (inherits from \code{GeomRtile}, \code{GeomRrect}, \code{Geom}, \code{ggproto}, \code{gg}) of length 5.
+
+An object of class \code{StatWaffle} (inherits from \code{Stat}, \code{ggproto}, \code{gg}) of length 8.
+}
 \usage{
-geom_waffle(mapping = NULL, data = NULL, n_rows = 10,
-  make_proportional = FALSE, flip = FALSE, na.rm = NA,
-  show.legend = NA, radius = grid::unit(0, "npc"),
-  inherit.aes = TRUE, ...)
+geom_waffle(
+  mapping = NULL,
+  data = NULL,
+  n_rows = 10,
+  make_proportional = FALSE,
+  flip = FALSE,
+  na.rm = FALSE,
+  show.legend = NA,
+  radius = grid::unit(0, "npc"),
+  inherit.aes = TRUE,
+  ...
+)
 
 GeomWaffle
 
-stat_waffle(mapping = NULL, data = NULL, geom = "waffle",
-  n_rows = 10, make_proportional = FALSE, flip = FALSE,
-  radius = grid::unit(0, "npc"), na.rm = NA, show.legend = NA,
-  inherit.aes = TRUE, ...)
+stat_waffle(
+  mapping = NULL,
+  data = NULL,
+  geom = "waffle",
+  n_rows = 10,
+  make_proportional = FALSE,
+  flip = FALSE,
+  radius = grid::unit(0, "npc"),
+  na.rm = FALSE,
+  show.legend = NA,
+  inherit.aes = TRUE,
+  ...
+)
 
 StatWaffle
 }
