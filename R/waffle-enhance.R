@@ -22,6 +22,7 @@ theme_enhance_waffle<- function() {
   ret <- ret + theme(axis.title.y = element_blank())
   ret <- ret + theme(axis.title.y.left = element_blank())
   ret <- ret + theme(axis.title.y.right = element_blank())
+  ret <- ret + theme(axis.ticks = element_blank())
 
   ret
 
