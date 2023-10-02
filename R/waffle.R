@@ -120,6 +120,9 @@ waffle <- function(parts, rows=10, keep=TRUE, xlab=NULL, title=NULL, colors=NA,
   # setup the data frame for geom_rect
   dat <- expand.grid(y = 1:rows, x = seq_len(pad + (ceiling(sum(parts) / rows))))
 
+  # order the grid snake wise...
+  dat <- snake_sort_grid(dat)
+
   # add NAs if needed to fill in the "rectangle"
   dat$value <- c(parts_vec, rep(NA, nrow(dat) - length(parts_vec)))
 

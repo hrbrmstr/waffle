@@ -115,6 +115,7 @@ StatWaffle <- ggplot2::ggproto(
         x = seq_len((ceiling(sum(.x[["values"]]) / params$n_rows)))#,
         # stringsAsFactors = FALSE
       ) -> tdf
+      tdf <- snake_sort_grid(tdf)
 
       parts_vec <- c(parts_vec, rep(NA, nrow(tdf)-length(parts_vec)))
       colour_vec <- c(colour_vec, rep(NA, nrow(tdf)-length(colour_vec)))
