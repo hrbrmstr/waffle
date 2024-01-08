@@ -47,4 +47,6 @@ Imports:
     plyr,
     rlang,
     utils
+URL: https://github.com/hrbrmstr/waffle
+BugReports: https://github.com/hrbrmstr/waffle/issues
 RoxygenNote: 7.2.3
